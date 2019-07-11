@@ -1,0 +1,6 @@
+framework module Pods_iMovieGradeTests {
+  umbrella header "Pods-iMovieGradeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
