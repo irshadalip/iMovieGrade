@@ -9,7 +9,7 @@
 import UIKit
 
 
-class MoviesModel {
+class NowModel {
     
     var name : String?
     var image : UIImage?
@@ -21,3 +21,22 @@ class MoviesModel {
 //
 //    var movieURL = ["r9-DM9uBtVI", "coOKvrsmQiI","vJz5l5ru7ws","rF5viX42K3s","39udgGPyYMg","ue80QwXMRHg","n6ihJIjVGLo","Ku52zNnft8k"]
 //}
+class PopulerModel {
+    var name : String?
+    var image : UIImage?
+    var movieURL : String?
+    var index: Int?
+}
+
+class MovieModel {
+    var name : String?
+    var image : UIImage?
+    var movieURL : String?
+    var index: Int?
+}
+class CharacterModel {
+    var name : String?
+    var image : UIImage?
+    var movieURL : String?
+    var index: Int?
+}

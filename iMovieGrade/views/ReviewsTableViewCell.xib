@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="128" id="KGk-i7-Jjw" customClass="ReviewsTableViewCell" customModule="iMovieGrade" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ReviewsTableViewCell" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="ReviewsTableViewCell" customModule="iMovieGrade" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="127.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eoS-eC-Jsv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="127.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBJ-Od-VMO">
+                                <rect key="frame" x="74" y="8" width="285" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic" translatesAutoresizingMaskIntoConstraints="NO" id="MHR-oR-idH">
+                                <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Dzl-gv-Dem"/>
+                                    <constraint firstAttribute="height" constant="50" id="o57-sl-VX1"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddl-Vz-sWw">
+                                <rect key="frame" x="74" y="37" width="285" height="57.5"/>
+                                <string key="text">The French Revolution constituted for the conscience of the dominant aristocratic class a fall from innocence, and upturning of the natural chain of events that resounded all over Europe</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="LBJ-Od-VMO" secondAttribute="trailing" constant="16" id="8BV-7Q-Eo3"/>
+                            <constraint firstItem="MHR-oR-idH" firstAttribute="top" secondItem="eoS-eC-Jsv" secondAttribute="top" constant="8" id="B2g-NT-Vkk"/>
+                            <constraint firstItem="ddl-Vz-sWw" firstAttribute="top" secondItem="LBJ-Od-VMO" secondAttribute="bottom" constant="8" id="Lri-bn-2VR"/>
+                            <constraint firstItem="ddl-Vz-sWw" firstAttribute="leading" secondItem="MHR-oR-idH" secondAttribute="trailing" constant="16" id="bRx-5s-4o9"/>
+                            <constraint firstItem="LBJ-Od-VMO" firstAttribute="top" secondItem="eoS-eC-Jsv" secondAttribute="top" constant="8" id="enM-F5-cGP"/>
+                            <constraint firstItem="LBJ-Od-VMO" firstAttribute="leading" secondItem="MHR-oR-idH" secondAttribute="trailing" constant="16" id="jDV-Tc-djX"/>
+                            <constraint firstAttribute="trailing" secondItem="ddl-Vz-sWw" secondAttribute="trailing" constant="16" id="obf-PJ-JC8"/>
+                            <constraint firstItem="MHR-oR-idH" firstAttribute="leading" secondItem="eoS-eC-Jsv" secondAttribute="leading" constant="8" id="p9g-av-ijB"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="eoS-eC-Jsv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Juc-GN-CYZ"/>
+                    <constraint firstAttribute="bottom" secondItem="eoS-eC-Jsv" secondAttribute="bottom" id="WJf-yH-o4L"/>
+                    <constraint firstAttribute="trailing" secondItem="eoS-eC-Jsv" secondAttribute="trailing" id="ol5-eK-dXx"/>
+                    <constraint firstItem="eoS-eC-Jsv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="q4W-wc-jKp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nameLabel" destination="LBJ-Od-VMO" id="Xew-Ie-v3T"/>
+                <outlet property="reviewLabel" destination="ddl-Vz-sWw" id="dPo-nC-XsA"/>
+            </connections>
+            <point key="canvasLocation" x="77.599999999999994" y="114.24287856071965"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="profile_pic" width="144" height="144"/>
+    </resources>
+</document>

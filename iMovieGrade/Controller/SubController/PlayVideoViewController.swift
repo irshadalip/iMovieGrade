@@ -23,11 +23,6 @@ class PlayVideoViewController: UIViewController {
         //url = movieURL[]
         print(movieID)
         
-        playView.loadVideoID("\(movieID!)")
-        
+        playView.loadVideoID("\(movieID!)")    //r9-DM9uBtVI
     }
-    
-    //navigationController?.popViewController(animated: true)
-        
-    
 }

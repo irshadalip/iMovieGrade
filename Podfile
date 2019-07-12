@@ -18,6 +18,7 @@ target 'iMovieGrade' do
     pod 'Firebase/Storage'
     pod 'SideMenu'
     pod 'YouTubePlayer'
+    pod 'BottomDrawer'
 
   target 'iMovieGradeTests' do
     inherit! :search_paths

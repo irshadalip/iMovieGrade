@@ -16,13 +16,13 @@ class NowListViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     @IBOutlet weak var nowListCollectionView: UICollectionView!
     
-    var listOfData = [MoviesModel]()
+    var listOfData = [NowModel]()
     
     
-    var nows = ["justice league","pampage","hostiles","jigsaw","spiderman homecoming","thor ragnarok","rememory","hotel transylvania"]
-    var nowText = ["justice league","pampage","hostiles","jigsaw","spiderman homecoming","thor ragnarok","rememory","hotel transylvania"]
+    var nows = ["justice league"]
+    var nowText = ["justice league"]
     
-    var nows2 = ["justice league","justice league"]
+    var nows2 = ["justice league"]
     
     let db = Firestore.firestore()
     
@@ -73,8 +73,9 @@ class NowListViewController: UIViewController, UICollectionViewDelegate, UIColle
         let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
         
         viewControler.movieID = listOfData[indexPath.row].movieURL
-        //let temp = listOfData.name
         self.navigationController?.pushViewController(viewControler, animated: true)
+        
+        
         
     }
 
@@ -91,13 +92,13 @@ extension NowListViewController{
             } else {
                 for document in querySnapshot!.documents {
                     // most Important
-                    let newitem = MoviesModel()
-                    newitem.movieURL = (document.data()["url"] as! String)
-                    newitem.name = (document.data()["name"] as! String)
+                    let nownewitem = NowModel()
+                    nownewitem.movieURL = (document.data()["url"] as! String)
+                    nownewitem.name = (document.data()["name"] as! String)
                     // feching data
-                    let storeRef = Storage.storage().reference(withPath: "nowlist/\(newitem.name!).png")//document.documentID
+                    let storeRef = Storage.storage().reference(withPath: "nowlist/\(nownewitem.name!).png")//document.documentID
 
-                    print("nowlist/\(newitem.name!).png")
+                    print("nowlist/\(nownewitem.name!).png")
 
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
@@ -107,12 +108,12 @@ extension NowListViewController{
                         }
                         if let data = data {
                             print("Main data\(data)")
-                            newitem.image  = UIImage(data: data)!
+                            nownewitem.image  = UIImage(data: data)!
                             self.nowListCollectionView.reloadData()
                         }
                     })
-                    //self.nows.append(newitem.image!)
-                    self.listOfData.append(newitem)
+                    //self.nows.append(nownewitem.image!)
+                    self.listOfData.append(nownewitem)
                     DispatchQueue.main.async {
                         self.nowListCollectionView.reloadData()
 

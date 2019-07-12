@@ -5,6 +5,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.3):
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
+  - BottomDrawer (0.1.1)
   - FBSDKCoreKit (5.2.1):
     - FBSDKCoreKit/Basics (= 5.2.1)
     - FBSDKCoreKit/Core (= 5.2.1)
@@ -128,6 +129,7 @@ PODS:
   - YouTubePlayer (0.4.0)
 
 DEPENDENCIES:
+  - BottomDrawer
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -143,6 +145,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BoringSSL-GRPC
+    - BottomDrawer
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
@@ -169,6 +172,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
+  BottomDrawer: 5993cb55da08ccd92b6674d8b925410cb765f34f
   FBSDKCoreKit: e1ab8d86f5eea2d7aa6ab12acca3e1d2dcb11983
   FBSDKLoginKit: 6e20e44775ddf4b159a8ca676834325e13d12221
   FBSDKShareKit: 75a25e88b15b66e67ed03826080eff825afff520
@@ -193,6 +197,6 @@ SPEC CHECKSUMS:
   SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: 981e4ff45c872f391e54100b81df290697f18a68
+PODFILE CHECKSUM: dc9e78fe9e972fc1b12d35d4ee9c9dd35c8f6dbc
 
 COCOAPODS: 1.7.2

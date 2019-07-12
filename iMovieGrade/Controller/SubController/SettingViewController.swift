@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BottomDrawer
 
 class SettingViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
     
@@ -59,9 +60,21 @@ class SettingViewController: UIViewController, UITableViewDataSource,UITableView
             
         }
         else{
-            let viewControler : AboutViewController = self.storyboard?.instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
             
-            self.navigationController?.pushViewController(viewControler, animated: true)
+            let request = self.storyboard?.instantiateViewController(withIdentifier: "AboutViewController") as? AboutViewController
+            let v = BottomController()
+            request?.view.backgroundColor = .white
+            v.destinationController = request
+            v.sourceController = self
+            v.startingHeight = 200
+            v.cornerRadius = 10
+            v.modalPresentationStyle = .overCurrentContext
+            self.present(v, animated: true, completion: nil)
+//
+//
+//            let viewControler : AboutViewController = self.storyboard?.instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
+//
+//            self.navigationController?.pushViewController(viewControler, animated: true)
           
         }
     }

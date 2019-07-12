@@ -12,17 +12,23 @@ import Firebase
 
 class FirstTapViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
     
+    let dbMovie = Firestore.firestore()
+    var listOfDataMovie = [MovieModel]()
     
-    let db = Firestore.firestore()
-    var listOfData = [MoviesModel]()
+    let dbNow = Firestore.firestore()
+    var listOfDataNow = [NowModel]()
     
-    var movies = ["movie-1","movie-2","movie-3","movie-4","movie-5","movie-6"]
-    var nows = ["justice league","pampage","hostiles","jigsaw","spiderman homecoming","thor ragnarok","rememory","hotel transylvania"]
-    var nowText = ["justice league","pampage","hostiles","jigsaw","spiderman homecoming","thor ragnarok","rememory","hotel transylvania"]
+    let dbPopuler = Firestore.firestore()
+    var listOfDataPopuler = [PopulerModel]()
+    
+    
+    var movies = ["movie-1"]
+    var nows = ["justice league",]
+    var nowText = ["justice league"]
 
     
-    var populers = ["populer-1","populer-2","populer-3","populer-4","populer-5","populer-6","populer-7","populer-8","populer-9","populer-10","populer-11"]
-    var populerText = ["populer-1","populer-2","populer-3","populer-4","populer-5","populer-6","populer-7","populer-8","populer-9","populer-10","populer-11"]
+    var populers = ["populer-1"]
+    var populerText = ["populer-1"]
     
     @IBOutlet weak var moviesCollection: UICollectionView!
     @IBOutlet weak var nowsCollection: UICollectionView!
@@ -41,7 +47,10 @@ class FirstTapViewController: UIViewController,UICollectionViewDelegate, UIColle
         populerCollection.dataSource = self
         // Do any additional setup after loading the view.
         
-        readData()
+        readDataMovie()
+        readDataNow()
+        readDataPopuler()
+
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
@@ -64,13 +73,13 @@ class FirstTapViewController: UIViewController,UICollectionViewDelegate, UIColle
 extension FirstTapViewController{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.moviesCollection {
-            return movies.count
+            return listOfDataMovie.count
         }
         else if collectionView == self.nowsCollection {
-            return listOfData.count
+            return listOfDataNow.count
         }
         else{
-            return populers.count
+            return listOfDataPopuler.count
         }
         
     }
@@ -78,31 +87,37 @@ extension FirstTapViewController{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == self.moviesCollection {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MoviesCollectionViewCell
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MoviesCollectionViewCell
+//            cell.imageMovie.image = UIImage(named: movies[indexPath.row])
+//            return cell
             
-            cell.imageMovie.image = UIImage(named: movies[indexPath.row])
-
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MoviesCollectionViewCell
+            cell.imageMovie.image = listOfDataMovie[indexPath.row].image
             return cell
         }
         else if collectionView == self.nowsCollection {
 //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowCell", for: indexPath) as! NowCollectionViewCell
-//
 //            cell.nowimageView.image = UIImage(named: nows[indexPath.row])
 //            cell.nowLabel.text = nowText[indexPath.row]
-//
 //            return cell
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowCell", for: indexPath) as! NowCollectionViewCell
-            cell.nowimageView.image = listOfData[indexPath.row].image
-            cell.nowLabel.text = listOfData[indexPath.row].name
+            cell.nowimageView.image = listOfDataNow[indexPath.row].image
+            cell.nowLabel.text = listOfDataNow[indexPath.row].name
             
             return cell
             
         }
         else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopulerCell", for: indexPath) as! PopulerCollectionViewCell
             
-            cell.imagePopuler.image = UIImage(named: populers[indexPath.row])
-            cell.populerLabel.text = populerText[indexPath.row]
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopulerCell", for: indexPath) as! PopulerCollectionViewCell
+//            cell.imagePopuler.image = UIImage(named: populers[indexPath.row])
+//            cell.populerLabel.text = populerText[indexPath.row]
+//            return cell
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopulerCell", for: indexPath) as! PopulerCollectionViewCell
+            cell.imagePopuler.image = listOfDataPopuler[indexPath.row].image
+            cell.populerLabel.text = listOfDataPopuler[indexPath.row].name
             
             return cell
         }
@@ -110,17 +125,29 @@ extension FirstTapViewController{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == self.moviesCollection {
+            let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
+            
+            viewControler.movieID = listOfDataMovie[indexPath.row].movieURL
+            viewControler.moviename = listOfDataMovie[indexPath.row].name
+            viewControler.movieImage = listOfDataMovie[indexPath.row].image
+            self.navigationController?.pushViewController(viewControler, animated: true)
             
         }
         else if collectionView == self.nowsCollection {
             let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
-            
-            viewControler.movieID = listOfData[indexPath.row].movieURL
-            //let temp = listOfData.name
+            viewControler.movieID = listOfDataNow[indexPath.row].movieURL
+            viewControler.moviename = listOfDataNow[indexPath.row].name
+            viewControler.movieImage = listOfDataNow[indexPath.row].image
             self.navigationController?.pushViewController(viewControler, animated: true)
             
         }
         else {
+            let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
+            
+            viewControler.movieID = listOfDataPopuler[indexPath.row].movieURL
+            viewControler.moviename = listOfDataPopuler[indexPath.row].name
+            viewControler.movieImage = listOfDataPopuler[indexPath.row].image
+            self.navigationController?.pushViewController(viewControler, animated: true)
          
         }
         
@@ -129,22 +156,24 @@ extension FirstTapViewController{
 
 extension FirstTapViewController{
     
-    func readData() {
+    func readDataNow() {
         self.nows.removeAll()
-        db.collection("movies").getDocuments() { (querySnapshot, err) in
+        
+        dbNow.collection("movies").getDocuments() { (querySnapshot, err) in
+
             if let err = err {
                 print("Error getting documents: \(err)")
                 
             } else {
                 for document in querySnapshot!.documents {
                     // most Important
-                    let newitem = MoviesModel()
-                    newitem.movieURL = (document.data()["url"] as! String)
-                    newitem.name = (document.data()["name"] as! String)
+                    let nownewitem = NowModel()
+                    nownewitem.movieURL = (document.data()["url"] as! String)
+                    nownewitem.name = (document.data()["name"] as! String)
                     // feching data
-                    let storeRef = Storage.storage().reference(withPath: "nowlist/\(newitem.name!).png")//document.documentID
+                    let storeRef = Storage.storage().reference(withPath: "nowlist/\(nownewitem.name!).png")//document.documentID
                     
-                    print("nowlist/\(newitem.name!).png")
+                    print("nowlist/\(nownewitem.name!).png")
                     
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
@@ -154,17 +183,105 @@ extension FirstTapViewController{
                         }
                         if let data = data {
                             print("Main data\(data)")
-                            newitem.image  = UIImage(data: data)!
+                            nownewitem.image  = UIImage(data: data)!
                             self.nowsCollection.reloadData()
                         }
                     })
-                    //self.nows.append(newitem.image!)
-                    self.listOfData.append(newitem)
+                    //self.nows.append(nownewitem.image!)
+                    self.listOfDataNow.append(nownewitem)
                     DispatchQueue.main.async {
                         self.nowsCollection.reloadData()
                         
                     }
                     self.nowsCollection.reloadData()
+                    print("Data Print:- \(document.documentID) => \(document.data())")
+                    
+                }
+            }
+        }
+    }
+    func readDataPopuler() {
+        self.populers.removeAll()
+        
+        dbPopuler.collection("popular").getDocuments() { (querySnapshot, err) in
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let populernewitem = PopulerModel()
+                    populernewitem.movieURL = (document.data()["url"] as! String)
+                    populernewitem.name = (document.data()["name"] as! String)
+                    // feching data
+                    let storeRef = Storage.storage().reference(withPath: "populerlist/\(populernewitem.name!).png")//document.documentID
+                    
+                    print("populerlist/\(populernewitem.name!).png")
+                    
+                    storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
+                        if let error = error {
+                            print("error-------- \(error.localizedDescription)")
+                            
+                            return
+                        }
+                        if let data = data {
+                            print("Main data\(data)")
+                            populernewitem.image  = UIImage(data: data)!
+                            self.populerCollection.reloadData()
+                        }
+                    })
+                    //self.nows.append(nownewitem.image!)
+                    self.listOfDataPopuler.append(populernewitem)
+                    DispatchQueue.main.async {
+                        self.populerCollection.reloadData()
+                        
+                    }
+                    self.populerCollection.reloadData()
+                    print("Data Print:- \(document.documentID) => \(document.data())")
+                    
+                }
+            }
+        }
+    }
+    func readDataMovie() {
+        self.movies.removeAll()
+        
+        dbMovie.collection("moviesbig").getDocuments() { (querySnapshot, err) in
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let movienewitem = MovieModel()
+                    movienewitem.movieURL = (document.data()["url"] as! String)
+                    movienewitem.name = (document.data()["name"] as! String)
+                    // feching data
+                    let storeRef = Storage.storage().reference(withPath: "movielist/\(movienewitem.name!).png")//document.documentID
+                    
+                    print("movielist/\(movienewitem.name!).png")
+                    
+                    storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
+                        if let error = error {
+                            print("error-------- \(error.localizedDescription)")
+                            
+                            return
+                        }
+                        if let data = data {
+                            print("Main data\(data)")
+                            movienewitem.image  = UIImage(data: data)!
+                            self.moviesCollection.reloadData()
+                        }
+                    })
+                    //self.nows.append(nownewitem.image!)
+                    self.listOfDataMovie.append(movienewitem)
+                    DispatchQueue.main.async {
+                        self.populerCollection.reloadData()
+                        
+                    }
+                    self.populerCollection.reloadData()
                     print("Data Print:- \(document.documentID) => \(document.data())")
                     
                 }

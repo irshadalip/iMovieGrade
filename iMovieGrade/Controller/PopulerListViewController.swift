@@ -15,10 +15,10 @@ class PopulerListViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var populerCollectionView: UICollectionView!
     
     let db = Firestore.firestore()
-    var listOfData = [MoviesModel]()
+    var listOfData = [NowModel]()
     
-    var populers = ["arrival","pampage","hostiles","jigsaw","spiderman homecoming","thor ragnarok","rememory","hotel transylvania"]
-    var populerText = ["justice league","pampage","hostiles","jigsaw","spiderman homecoming","thor ragnarok","rememory","hotel transylvania"]
+    var populers = ["arrival"]
+    var populerText = ["justice league"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,9 +61,9 @@ class PopulerListViewController: UIViewController, UICollectionViewDelegate, UIC
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
-//
-//        self.navigationController?.pushViewController(viewControler, animated: true)
+        let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
+        viewControler.movieID = listOfData[indexPath.row].movieURL
+        self.navigationController?.pushViewController(viewControler, animated: true)
     }
 
 }
@@ -79,13 +79,13 @@ extension PopulerListViewController{
             } else {
                 for document in querySnapshot!.documents {
                     // most Important
-                    let newitem = MoviesModel()
-                    newitem.movieURL = (document.data()["url"] as! String)
-                    newitem.name = (document.data()["name"] as! String)
+                    let nownewitem = NowModel()
+                    nownewitem.movieURL = (document.data()["url"] as! String)
+                    nownewitem.name = (document.data()["name"] as! String)
                     // feching data
-                    let storeRef = Storage.storage().reference(withPath: "populerlist/\(newitem.name!).png")//document.documentID
+                    let storeRef = Storage.storage().reference(withPath: "populerlist/\(nownewitem.name!).png")//document.documentID
                     
-                    print("nowlist/\(newitem.name!).png")
+                    print("nowlist/\(nownewitem.name!).png")
                     
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
@@ -95,12 +95,12 @@ extension PopulerListViewController{
                         }
                         if let data = data {
                             print("Main data\(data)")
-                            newitem.image  = UIImage(data: data)!
+                            nownewitem.image  = UIImage(data: data)!
                             self.populerCollectionView.reloadData()
                         }
                     })
-                    //self.nows.append(newitem.image!)
-                    self.listOfData.append(newitem)
+                    //self.nows.append(nownewitem.image!)
+                    self.listOfData.append(nownewitem)
                     DispatchQueue.main.async {
                         self.populerCollectionView.reloadData()
                         

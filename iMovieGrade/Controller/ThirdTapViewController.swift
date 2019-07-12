@@ -7,14 +7,28 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
 
 class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
-
-    var nowCharacter = ["char-movie-1","char-movie-2","char-movie-3","char-movie-4","char-movie-5","char-movie-6","char-movie-7","char-movie-8","char-movie-1","char-movie-2","char-movie-3","char-movie-4","char-movie-5","char-movie-6","char-movie-7","char-movie-8"]
     
+    var profile : UIImage?
+    var profileName : String?
+
+    let dbPopuler = Firestore.firestore()
+    var listOfDataPopuler = [PopulerModel]()
+
+    var CharacterMovies = ["char-movie-1"]
+    
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var nameOfProfile: UILabel!
     @IBOutlet weak var characterProfileCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        profileImage.image = profile
+        nameOfProfile.text = profileName
         
         let itemSize = UIScreen.main.bounds.width / 4 - 10
 
@@ -29,8 +43,19 @@ class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UIColle
         layout.minimumLineSpacing = 2
         
         characterProfileCollectionView.collectionViewLayout = layout
+        
+        profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
+        
+        readDataPopuler()
 
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+        if profileImage.image == nil{
+            profileImage.image = UIImage(named: "profile_pic")
+        }
     }
     
     @IBAction func SettingButton(_ sender: UIButton) {
@@ -39,18 +64,80 @@ class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UIColle
         navigationController?.pushViewController(viewController, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return nowCharacter.count
+        //return nowCharacter.count
+        return listOfDataPopuler.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCharacterCell", for: indexPath) as! ProfileCharacterCell
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCharacterCell", for: indexPath) as! ProfileCharacterCell
+//
+//        cell.imageProfile.image = UIImage(named: nowCharacter[indexPath.row])
+//
+//        return cell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCharacterCell", for: indexPath) as! ProfileCharacterCell
+            cell.imageProfile.image = listOfDataPopuler[indexPath.row].image
+            //cell.populerLabel.text = listOfDataPopuler[indexPath.row].name
+            
+            return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        cell.imageProfile.image = UIImage(named: nowCharacter[indexPath.row])
-        
-        return cell
+        let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
+        viewControler.movieID = listOfDataPopuler[indexPath.row].movieURL
+        viewControler.moviename = listOfDataPopuler[indexPath.row].name
+        viewControler.movieImage = listOfDataPopuler[indexPath.row].image
+        self.navigationController?.pushViewController(viewControler, animated: true)
+
     }
 }
 
-//MARK:- COLLECTIONVIEW ELEGATES
+//MARK:- read
+extension ThirdTapViewController{
+    func readDataPopuler() {
+        self.CharacterMovies.removeAll()
+        
+        dbPopuler.collection("popular").getDocuments() { (querySnapshot, err) in
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let populernewitem = PopulerModel()
+                    populernewitem.movieURL = (document.data()["url"] as! String)
+                    populernewitem.name = (document.data()["name"] as! String)
+                    // feching data
+                    let storeRef = Storage.storage().reference(withPath: "populerlist/\(populernewitem.name!).png")//document.documentID
+                    
+                    print("populerlist/\(populernewitem.name!).png")
+                    
+                    storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
+                        if let error = error {
+                            print("error-------- \(error.localizedDescription)")
+                            
+                            return
+                        }
+                        if let data = data {
+                            print("Main data\(data)")
+                            populernewitem.image  = UIImage(data: data)!
+                            self.characterProfileCollectionView.reloadData()
+                        }
+                    })
+                    //self.nows.append(nownewitem.image!)
+                    self.listOfDataPopuler.append(populernewitem)
+                    DispatchQueue.main.async {
+                        self.characterProfileCollectionView.reloadData()
+                        
+                    }
+                    self.characterProfileCollectionView.reloadData()
+                    print("Data Print:- \(document.documentID) => \(document.data())")
+                    
+                }
+            }
+        }
+    }
+    
+    
 
-
+}
