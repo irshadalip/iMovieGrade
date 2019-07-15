@@ -40,10 +40,11 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.navigationItem.hidesBackButton = true
 
         movieNameLabel.text = moviename
-        movieimage.image = movieImage
+        //movieimage.image = movieImage
         
         
         readCharacter()
+        readBigImage()
 //        likeButton_1.layer.cornerRadius = likeButton_1.frame.size.height / 2
 //        likeButton_2.layer.cornerRadius = likeButton_2.frame.height / 2
 //        likeButton_3.layer.cornerRadius = likeButton_3.frame.height / 2
@@ -60,12 +61,14 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     @IBAction func commentButton(_ sender: UIButton) {
         let viewControler : CommentsViewController = self.storyboard?.instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
+        
+        viewControler.movieID = movieID
         self.navigationController?.pushViewController(viewControler, animated: true)
         
     }
    
     @IBAction func shareButton(_ sender: UIButton) {
-        let text = "https://www.youtube.com/watch?v=\(movieID)"
+        let text = "https://www.youtube.com/watch?v=\(movieID!)"
         //let text = "share text"
         let textToShare = [text]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
@@ -132,7 +135,7 @@ extension NowItemViewController{
         db.collection("character").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
-
+                
             } else {
                 for document in querySnapshot!.documents {
                     // most Important
@@ -142,13 +145,13 @@ extension NowItemViewController{
                     //charNewitem.movieURL = (document.data()["name"] as! String)
                     // feching data
                     let storeRef = Storage.storage().reference(withPath: "character/\(charNewitem.name!).png")//document.documentID
-
+                    
                     print("character/\(charNewitem.name!).png")
-
+                    
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
                             print("error-------- \(error.localizedDescription)")
-
+                            
                             return
                         }
                         if let data = data {
@@ -161,11 +164,84 @@ extension NowItemViewController{
                     self.listOfCharecter.append(charNewitem)
                     DispatchQueue.main.async {
                         self.characterCollectionView.reloadData()
-
+                        
                     }
                     self.characterCollectionView.reloadData()
                     print("Data Print:- \(document.documentID) => \(document.data())")
+                    
+                }
+            }
+        }
+    }
 
+
+    func readBigImage() {
+        //self.movieImage.removeAll()
+        db.collection("movies").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let charNewitem = CharacterModel()
+                    
+                    charNewitem.name = (document.data()["name"] as! String)
+
+                    let storeRef = Storage.storage().reference(withPath: "moviebigimage/\(charNewitem.name!).jpg")//document.documentID
+                    
+                    print("moviebigimage/\(charNewitem.name!).png")
+                    
+                    storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
+                        if let error = error {
+                            print("error-------- \(error.localizedDescription)")
+                            
+                            return
+                        }
+                        if let data = data {
+                            print("Main data\(data)")
+                            if charNewitem.name == self.moviename{
+                                charNewitem.image  = UIImage(data: data)!
+                                self.movieimage.image = charNewitem.image
+                            }
+                            
+                        }
+                    })
+
+                }
+            }
+        }
+        db.collection("popular").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let charNewitem = CharacterModel()
+                    
+                    charNewitem.name = (document.data()["name"] as! String)
+                    
+                    let storeRef = Storage.storage().reference(withPath: "moviebigimage/\(charNewitem.name!).jpg")//document.documentID
+                    
+                    print("moviebigimage/\(charNewitem.name!).png")
+                    
+                    storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
+                        if let error = error {
+                            print("error-------- \(error.localizedDescription)")
+                            
+                            return
+                        }
+                        if let data = data {
+                            print("Main data\(data)")
+                            if charNewitem.name == self.moviename{
+                                charNewitem.image  = UIImage(data: data)!
+                                self.movieimage.image = charNewitem.image
+                            }
+                            
+                        }
+                    })
+                    
                 }
             }
         }

@@ -5,7 +5,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     
     @IBOutlet weak var pageControl: UIPageControl!
-    
+
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var backView: UIView!
     var gradientLayer: CAGradientLayer!
@@ -21,6 +21,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         if UserDefaults.standard.bool(forKey: "login") == true{
             let viewController:TapViewController = self.storyboard?.instantiateViewController(withIdentifier: "TapViewController") as! TapViewController
             self.navigationController?.pushViewController(viewController, animated: true)
+            
+            
+            
         }
         
         slides = createSlides()
@@ -64,29 +67,33 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     func createSlides() -> [Slide] {
 
+        
+        
         let slide1:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
         slide1.imageView.image = UIImage(named: "ic_onboarding_1")
-        slide1.labelTitle.text = "Get the first movie & TV information - 1"
+        slide1.labelTitle.font = UIFont(name: "SF Pro Display", size: 15.0)
+        slide1.labelTitle.text = ""
+
         
         let slide2:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
         slide2.imageView.image = UIImage(named: "ic_onboarding_2")
-        slide2.labelTitle.text = "Get the first movie & TV information - 2"
+        slide2.labelTitle.text = ""//
         
         
         let slide3:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide3.imageView.image = UIImage(named: "ic_onboarding_1")
-        slide3.labelTitle.text = "Get the first movie & TV information - 3"
+        slide3.imageView.image = UIImage(named: "ic_onboarding_3")
+        slide3.labelTitle.text = ""
       
         
         let slide4:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide4.imageView.image = UIImage(named: "ic_onboarding_2")
-        slide4.labelTitle.text = "Get the first movie & TV information - 4"
+        slide4.imageView.image = UIImage(named: "ic_onboarding_1")
+        slide4.labelTitle.text = ""
 
         
         
         let slide5:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-        slide5.imageView.image = UIImage(named: "ic_onboarding_1")
-        slide5.labelTitle.text = "Get the first movie & TV information - 5"
+        slide5.imageView.image = UIImage(named: "ic_onboarding_2")
+        slide5.labelTitle.text = ""
         
         
         
@@ -143,20 +150,25 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             slides[0].imageView.transform = CGAffineTransform(scaleX: (0.25-percentOffset.x)/0.25, y: (0.25-percentOffset.x)/0.25)
             slides[1].imageView.transform = CGAffineTransform(scaleX: percentOffset.x/0.25, y: percentOffset.x/0.25)
             nextButton.isHidden = true
+//            titleLabelBold.text = "Get the first"
+//            titleLabelThin.text = "Movie & Tv  Information"
             
         } else if(percentOffset.x > 0.25 && percentOffset.x <= 0.50) {
             slides[1].imageView.transform = CGAffineTransform(scaleX: (0.50-percentOffset.x)/0.25, y: (0.50-percentOffset.x)/0.25)
             slides[2].imageView.transform = CGAffineTransform(scaleX: percentOffset.x/0.50, y: percentOffset.x/0.50)
             nextButton.isHidden = true
+  
             
         } else if(percentOffset.x > 0.50 && percentOffset.x <= 0.75) {
             slides[2].imageView.transform = CGAffineTransform(scaleX: (0.75-percentOffset.x)/0.25, y: (0.75-percentOffset.x)/0.25)
             slides[3].imageView.transform = CGAffineTransform(scaleX: percentOffset.x/0.75, y: percentOffset.x/0.75)
             nextButton.isHidden = true
+           
             
         } else if(percentOffset.x > 0.75 && percentOffset.x <= 1) {
             slides[3].imageView.transform = CGAffineTransform(scaleX: (1-percentOffset.x)/0.25, y: (1-percentOffset.x)/0.25)
             slides[4].imageView.transform = CGAffineTransform(scaleX: percentOffset.x, y: percentOffset.x)
+
 
             nextButton.isHidden = false
         }

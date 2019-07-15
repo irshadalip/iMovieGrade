@@ -31,7 +31,7 @@ class PopulerListViewController: UIViewController, UICollectionViewDelegate, UIC
         
         layout.itemSize = CGSize(width: itemSize, height: itemSize + 50)
         
-        layout.minimumInteritemSpacing = 10
+        layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 10
         
         populerCollectionView.collectionViewLayout = layout

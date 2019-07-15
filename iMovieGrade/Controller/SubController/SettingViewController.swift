@@ -48,7 +48,7 @@ class SettingViewController: UIViewController, UITableViewDataSource,UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
             
-            let text = "Share Action"
+            let text = "App store URL put here to share"
             let textToShare = [text]
             let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.view
@@ -57,7 +57,6 @@ class SettingViewController: UIViewController, UITableViewDataSource,UITableView
             
         }
         else if indexPath.row == 1{
-            
         }
         else{
             

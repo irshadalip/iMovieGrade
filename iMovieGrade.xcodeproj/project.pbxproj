@@ -30,6 +30,9 @@
 		9F48217322D48A9A008CAD6F /* PopulerSubListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F48217222D48A9A008CAD6F /* PopulerSubListViewController.swift */; };
 		9F78E71F22D35D0A00DC9B75 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78E71E22D35D0A00DC9B75 /* SignInViewController.swift */; };
 		9F78E72122D36BEF00DC9B75 /* TapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78E72022D36BEF00DC9B75 /* TapViewController.swift */; };
+		9FA34DF222DC642900A9E7AF /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA34DF022DC642900A9E7AF /* ReviewsTableViewCell.swift */; };
+		9FA34DF322DC642900A9E7AF /* ReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FA34DF122DC642900A9E7AF /* ReviewsTableViewCell.xib */; };
+		9FA34DF722DCAB1C00A9E7AF /* EmailSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA34DF622DCAB1C00A9E7AF /* EmailSignInViewController.swift */; };
 		9FA6CDDE22D59F7900DDAB5F /* NowItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6CDDD22D59F7900DDAB5F /* NowItemViewController.swift */; };
 		9FA6CDE022D5AAF000DDAB5F /* NowCharacterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6CDDF22D5AAF000DDAB5F /* NowCharacterViewCell.swift */; };
 		9FBC877522D84079007573CA /* PlayVideo__2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC877422D84079007573CA /* PlayVideo__2.swift */; };
@@ -38,8 +41,6 @@
 		9FBC877B22D85E6F007573CA /* SecondTapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC877A22D85E6F007573CA /* SecondTapViewController.swift */; };
 		9FBC877D22D86000007573CA /* MovieSubCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC877C22D86000007573CA /* MovieSubCollectionViewCell.swift */; };
 		9FBC877F22D8BD52007573CA /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC877E22D8BD52007573CA /* CommentsViewController.swift */; };
-		9FBC878222D8BF17007573CA /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC878022D8BF17007573CA /* ReviewsTableViewCell.swift */; };
-		9FBC878322D8BF17007573CA /* ReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FBC878122D8BF17007573CA /* ReviewsTableViewCell.xib */; };
 		9FD76EC522D6F78000B6E6A4 /* PlayVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD76EC422D6F78000B6E6A4 /* PlayVideoViewController.swift */; };
 		9FD76EC722D7225A00B6E6A4 /* NowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD76EC622D7225A00B6E6A4 /* NowModel.swift */; };
 		9FD76ECE22D749AA00B6E6A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FD76ECD22D749AA00B6E6A4 /* GoogleService-Info.plist */; };
@@ -109,6 +110,9 @@
 		9F48217222D48A9A008CAD6F /* PopulerSubListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulerSubListViewController.swift; sourceTree = "<group>"; };
 		9F78E71E22D35D0A00DC9B75 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		9F78E72022D36BEF00DC9B75 /* TapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapViewController.swift; sourceTree = "<group>"; };
+		9FA34DF022DC642900A9E7AF /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
+		9FA34DF122DC642900A9E7AF /* ReviewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsTableViewCell.xib; sourceTree = "<group>"; };
+		9FA34DF622DCAB1C00A9E7AF /* EmailSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInViewController.swift; sourceTree = "<group>"; };
 		9FA6CDDD22D59F7900DDAB5F /* NowItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowItemViewController.swift; sourceTree = "<group>"; };
 		9FA6CDDF22D5AAF000DDAB5F /* NowCharacterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowCharacterViewCell.swift; sourceTree = "<group>"; };
 		9FBC877422D84079007573CA /* PlayVideo__2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVideo__2.swift; sourceTree = "<group>"; };
@@ -117,8 +121,6 @@
 		9FBC877A22D85E6F007573CA /* SecondTapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTapViewController.swift; sourceTree = "<group>"; };
 		9FBC877C22D86000007573CA /* MovieSubCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSubCollectionViewCell.swift; sourceTree = "<group>"; };
 		9FBC877E22D8BD52007573CA /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
-		9FBC878022D8BF17007573CA /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
-		9FBC878122D8BF17007573CA /* ReviewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsTableViewCell.xib; sourceTree = "<group>"; };
 		9FD76EC422D6F78000B6E6A4 /* PlayVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVideoViewController.swift; sourceTree = "<group>"; };
 		9FD76EC622D7225A00B6E6A4 /* NowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowModel.swift; sourceTree = "<group>"; };
 		9FD76ECD22D749AA00B6E6A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -227,8 +229,8 @@
 		085B0EBF20807C0C00AF5F8A /* views */ = {
 			isa = PBXGroup;
 			children = (
-				9FBC878022D8BF17007573CA /* ReviewsTableViewCell.swift */,
-				9FBC878122D8BF17007573CA /* ReviewsTableViewCell.xib */,
+				9FA34DF022DC642900A9E7AF /* ReviewsTableViewCell.swift */,
+				9FA34DF122DC642900A9E7AF /* ReviewsTableViewCell.xib */,
 				085B0EC220807C9600AF5F8A /* Slide.swift */,
 				085B0EC020807C6F00AF5F8A /* Slide.xib */,
 				9FF83C1522D43E98008A0606 /* MoviesCollectionViewCell.swift */,
@@ -267,6 +269,7 @@
 				9F48216E22D4746E008CAD6F /* PopulerListViewController.swift */,
 				9FA6CDDD22D59F7900DDAB5F /* NowItemViewController.swift */,
 				9FDFFF2E22D5F6A900ABF0BD /* SubController */,
+				9FA34DF622DCAB1C00A9E7AF /* EmailSignInViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -432,7 +435,7 @@
 			files = (
 				085B0E9C208073EC00AF5F8A /* LaunchScreen.storyboard in Resources */,
 				9FDFFF2722D5E13300ABF0BD /* GenralCollectionViewCell.xib in Resources */,
-				9FBC878322D8BF17007573CA /* ReviewsTableViewCell.xib in Resources */,
+				9FA34DF322DC642900A9E7AF /* ReviewsTableViewCell.xib in Resources */,
 				085B0ECC2080804D00AF5F8A /* montserrat_light.otf in Resources */,
 				085B0EC92080804D00AF5F8A /* montserrat_bold.otf in Resources */,
 				085B0E99208073EC00AF5F8A /* Assets.xcassets in Resources */,
@@ -556,7 +559,7 @@
 				9FA6CDDE22D59F7900DDAB5F /* NowItemViewController.swift in Sources */,
 				9FBC877D22D86000007573CA /* MovieSubCollectionViewCell.swift in Sources */,
 				9FDFFF2B22D5E9D900ABF0BD /* ProfileCharacterCell.swift in Sources */,
-				9FBC878222D8BF17007573CA /* ReviewsTableViewCell.swift in Sources */,
+				9FA34DF222DC642900A9E7AF /* ReviewsTableViewCell.swift in Sources */,
 				9F48217122D48003008CAD6F /* NowSubListViewController.swift in Sources */,
 				9FD76EC522D6F78000B6E6A4 /* PlayVideoViewController.swift in Sources */,
 				9FBC877B22D85E6F007573CA /* SecondTapViewController.swift in Sources */,
@@ -578,6 +581,7 @@
 				085B0E94208073E500AF5F8A /* ViewController.swift in Sources */,
 				9FD76EC722D7225A00B6E6A4 /* NowModel.swift in Sources */,
 				9FDFFF3022D619BE00ABF0BD /* AboutViewController.swift in Sources */,
+				9FA34DF722DCAB1C00A9E7AF /* EmailSignInViewController.swift in Sources */,
 				9FBC877922D84B8A007573CA /* Reuseble.swift in Sources */,
 				085B0E92208073E500AF5F8A /* AppDelegate.swift in Sources */,
 			);

@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "launch_bg.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "loading.jpg",
       "scale" : "2x"
     },
     {

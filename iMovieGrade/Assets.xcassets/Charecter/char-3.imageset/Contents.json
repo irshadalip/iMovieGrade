@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Zack Snyder.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Zack Snyder.png",
       "scale" : "2x"
     },
     {

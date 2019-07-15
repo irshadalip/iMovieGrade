@@ -18,16 +18,7 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
     var loginStatus : Bool = false
     var gradientLayer: CAGradientLayer!
     
-    @IBAction func gmailButton(_ sender: UIButton) {
-        let actionCodeSettings = ActionCodeSettings()
-        actionCodeSettings.url = URL(string: "https://www.example.com")
-        // The sign-in operation has to always be completed in the app.
-        actionCodeSettings.handleCodeInApp = true
-        actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
-        actionCodeSettings.setAndroidPackageName("com.example.android",
-                                                 installIfNotAvailable: false, minimumVersion: "12")
-    }
-    
+    @IBOutlet weak var gmailOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +36,43 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
             let viewController:TapViewController = self.storyboard?.instantiateViewController(withIdentifier: "TapViewController") as! TapViewController
             self.navigationController?.pushViewController(viewController, animated: true)
         }
-
+        
         // Do any additional setup after loading the view.
         createGradientLayer()
+        gmailOutlet.layer.borderWidth = 1
+        gmailOutlet.backgroundColor = .clear
+        gmailOutlet.layer.borderColor = UIColor.white.cgColor
+        gmailOutlet.layer.cornerRadius = 5
     }
+    
+    @IBAction func gmailButton(_ sender: UIButton) {
+        let actionCodeSettings = ActionCodeSettings()
+        actionCodeSettings.url = URL(string: "https://solutionanalysts.page.link")
+        // The sign-in operation has to always be completed in the app.
+        actionCodeSettings.handleCodeInApp = true
+        actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
+        actionCodeSettings.setAndroidPackageName("com.example.android",
+                                                 installIfNotAvailable: false, minimumVersion: "12")
+        
+//        Auth.auth().sendSignInLink(toEmail:email,
+//                                   actionCodeSettings: actionCodeSettings) { error in
+//                                    // ...
+//                                    if let error = error {
+//                                        self.showMessagePrompt(error.localizedDescription)
+//                                        return
+//                                    }
+//                                    // The link was successfully sent. Inform the user.
+//                                    // Save the email locally so you don't need to ask the user for it again
+//                                    // if they open the link on the same device.
+//                                    UserDefaults.standard.set(email, forKey: "Email")
+//                                    self.showMessagePrompt("Check your email for link")
+//                                    // ...
+//        }
+
+    }
+    
+    
+    
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         
         if let error = error {

@@ -45,6 +45,7 @@ class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UIColle
         characterProfileCollectionView.collectionViewLayout = layout
         
         profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
+        profileImage.clipsToBounds = true
         
         readDataPopuler()
 

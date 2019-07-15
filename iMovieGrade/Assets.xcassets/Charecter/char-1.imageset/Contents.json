@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Gal Gadot.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Gal Gadot.png",
       "scale" : "2x"
     },
     {

@@ -19,18 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ba-p7-mPK">
-                                <rect key="frame" x="0.0" y="32" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="-1.5" width="375" height="734"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Lrr-wb-RCN"/>
                                 </connections>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="cjE-4W-sJv">
-                                <rect key="frame" x="160" y="569.5" width="55" height="37"/>
-                                <color key="pageIndicatorTintColor" red="0.31764705879999999" green="0.21176470589999999" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="currentPageIndicatorTintColor" red="0.31764705879999999" green="0.21176470589999999" blue="0.56078431370000004" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                            </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWK-BQ-h4Q">
-                                <rect key="frame" x="110" y="452.5" width="155" height="97"/>
+                                <rect key="frame" x="86" y="552" width="203" height="97"/>
                                 <state key="normal" image="Next_icon">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -38,18 +33,22 @@
                                     <action selector="getStart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tqi-aW-5NL"/>
                                 </connections>
                             </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="37" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="cjE-4W-sJv">
+                                <rect key="frame" x="169" y="515" width="37" height="37"/>
+                                <color key="pageIndicatorTintColor" red="0.31764705879999999" green="0.21176470589999999" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="0.31764705879999999" green="0.21176470589999999" blue="0.56078431370000004" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cjE-4W-sJv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="F0n-GB-AnB"/>
+                            <constraint firstItem="cjE-4W-sJv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3ND-2n-uug"/>
+                            <constraint firstItem="jWK-BQ-h4Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="721-2s-JAi"/>
                             <constraint firstItem="6ba-p7-mPK" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="JkP-Uk-jlE"/>
-                            <constraint firstItem="cjE-4W-sJv" firstAttribute="top" secondItem="jWK-BQ-h4Q" secondAttribute="bottom" constant="20" id="Rxt-pt-IUz"/>
                             <constraint firstItem="6ba-p7-mPK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UYt-jJ-5aN"/>
-                            <constraint firstItem="jWK-BQ-h4Q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="WMg-M9-aQO"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cjE-4W-sJv" secondAttribute="bottom" multiplier="1.1" id="Y5T-cy-rDa"/>
-                            <constraint firstItem="6ba-p7-mPK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="baG-eW-2G3"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jWK-BQ-h4Q" secondAttribute="trailing" constant="110" id="m8K-XV-ZIA"/>
+                            <constraint firstItem="6ba-p7-mPK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="1.1" id="baG-eW-2G3"/>
+                            <constraint firstItem="jWK-BQ-h4Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.8" id="v0w-xy-GsA"/>
                             <constraint firstItem="6ba-p7-mPK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="xoX-jf-pRg"/>
+                            <constraint firstItem="cjE-4W-sJv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.6" id="yX4-gE-HVX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -136,7 +135,7 @@
             </objects>
             <point key="canvasLocation" x="2465" y="1164"/>
         </scene>
-        <!--Movie-->
+        <!--MOVIE-->
         <scene sceneID="Ts3-Jx-dOQ">
             <objects>
                 <viewController id="ZJo-CI-tvb" customClass="FirstTapViewController" customModule="iMovieGrade" customModuleProvider="target" sceneMemberID="viewController">
@@ -154,14 +153,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z6r-iP-sfo">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q37-v2-Zor">
-                                                <rect key="frame" x="8" y="10" width="78" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOVIES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q37-v2-Zor">
+                                                <rect key="frame" x="8" y="10" width="74.5" height="23"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="F1l-hS-gAb">
-                                                <rect key="frame" x="0.0" y="60" width="375" height="170"/>
+                                                <rect key="frame" x="0.0" y="53" width="375" height="170"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="170" id="n3v-9G-cbj"/>
@@ -202,7 +201,7 @@
                                                 </connections>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dQA-O3-Y1Q">
-                                                <rect key="frame" x="0.0" y="270" width="375" height="250"/>
+                                                <rect key="frame" x="0.0" y="263" width="375" height="250"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="250" id="eEP-OI-WT1"/>
@@ -221,18 +220,18 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="125" height="246"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W6A-SU-3qv">
-                                                                    <rect key="frame" x="5" y="5" width="115" height="175"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="175" id="19L-6i-jUo"/>
-                                                                    </constraints>
-                                                                </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZc-tF-HCf">
                                                                     <rect key="frame" x="28" y="215.5" width="69" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W6A-SU-3qv">
+                                                                    <rect key="frame" x="5" y="9" width="115" height="175"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="175" id="19L-6i-jUo"/>
+                                                                    </constraints>
+                                                                </imageView>
                                                             </subviews>
                                                         </view>
                                                         <constraints>
@@ -255,7 +254,7 @@
                                                 </connections>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VE8-vq-WcJ">
-                                                <rect key="frame" x="0.0" y="559" width="375" height="500"/>
+                                                <rect key="frame" x="0.0" y="552" width="375" height="500"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="500" id="aje-oi-P2V"/>
@@ -281,9 +280,9 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iYV-nl-gQT">
-                                                                    <rect key="frame" x="5" y="5" width="118" height="175"/>
+                                                                    <rect key="frame" x="5" y="5" width="118" height="195"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="175" id="qb2-GL-U5l"/>
+                                                                        <constraint firstAttribute="height" constant="195" id="qb2-GL-U5l"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -308,7 +307,8 @@
                                                 </connections>
                                             </collectionView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJa-JG-8r0">
-                                                <rect key="frame" x="8" y="238" width="31" height="30"/>
+                                                <rect key="frame" x="8" y="231" width="33" height="30"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" title="Now">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -317,7 +317,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kK-WM-dLp">
-                                                <rect key="frame" x="8" y="528" width="53" height="30"/>
+                                                <rect key="frame" x="8" y="521" width="57" height="30"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" title="Populer">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -368,7 +369,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vpX-Sn-sK8"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Movie" image="tap_1" selectedImage="tap-fill-1" id="8gw-Dl-cqV"/>
+                    <tabBarItem key="tabBarItem" title="MOVIE" image="tap_1" selectedImage="tap-fill-1" id="8gw-Dl-cqV"/>
                     <connections>
                         <outlet property="moviesCollection" destination="F1l-hS-gAb" id="sO5-Vk-fhQ"/>
                         <outlet property="nowsCollection" destination="dQA-O3-Y1Q" id="3yE-Kr-0fw"/>
@@ -386,7 +387,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3257" y="-174"/>
+            <point key="canvasLocation" x="3256.8000000000002" y="-174.06296851574214"/>
         </scene>
         <!--Populer List View Controller-->
         <scene sceneID="G3U-z1-M9e">
@@ -541,7 +542,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_onboarding_1" translatesAutoresizingMaskIntoConstraints="NO" id="PAZ-QY-X8d">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="PAZ-QY-X8d">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="369"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full cast &amp; Crew" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xo0-86-ovA">
@@ -577,8 +578,8 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="86" height="144"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGX-lW-bmc">
-                                                    <rect key="frame" x="0.0" y="123" width="86" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="0.0" y="126" width="86" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -825,6 +826,9 @@
                                         <state key="normal" title="Send">
                                             <color key="titleColor" red="1" green="0.0093617555427757404" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sendAction:" destination="A2M-od-1Jg" eventType="touchUpInside" id="YdD-gy-8uw"/>
+                                        </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0l8-qY-yVG">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
@@ -859,6 +863,7 @@
                         <viewLayoutGuide key="safeArea" id="YA2-PS-xJG"/>
                     </view>
                     <connections>
+                        <outlet property="reviewText" destination="fGK-fe-diT" id="rET-vM-OMt"/>
                         <outlet property="tableView" destination="0l8-qY-yVG" id="hn2-aP-YeZ"/>
                     </connections>
                 </viewController>
@@ -866,7 +871,7 @@
             </objects>
             <point key="canvasLocation" x="5152.8000000000002" y="260.41979010494754"/>
         </scene>
-        <!--Profile-->
+        <!--PROFILE-->
         <scene sceneID="fgW-RE-iNY">
             <objects>
                 <viewController storyboardIdentifier="ThirdTapViewController" id="xkQ-RJ-3jg" customClass="ThirdTapViewController" customModule="iMovieGrade" customModuleProvider="target" sceneMemberID="viewController">
@@ -880,7 +885,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileBgDown" translatesAutoresizingMaskIntoConstraints="NO" id="XIJ-Fp-rgq">
                                         <rect key="frame" x="0.0" y="250" width="375" height="83.5"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic" translatesAutoresizingMaskIntoConstraints="NO" id="prk-VP-aTj">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic" translatesAutoresizingMaskIntoConstraints="NO" id="prk-VP-aTj">
                                         <rect key="frame" x="132.5" y="110" width="110" height="110"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="110" id="P2k-Ww-ynj"/>
@@ -1035,7 +1040,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7ED-zx-mgy"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="tap-fill-3" selectedImage="tap-fill-3" id="tLz-HD-4DJ"/>
+                    <tabBarItem key="tabBarItem" title="PROFILE" image="tap-fill-3" selectedImage="tap-fill-3" id="tLz-HD-4DJ"/>
                     <connections>
                         <outlet property="characterProfileCollectionView" destination="KJo-3U-m5D" id="aWz-xC-j7H"/>
                         <outlet property="nameOfProfile" destination="hVc-16-n2F" id="lT0-5r-fNK"/>
@@ -1308,7 +1313,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="MOQ-vE-TFK">
                                 <rect key="frame" x="16" y="266" width="343" height="401"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">tempChances are unless you are very lucky you will go thru many different relationships before you find your special someone. Finding your sole mate is like gambling. In poker and blackjack you may have to play dozens of hands until you get a winning hand, and it is the same with relationships.
+                                <string key="text">tempChances are unless you are very lucky you will go thru many different relationships before you find your special someone. Finding your sole mate is like gambling. In poker and blackjack you may have to play dozens of hands until you get a winning hand, and it is the same with relationships.
 
 During your life you will probably meet some people who seem like they may be the one, or that they are close, but still have the feeling that something else is missing. My advice is that if you are not happy, because something seems like it is missing, then it usually is not right.
 
@@ -1324,7 +1329,7 @@ It was amazing; the response I got was like a dream. Imagine you are sitting in 
 
 At first things were a little awkward for the both of us. We decided to hold of on actually meeting until we got to know each other first. We spent a month just talking everyday on the internet. You can really open up to someone and show them the real you and not have to worry about rejection on the internet, after all you are just a faceless ghost, and if things don’t work out you could be sitting next to her on the bus one day without ever knowing it.
 
-The key to finding happiness is realizing you are going to bust more then you are going to get blackjack, but you must keep trying, trying to remember you only need to find the real thing once.</mutableString>
+The key to finding happiness is realizing you are going to bust more then you are going to get blackjack, but you must keep trying, trying to remember you only need to find the real thing once.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1350,6 +1355,53 @@ The key to finding happiness is realizing you are going to bust more then you ar
             </objects>
             <point key="canvasLocation" x="5405.6000000000004" y="1163.568215892054"/>
         </scene>
+        <!--Email Sign In View Controller-->
+        <scene sceneID="PUS-u4-ptl">
+            <objects>
+                <viewController storyboardIdentifier="EmailSignInViewController" id="kxF-jk-nwb" customClass="EmailSignInViewController" customModule="iMovieGrade" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vn8-z1-N5X">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NrA-4x-dtr">
+                                <rect key="frame" x="16" y="177" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="email:" destination="CI9-pj-XUE" eventType="editingDidEnd" id="r5X-48-ehH"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KAT-8l-eqL">
+                                <rect key="frame" x="16" y="241" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wo-aJ-OPf">
+                                <rect key="frame" x="166" y="318" width="43" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="SignIn"/>
+                                <connections>
+                                    <action selector="submit:" destination="kxF-jk-nwb" eventType="touchUpInside" id="4e2-Wb-Whs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qjG-2A-Vdm"/>
+                    </view>
+                    <connections>
+                        <outlet property="email" destination="NrA-4x-dtr" id="eHu-M8-yGK"/>
+                        <outlet property="password" destination="KAT-8l-eqL" id="y4q-tO-FZA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="weL-Vh-Ere" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="CI9-pj-XUE" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1708" y="-552.77361319340332"/>
+        </scene>
         <!--Sign In View Controller-->
         <scene sceneID="Xhh-9U-99w">
             <objects>
@@ -1361,12 +1413,17 @@ The key to finding happiness is realizing you are going to bust more then you ar
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kef-WX-wf7">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_bg" translatesAutoresizingMaskIntoConstraints="NO" id="otr-oD-4Ps">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_bg_first" translatesAutoresizingMaskIntoConstraints="NO" id="otr-oD-4Ps">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlC-jA-Fgb">
-                                        <rect key="frame" x="20" y="627" width="335" height="30"/>
-                                        <state key="normal" title="Gimail signIn"/>
+                                        <rect key="frame" x="20" y="607" width="335" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Jgq-ha-HxO"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign Up with Email">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="gmailButton:" destination="VeV-ke-SdI" eventType="touchUpInside" id="FRX-OW-IoC"/>
                                         </connections>
@@ -1394,6 +1451,7 @@ The key to finding happiness is realizing you are going to bust more then you ar
                         <viewLayoutGuide key="safeArea" id="WUm-ko-Jfg"/>
                     </view>
                     <connections>
+                        <outlet property="gmailOutlet" destination="vlC-jA-Fgb" id="uhc-Vz-heO"/>
                         <segue destination="uTz-DN-UbG" kind="presentation" id="uml-Zn-IOy"/>
                     </connections>
                 </viewController>
@@ -1531,13 +1589,13 @@ The key to finding happiness is realizing you are going to bust more then you ar
         <image name="back" width="12" height="21"/>
         <image name="char-3" width="71" height="125"/>
         <image name="cross" width="16" height="16"/>
-        <image name="ic_onboarding_1" width="480" height="852"/>
         <image name="ic_onboarding_4" width="551.5" height="711.5"/>
         <image name="ic_onboarding_5" width="906" height="714"/>
-        <image name="launch_bg" width="375" height="812"/>
+        <image name="launch_bg_first" width="375" height="812"/>
         <image name="like-11" width="74" height="74"/>
         <image name="like-22" width="74" height="74"/>
         <image name="like-33" width="74" height="74"/>
+        <image name="loading" width="852" height="480"/>
         <image name="movie-1" width="343" height="195"/>
         <image name="play" width="54" height="54"/>
         <image name="populer-1" width="171" height="234"/>

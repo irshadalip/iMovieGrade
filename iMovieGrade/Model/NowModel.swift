@@ -39,4 +39,11 @@ class CharacterModel {
     var image : UIImage?
     var movieURL : String?
     var index: Int?
+    var character: Array<String>?
+}
+class ReviewModel {
+    var discription : String?
+    //var image : UIImage?
+    var movieURL : String?
+    //var index: Int?
 }
