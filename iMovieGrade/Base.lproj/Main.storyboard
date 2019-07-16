@@ -143,7 +143,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="W5S-bK-tTd">
+                            <searchBar contentMode="redraw" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5S-bK-tTd">
                                 <rect key="frame" x="0.0" y="45" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -542,8 +542,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="PAZ-QY-X8d">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PAZ-QY-X8d">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="369"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full cast &amp; Crew" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xo0-86-ovA">
                                 <rect key="frame" x="16" y="377" width="124" height="21"/>
@@ -556,7 +557,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="M4H-XE-qMQ">
                                 <rect key="frame" x="0.0" y="403" width="375" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="5GR-Op-C7q"/>
                                 </constraints>
@@ -645,9 +646,8 @@
                                     <action selector="playMovieButton:" destination="uvm-b9-drb" eventType="touchUpInside" id="oQh-bh-xU8"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDY-Eg-8cL">
-                                <rect key="frame" x="21" y="249" width="338" height="101.5"/>
-                                <string key="text">Fueled by his restored faith in humanity and inspired by Superman's selfless act, Bruce wayne enlists the help of his newfound ally, Diana Prince, to face an even grreater enemy...</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDY-Eg-8cL">
+                                <rect key="frame" x="21" y="249" width="338" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -678,11 +678,33 @@
                                     <action selector="shareButton:" destination="uvm-b9-drb" eventType="touchUpInside" id="6vx-Su-VY1"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXh-HD-54j">
+                                <rect key="frame" x="300.5" y="638" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vua-qL-WfE">
+                                <rect key="frame" x="166.5" y="638" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUh-Wb-gsn">
+                                <rect key="frame" x="32.5" y="638" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.9802308058375635" green="0.95442669052060003" blue="0.94438951039336383" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Vua-qL-WfE" firstAttribute="centerX" secondItem="bG8-cs-CRU" secondAttribute="centerX" id="3Gh-Pd-C9A"/>
+                            <constraint firstItem="ZUh-Wb-gsn" firstAttribute="top" secondItem="Yzy-vg-jMm" secondAttribute="bottom" constant="1" id="3W7-2T-jaj"/>
                             <constraint firstItem="M4H-XE-qMQ" firstAttribute="trailing" secondItem="ISd-AX-Mzy" secondAttribute="trailing" id="5TO-FH-LDF"/>
                             <constraint firstItem="xo0-86-ovA" firstAttribute="top" secondItem="PAZ-QY-X8d" secondAttribute="bottom" constant="8" id="8Ma-oF-zpy"/>
+                            <constraint firstItem="fXh-HD-54j" firstAttribute="centerX" secondItem="hdg-Lq-Jlj" secondAttribute="centerX" id="8tQ-yo-aQe"/>
+                            <constraint firstItem="Vua-qL-WfE" firstAttribute="top" secondItem="bG8-cs-CRU" secondAttribute="bottom" constant="1" id="B2N-Oe-feh"/>
                             <constraint firstItem="8By-jt-IsK" firstAttribute="leading" secondItem="N0F-Lx-UJE" secondAttribute="leadingMargin" constant="50" id="BbX-xI-nCt"/>
                             <constraint firstItem="M4H-XE-qMQ" firstAttribute="leading" secondItem="ISd-AX-Mzy" secondAttribute="leading" id="Bmn-pj-9bX"/>
                             <constraint firstItem="PAZ-QY-X8d" firstAttribute="trailing" secondItem="ISd-AX-Mzy" secondAttribute="trailing" id="DCp-jD-TIL"/>
@@ -690,9 +712,11 @@
                             <constraint firstItem="8By-jt-IsK" firstAttribute="top" secondItem="PAZ-QY-X8d" secondAttribute="bottom" constant="-200" id="IJG-V5-d6u"/>
                             <constraint firstItem="ISd-AX-Mzy" firstAttribute="bottom" secondItem="hdg-Lq-Jlj" secondAttribute="bottom" constant="30" id="IYF-2N-ggP"/>
                             <constraint firstItem="ISd-AX-Mzy" firstAttribute="trailing" secondItem="Ru9-43-oCs" secondAttribute="trailing" constant="20" id="IZb-sS-0Xs"/>
+                            <constraint firstItem="ZUh-Wb-gsn" firstAttribute="centerX" secondItem="Yzy-vg-jMm" secondAttribute="centerX" id="NC6-OI-auj"/>
                             <constraint firstItem="ysK-DM-23g" firstAttribute="leading" secondItem="N0F-Lx-UJE" secondAttribute="leading" constant="20" id="NXL-jo-Jhu"/>
                             <constraint firstItem="hdg-Lq-Jlj" firstAttribute="leading" secondItem="bG8-cs-CRU" secondAttribute="trailing" constant="60" id="PWF-Dv-agv"/>
                             <constraint firstItem="xo0-86-ovA" firstAttribute="leading" secondItem="ISd-AX-Mzy" secondAttribute="leading" constant="16" id="Un4-lg-6Zg"/>
+                            <constraint firstItem="fXh-HD-54j" firstAttribute="top" secondItem="hdg-Lq-Jlj" secondAttribute="bottom" constant="1" id="ZDB-VJ-ehh"/>
                             <constraint firstItem="M4H-XE-qMQ" firstAttribute="top" secondItem="xo0-86-ovA" secondAttribute="bottom" constant="5" id="bHB-tY-Gt5"/>
                             <constraint firstItem="ISd-AX-Mzy" firstAttribute="bottom" secondItem="Yzy-vg-jMm" secondAttribute="bottom" constant="30" id="bp6-5Q-Tfw"/>
                             <constraint firstItem="Ru9-43-oCs" firstAttribute="centerY" secondItem="ysK-DM-23g" secondAttribute="centerY" id="dvP-eu-Q99"/>
@@ -714,6 +738,8 @@
                     <navigationItem key="navigationItem" id="rjR-pS-agj"/>
                     <connections>
                         <outlet property="characterCollectionView" destination="M4H-XE-qMQ" id="QGH-jV-8nF"/>
+                        <outlet property="descriptionLabel" destination="gDY-Eg-8cL" id="yYN-hO-R9M"/>
+                        <outlet property="likeButtonLabel" destination="fXh-HD-54j" id="OUU-2u-zH9"/>
                         <outlet property="likeButton_1" destination="Yzy-vg-jMm" id="7PH-cF-sqg"/>
                         <outlet property="likeButton_2" destination="bG8-cs-CRU" id="njb-Z2-bhh"/>
                         <outlet property="likeButton_3" destination="hdg-Lq-Jlj" id="ZPk-fg-3qd"/>
@@ -724,7 +750,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zpY-AF-5Vp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="yYv-jH-Fce" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4694" y="-499"/>
+            <point key="canvasLocation" x="4693.6000000000004" y="-499.70014992503752"/>
         </scene>
         <!--Play Video View Controller-->
         <scene sceneID="CQa-A0-NGY">
@@ -869,7 +895,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fix-lF-VUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5152.8000000000002" y="260.41979010494754"/>
+            <point key="canvasLocation" x="4694" y="177"/>
         </scene>
         <!--PROFILE-->
         <scene sceneID="fgW-RE-iNY">
@@ -981,34 +1007,30 @@
                                 <rect key="frame" x="0.0" y="364.5" width="375" height="253.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4cI-Ed-Ebo">
-                                    <size key="itemSize" width="134" height="171"/>
+                                    <size key="itemSize" width="134" height="175"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileCharacterCell" id="RIe-0A-nuo" customClass="ProfileCharacterCell" customModule="iMovieGrade" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="134" height="171"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="134" height="175"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="134" height="171"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="134" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KsN-Ud-M30">
-                                                    <rect key="frame" x="0.0" y="0.0" width="134" height="171"/>
+                                                    <rect key="frame" x="4" y="4" width="126" height="171"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="KsN-Ud-M30" secondAttribute="trailing" id="7SF-D0-sMx"/>
-                                            <constraint firstItem="KsN-Ud-M30" firstAttribute="leading" secondItem="RIe-0A-nuo" secondAttribute="leading" id="8Zy-cZ-WgS"/>
-                                            <constraint firstAttribute="trailing" secondItem="KsN-Ud-M30" secondAttribute="trailing" id="9e3-GK-UMp"/>
-                                            <constraint firstAttribute="bottom" secondItem="KsN-Ud-M30" secondAttribute="bottom" id="LIs-6J-qjV"/>
-                                            <constraint firstItem="KsN-Ud-M30" firstAttribute="top" secondItem="RIe-0A-nuo" secondAttribute="top" id="cC9-V2-bFx"/>
-                                            <constraint firstItem="KsN-Ud-M30" firstAttribute="top" secondItem="RIe-0A-nuo" secondAttribute="top" id="gw0-qM-fuK"/>
-                                            <constraint firstAttribute="bottom" secondItem="KsN-Ud-M30" secondAttribute="bottom" id="koc-fJ-fH7"/>
-                                            <constraint firstItem="KsN-Ud-M30" firstAttribute="leading" secondItem="RIe-0A-nuo" secondAttribute="leading" id="vhM-6r-yhf"/>
+                                            <constraint firstAttribute="bottom" secondItem="KsN-Ud-M30" secondAttribute="bottom" id="5D5-LR-ifh"/>
+                                            <constraint firstItem="KsN-Ud-M30" firstAttribute="top" secondItem="RIe-0A-nuo" secondAttribute="top" constant="4" id="Oep-Re-HSf"/>
+                                            <constraint firstAttribute="trailing" secondItem="KsN-Ud-M30" secondAttribute="trailing" constant="4" id="TfH-ff-ItD"/>
+                                            <constraint firstItem="KsN-Ud-M30" firstAttribute="leading" secondItem="RIe-0A-nuo" secondAttribute="leading" constant="4" id="aOg-Om-ZWg"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageProfile" destination="KsN-Ud-M30" id="jrl-To-yrs"/>
@@ -1043,13 +1065,16 @@
                     <tabBarItem key="tabBarItem" title="PROFILE" image="tap-fill-3" selectedImage="tap-fill-3" id="tLz-HD-4DJ"/>
                     <connections>
                         <outlet property="characterProfileCollectionView" destination="KJo-3U-m5D" id="aWz-xC-j7H"/>
+                        <outlet property="commentOutlet" destination="fAR-Hn-9GP" id="Fbk-8B-2Bd"/>
+                        <outlet property="likeOutlet" destination="U4F-cW-Gks" id="5gy-aN-OvN"/>
                         <outlet property="nameOfProfile" destination="hVc-16-n2F" id="lT0-5r-fNK"/>
                         <outlet property="profileImage" destination="prk-VP-aTj" id="Q8c-iK-p5v"/>
+                        <outlet property="watchOutlet" destination="QMQ-Fa-sbC" id="sLK-Rw-9T9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ni2-lH-d5Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3257" y="1164"/>
+            <point key="canvasLocation" x="3256.8000000000002" y="1163.568215892054"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="ynn-UK-fjV">
@@ -1353,7 +1378,7 @@ The key to finding happiness is realizing you are going to bust more then you ar
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dg9-iq-UoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5405.6000000000004" y="1163.568215892054"/>
+            <point key="canvasLocation" x="3990" y="1854"/>
         </scene>
         <!--Email Sign In View Controller-->
         <scene sceneID="PUS-u4-ptl">
@@ -1595,7 +1620,6 @@ The key to finding happiness is realizing you are going to bust more then you ar
         <image name="like-11" width="74" height="74"/>
         <image name="like-22" width="74" height="74"/>
         <image name="like-33" width="74" height="74"/>
-        <image name="loading" width="852" height="480"/>
         <image name="movie-1" width="343" height="195"/>
         <image name="play" width="54" height="54"/>
         <image name="populer-1" width="171" height="234"/>

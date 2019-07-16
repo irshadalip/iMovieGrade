@@ -14,6 +14,10 @@ class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UIColle
     
     var profile : UIImage?
     var profileName : String?
+    var commentCount : Int?
+    var watchCount : String?
+    var likeCount : String?
+    
 
     let dbPopuler = Firestore.firestore()
     var listOfDataPopuler = [PopulerModel]()
@@ -23,19 +27,25 @@ class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UIColle
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameOfProfile: UILabel!
     @IBOutlet weak var characterProfileCollectionView: UICollectionView!
+    @IBOutlet weak var commentOutlet: UILabel!
+    @IBOutlet weak var watchOutlet: UILabel!
+    @IBOutlet weak var likeOutlet: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         profileImage.image = profile
         nameOfProfile.text = profileName
+        commentOutlet.text = String(commentCount ?? 0)
+        watchOutlet.text = String(watchCount ?? "0")
+        likeOutlet.text = String(likeCount ?? "0")
         
         let itemSize = UIScreen.main.bounds.width / 4 - 10
 
         
         let layout = UICollectionViewFlowLayout()
         
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         
         layout.itemSize = CGSize(width: itemSize, height: itemSize + 50)
         

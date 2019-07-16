@@ -13,6 +13,7 @@ class NowModel {
     
     var name : String?
     var image : UIImage?
+    var description : String?
     var movieURL : String? //now["r9-DM9uBtVI", "coOKvrsmQiI","vJz5l5ru7ws","rF5viX42K3s","39udgGPyYMg","ue80QwXMRHg","n6ihJIjVGLo","Ku52zNnft8k"]
     var index: Int?
     //populer[====1arrival=ZLO4X6UI8OY===2the dark knight=EXeTwQWrcwY=====3the expanse=kQuTAPWJxNo=====4high castle=zzayf9GpXCI=======5 mother=XpICoc65uh0=======6a ghost story=c_3NMtxeyfk========7tomb raider=8ndhidEmUbI=========8 10 cloverfield lane=M9cTqkXTl7s=======9iron man=Ke1Y3P9D0Bc========10salvation=A34OV9uYZWg=====11the hunger games=EAzGXqJSDJ8]
@@ -24,6 +25,7 @@ class NowModel {
 class PopulerModel {
     var name : String?
     var image : UIImage?
+    var description : String?
     var movieURL : String?
     var index: Int?
 }
@@ -32,6 +34,7 @@ class MovieModel {
     var name : String?
     var image : UIImage?
     var movieURL : String?
+    var description : String?
     var index: Int?
 }
 class CharacterModel {
@@ -39,7 +42,9 @@ class CharacterModel {
     var image : UIImage?
     var movieURL : String?
     var index: Int?
-    var character: Array<String>?
+    var nameArray : Array<String>?
+    var character: String?
+    var imageArray : Array<String>?
 }
 class ReviewModel {
     var discription : String?
@@ -47,3 +52,13 @@ class ReviewModel {
     var movieURL : String?
     //var index: Int?
 }
+class commentModel {
+    var likes : String?
+    var name : String?
+}
+class watchModel {
+    var count : String?
+    var like : String?
+    var url : String?
+}
+

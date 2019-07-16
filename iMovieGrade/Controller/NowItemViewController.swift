@@ -15,13 +15,33 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
     var movieID : String?
     var moviename : String?
     var movieImage : UIImage?
+    var movieCommentCount : Int?
+    var movieWatchCount : Int?
+    var movieLikeCount : Int?
+    
     
     
     var characters = ["charecter-1"]
+    var charArray = ["char-1"]
+    
+    var commentcount = ["commentcount-1"]
+    var watchcount = "00"
+    var likecount = "00"
+    var descrip : String = ""
+    
     let db = Firestore.firestore()
+    let dbchar = Firestore.firestore()
+    let dbWatch = Firestore.firestore()
+    let dbdescrip = Firestore.firestore()
+    let dbLikeInDatabase = Firestore.firestore()
+    
     var listOfCharecter = [CharacterModel]()
     
+    var listOfComments = [commentModel]()
     
+    
+    @IBOutlet weak var likeButtonLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var likeButton_1: UIButton!
     @IBOutlet weak var likeButton_2: UIButton!
     @IBOutlet weak var likeButton_3: UIButton!
@@ -43,8 +63,18 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
         //movieimage.image = movieImage
         
         
+        
         readCharacter()
         readBigImage()
+        readCommentCount()
+        readMovieDescription()
+        updateWatching()
+        updateLike()
+        
+        //updateLikeInDatabase()
+        
+        
+        
 //        likeButton_1.layer.cornerRadius = likeButton_1.frame.size.height / 2
 //        likeButton_2.layer.cornerRadius = likeButton_2.frame.height / 2
 //        likeButton_3.layer.cornerRadius = likeButton_3.frame.height / 2
@@ -103,8 +133,12 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowCharacterViewCell", for: indexPath) as! NowCharacterViewCell
         cell.imageCharacter.image = listOfCharecter[indexPath.row].image
-        cell.nowCharacterText.text = listOfCharecter[indexPath.row].name
+        //cell.nowCharacterText.text = listOfCharecter[indexPath.row].name
         
+        //cell.imageCharacter.image = listOfCharecter[indexPath.row].imageArray?[indexPath.row]
+        cell.nowCharacterText.text = listOfCharecter[indexPath.row].nameArray![indexPath.row]
+        
+//
         return cell
         
     }
@@ -112,6 +146,10 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
         let viewControler : ThirdTapViewController = self.storyboard?.instantiateViewController(withIdentifier: "ThirdTapViewController") as! ThirdTapViewController
         
         //viewControler.profile.image =
+        
+        viewControler.commentCount = listOfComments.count
+        viewControler.watchCount = watchcount
+        viewControler.likeCount = likecount
         viewControler.profile = listOfCharecter[indexPath.row].image
         viewControler.profileName = listOfCharecter[indexPath.row].name
         
@@ -131,50 +169,83 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
 extension NowItemViewController{
     
     func readCharacter() {
+        self.charArray.removeAll()
         self.characters.removeAll()
-        db.collection("character").getDocuments() { (querySnapshot, err) in
+        db.collection("moviewithchar").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
-                
+
             } else {
+
                 for document in querySnapshot!.documents {
-                    // most Important
-                    let charNewitem = CharacterModel()
-                    
-                    charNewitem.name = (document.data()["name"] as! String)
-                    //charNewitem.movieURL = (document.data()["name"] as! String)
-                    // feching data
-                    let storeRef = Storage.storage().reference(withPath: "character/\(charNewitem.name!).png")//document.documentID
-                    
-                    print("character/\(charNewitem.name!).png")
-                    
-                    storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
-                        if let error = error {
-                            print("error-------- \(error.localizedDescription)")
+
+                    if document.documentID == self.moviename{
+                        // most Important
+                        let charNewitem = CharacterModel()
+
+                        charNewitem.nameArray = (document.data()["name"] as! Array<String>)
+                        charNewitem.imageArray = (document.data()["name"] as! Array<String>)
+
+                        //self.charArray = charNewitem.character!
+
+
+                        print(charNewitem.nameArray)
+                        print(charNewitem.character)
+
+                        //for char in 0 ..< charNewitem.nameArray!.count{
+
+                          for char in charNewitem.nameArray!{
+                            //charNewitem.character = char
+
+
+
+                            print(char)
+
+                            let storeRef = Storage.storage().reference(withPath: "character/\(char).png")//document.documentID
+
+
+                            print("==========================")
+                            //print(charNewitem.imageArray![char])
                             
-                            return
-                        }
-                        if let data = data {
-                            print("Main data\(data)")
-                            charNewitem.image  = UIImage(data: data)!
+                            print("---------------------------")
+                            print("character/\(char).png")
+                            print("==========================")
+
+                            storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
+                                if let error = error {
+                                    print("error-------- \(error.localizedDescription)")
+
+                                    return
+                                }
+                                if let data = data {
+                                    print("Main data\(data)")
+                                    charNewitem.image  = UIImage(data: data)!
+                                    //charNewitem.imageArray.append(charNewitem.image!)
+
+                                    print(charNewitem.image!)
+                                    
+                                    self.listOfCharecter.append(charNewitem)
+                                    self.characterCollectionView.reloadData()
+
+                                    print(self.listOfCharecter.count)
+
+                                }
+                            })
+
+                            DispatchQueue.main.async {
+                                self.characterCollectionView.reloadData()
+
+                            }
                             self.characterCollectionView.reloadData()
                         }
-                    })
-                    //self.nows.append(charNewitem.image!)
-                    self.listOfCharecter.append(charNewitem)
-                    DispatchQueue.main.async {
-                        self.characterCollectionView.reloadData()
-                        
+
                     }
-                    self.characterCollectionView.reloadData()
-                    print("Data Print:- \(document.documentID) => \(document.data())")
-                    
                 }
             }
         }
     }
 
-
+    
     func readBigImage() {
         //self.movieImage.removeAll()
         db.collection("movies").getDocuments() { (querySnapshot, err) in
@@ -194,7 +265,7 @@ extension NowItemViewController{
                     
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
-                            print("error-------- \(error.localizedDescription)")
+                            print("error========= \(error.localizedDescription)")
                             
                             return
                         }
@@ -214,22 +285,22 @@ extension NowItemViewController{
         db.collection("popular").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
-                
+
             } else {
                 for document in querySnapshot!.documents {
                     // most Important
                     let charNewitem = CharacterModel()
-                    
+
                     charNewitem.name = (document.data()["name"] as! String)
-                    
+
                     let storeRef = Storage.storage().reference(withPath: "moviebigimage/\(charNewitem.name!).jpg")//document.documentID
-                    
+
                     print("moviebigimage/\(charNewitem.name!).png")
-                    
+
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
-                            print("error-------- \(error.localizedDescription)")
-                            
+                            print("error==++++++++==== \(error.localizedDescription)")
+
                             return
                         }
                         if let data = data {
@@ -238,12 +309,248 @@ extension NowItemViewController{
                                 charNewitem.image  = UIImage(data: data)!
                                 self.movieimage.image = charNewitem.image
                             }
-                            
+
                         }
                     })
+
+                }
+            }
+        }
+    }
+    func readMovieDescription() {
+        self.descrip.removeAll()
+        
+        dbdescrip.collection("movies").getDocuments() { (querySnapshot, err) in
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let nownewitem = NowModel()
+                    nownewitem.name = (document.data()["name"] as? String)
+                    nownewitem.description = (document.data()["description"] as? String)
+                    
+                    // feching data
+                    
+                    //self.nows.append(nownewitem.image!)
+                    if nownewitem.name == self.moviename{
+                        self.descrip = nownewitem.description!
+                        self.descriptionLabel.text = nownewitem.description!
+                    }
+                    
+                }
+            }
+        }
+        dbdescrip.collection("popular").getDocuments() { (querySnapshot, err) in
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let nownewitem = NowModel()
+                    nownewitem.name = (document.data()["name"] as? String)
+                    nownewitem.description = (document.data()["description"] as? String)
+                    
+                    // feching data
+                    
+                    //self.nows.append(nownewitem.image!)
+                    if nownewitem.name == self.moviename{
+                        self.descrip = nownewitem.description!
+                        self.descriptionLabel.text = nownewitem.description!
+                    }
+                    
+                }
+            }
+        }
+        dbdescrip.collection("moviesbig").getDocuments() { (querySnapshot, err) in
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let nownewitem = NowModel()
+                    nownewitem.name = (document.data()["name"] as? String)
+                    nownewitem.description = (document.data()["description"] as? String)
+                    
+                    // feching data
+                    
+                    //self.nows.append(nownewitem.image!)
+                    if nownewitem.name == self.moviename{
+                        self.descrip = nownewitem.description!
+                        self.descriptionLabel.text = nownewitem.description!
+                    }
                     
                 }
             }
         }
     }
+    //==========================================
+    func readCommentCount() {
+        self.commentcount.removeAll()
+        db.collection("comment").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let newitem = commentModel()
+                    newitem.name = (document.data()["url"] as! String)
+                    
+                    
+                    
+                    if self.movieID == newitem.name{
+                        self.listOfComments.append(newitem)
+                    }
+                    //self.listOfComments.append(newitem)
+                    DispatchQueue.main.async {
+                        
+                    }
+                    print(self.listOfComments.count)
+                    self.likeButtonLabel.text = String(self.listOfComments.count)
+                    
+                }
+            }
+        }
+    }
+    func updateWatching(){
+
+        self.watchcount.removeAll()
+        dbWatch.collection("total").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let newitem = watchModel()
+                    newitem.count = (document.data()["count"] as? String)
+                    newitem.url = (document.data()["url"] as? String)
+                    
+                    
+                    
+                    if self.movieID == newitem.url{
+                        self.watchcount = newitem.count!
+                    }
+    
+                }
+            }
+        }
+    }
+    func updateLike(){
+        
+        self.likecount.removeAll()
+        db.collection("total").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let newitem = watchModel()
+                    newitem.like = (document.data()["like"] as? String)
+                    newitem.url = (document.data()["url"] as? String)
+                    
+                    
+                    
+                    if self.movieID == newitem.url{
+                        self.likecount = newitem.like!
+                    }
+                }
+            }
+        }
+    }
+    
 }
+extension NowItemViewController{
+        func updateLikeInDatabase(){
+    
+            dbLikeInDatabase.collection("total").getDocuments(){ (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+    
+                    for document in querySnapshot!.documents {
+                        // most Important
+                        let newitem = watchModel()
+                        newitem.like = (document.data()["like"] as? String)
+                        newitem.url = (document.data()["url"] as? String)
+                        
+                        print(newitem.like)
+    
+    
+    
+                        if self.movieID == newitem.url{
+                            self.likecount = newitem.like!
+                            self.db.collection("total").document(self.moviename!).setData(["like" : 100])
+    
+                            print(newitem.like)
+                            
+                        }
+                        print(self.movieID)
+                        print(newitem.url)
+                        
+                        //self.listOfComments.append(newitem)
+                        DispatchQueue.main.async {
+    
+                        }
+                        print(self.listOfComments.count)
+    
+                    }
+                }
+            }
+        }
+}
+
+
+
+
+
+
+
+//func readCharacter() {
+//    self.characters.removeAll()
+//    db.collection("character").getDocuments() { (querySnapshot, err) in
+//        if let err = err {
+//            print("Error getting documents: \(err)")
+//
+//        } else {
+//            for document in querySnapshot!.documents {
+//                // most Important
+//                let charNewitem = CharacterModel()
+//
+//                charNewitem.name = (document.data()["name"] as! String)
+//                //charNewitem.movieURL = (document.data()["name"] as! String)
+//                // feching data
+//                let storeRef = Storage.storage().reference(withPath: "character/\(charNewitem.name!).png")//document.documentID
+//
+//                print("character/\(charNewitem.name!).png")
+//
+//                storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
+//                    if let error = error {
+//                        print("error-------- \(error.localizedDescription)")
+//
+//                        return
+//                    }
+//                    if let data = data {
+//                        print("Main data\(data)")
+//                        charNewitem.image  = UIImage(data: data)!
+//                        self.characterCollectionView.reloadData()
+//                    }
+//                })
+//                //self.nows.append(charNewitem.image!)
+//                self.listOfCharecter.append(charNewitem)
+//                DispatchQueue.main.async {
+//                    self.characterCollectionView.reloadData()
+//
+//                }
+//                self.characterCollectionView.reloadData()
+//                print("Data Print:- \(document.documentID) => \(document.data())")
+//
+//            }
+//        }
+//    }
+//}
