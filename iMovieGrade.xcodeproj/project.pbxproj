@@ -28,6 +28,7 @@
 		9F48216F22D4746E008CAD6F /* PopulerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F48216E22D4746E008CAD6F /* PopulerListViewController.swift */; };
 		9F48217122D48003008CAD6F /* NowSubListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F48217022D48003008CAD6F /* NowSubListViewController.swift */; };
 		9F48217322D48A9A008CAD6F /* PopulerSubListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F48217222D48A9A008CAD6F /* PopulerSubListViewController.swift */; };
+		9F6E8A5F22DF2BAC00880498 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F6E8A5E22DF2BAC00880498 /* GoogleService-Info.plist */; };
 		9F78E71F22D35D0A00DC9B75 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78E71E22D35D0A00DC9B75 /* SignInViewController.swift */; };
 		9F78E72122D36BEF00DC9B75 /* TapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F78E72022D36BEF00DC9B75 /* TapViewController.swift */; };
 		9FA34DF222DC642900A9E7AF /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA34DF022DC642900A9E7AF /* ReviewsTableViewCell.swift */; };
@@ -43,7 +44,6 @@
 		9FBC877F22D8BD52007573CA /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC877E22D8BD52007573CA /* CommentsViewController.swift */; };
 		9FD76EC522D6F78000B6E6A4 /* PlayVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD76EC422D6F78000B6E6A4 /* PlayVideoViewController.swift */; };
 		9FD76EC722D7225A00B6E6A4 /* NowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD76EC622D7225A00B6E6A4 /* NowModel.swift */; };
-		9FD76ECE22D749AA00B6E6A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FD76ECD22D749AA00B6E6A4 /* GoogleService-Info.plist */; };
 		9FDFFF2622D5E13300ABF0BD /* GenralCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDFFF2422D5E13300ABF0BD /* GenralCollectionViewCell.swift */; };
 		9FDFFF2722D5E13300ABF0BD /* GenralCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDFFF2522D5E13300ABF0BD /* GenralCollectionViewCell.xib */; };
 		9FDFFF2922D5E24100ABF0BD /* ThirdTapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDFFF2822D5E24100ABF0BD /* ThirdTapViewController.swift */; };
@@ -108,6 +108,7 @@
 		9F48216E22D4746E008CAD6F /* PopulerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulerListViewController.swift; sourceTree = "<group>"; };
 		9F48217022D48003008CAD6F /* NowSubListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowSubListViewController.swift; sourceTree = "<group>"; };
 		9F48217222D48A9A008CAD6F /* PopulerSubListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulerSubListViewController.swift; sourceTree = "<group>"; };
+		9F6E8A5E22DF2BAC00880498 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9F78E71E22D35D0A00DC9B75 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		9F78E72022D36BEF00DC9B75 /* TapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapViewController.swift; sourceTree = "<group>"; };
 		9FA34DF022DC642900A9E7AF /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -123,7 +124,6 @@
 		9FBC877E22D8BD52007573CA /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		9FD76EC422D6F78000B6E6A4 /* PlayVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVideoViewController.swift; sourceTree = "<group>"; };
 		9FD76EC622D7225A00B6E6A4 /* NowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowModel.swift; sourceTree = "<group>"; };
-		9FD76ECD22D749AA00B6E6A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FDFFF2422D5E13300ABF0BD /* GenralCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenralCollectionViewCell.swift; sourceTree = "<group>"; };
 		9FDFFF2522D5E13300ABF0BD /* GenralCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenralCollectionViewCell.xib; sourceTree = "<group>"; };
 		9FDFFF2822D5E24100ABF0BD /* ThirdTapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTapViewController.swift; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 				085B0E98208073EC00AF5F8A /* Assets.xcassets */,
 				085B0E9A208073EC00AF5F8A /* LaunchScreen.storyboard */,
 				085B0E9D208073EC00AF5F8A /* Info.plist */,
-				9FD76ECD22D749AA00B6E6A4 /* GoogleService-Info.plist */,
+				9F6E8A5E22DF2BAC00880498 /* GoogleService-Info.plist */,
 			);
 			path = iMovieGrade;
 			sourceTree = "<group>";
@@ -441,7 +441,7 @@
 				085B0E99208073EC00AF5F8A /* Assets.xcassets in Resources */,
 				085B0E97208073E500AF5F8A /* Main.storyboard in Resources */,
 				085B0EC120807C6F00AF5F8A /* Slide.xib in Resources */,
-				9FD76ECE22D749AA00B6E6A4 /* GoogleService-Info.plist in Resources */,
+				9F6E8A5F22DF2BAC00880498 /* GoogleService-Info.plist in Resources */,
 				085B0ECA2080804D00AF5F8A /* montserrat_medium.otf in Resources */,
 				085B0ECB2080804D00AF5F8A /* montserrat_regular.otf in Resources */,
 			);

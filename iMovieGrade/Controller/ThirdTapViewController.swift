@@ -20,7 +20,9 @@ class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UIColle
     
 
     let dbPopuler = Firestore.firestore()
-    var listOfDataPopuler = [PopulerModel]()
+//    var listOfDataPopuler = [PopulerModel]()
+    var listOfDataPopuler = [CharMovieModel]()
+    
 
     var CharacterMovies = ["char-movie-1"]
     
@@ -104,10 +106,55 @@ class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UIColle
 
 //MARK:- read
 extension ThirdTapViewController{
+//    func readDataPopuler() {
+//        self.CharacterMovies.removeAll()
+//
+//        dbPopuler.collection("popular").getDocuments() { (querySnapshot, err) in
+//
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    // most Important
+//                    let populernewitem = PopulerModel()
+//                    populernewitem.movieURL = (document.data()["url"] as! String)
+//                    populernewitem.name = (document.data()["name"] as! String)
+//                    // feching data
+//                    let storeRef = Storage.storage().reference(withPath: "populerlist/\(populernewitem.name!).png")//document.documentID
+//
+//                    print("populerlist/\(populernewitem.name!).png")
+//
+//                    storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
+//                        if let error = error {
+//                            print("error-------- \(error.localizedDescription)")
+//
+//                            return
+//                        }
+//                        if let data = data {
+//                            print("Main data\(data)")
+//                            populernewitem.image  = UIImage(data: data)!
+//                            self.characterProfileCollectionView.reloadData()
+//                        }
+//                    })
+//                    //self.nows.append(nownewitem.image!)
+//                    self.listOfDataPopuler.append(populernewitem)
+//                    DispatchQueue.main.async {
+//                        self.characterProfileCollectionView.reloadData()
+//
+//                    }
+//                    self.characterProfileCollectionView.reloadData()
+//                    print("Data Print:- \(document.documentID) => \(document.data())")
+//
+//                }
+//            }
+//        }
+//    }
+    
     func readDataPopuler() {
         self.CharacterMovies.removeAll()
         
-        dbPopuler.collection("popular").getDocuments() { (querySnapshot, err) in
+        dbPopuler.collection("charactermovies").getDocuments() { (querySnapshot, err) in
             
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -115,13 +162,14 @@ extension ThirdTapViewController{
             } else {
                 for document in querySnapshot!.documents {
                     // most Important
-                    let populernewitem = PopulerModel()
-                    populernewitem.movieURL = (document.data()["url"] as! String)
-                    populernewitem.name = (document.data()["name"] as! String)
+                    let newitem = CharMovieModel()
+                    //newitem.movieURL = (document.data()["url"] as! String)
+                    newitem.name = (document.data()["name"] as! String)
+                    newitem.moviearray = (document.data()["moviearray"] as! Array<String>)
                     // feching data
-                    let storeRef = Storage.storage().reference(withPath: "populerlist/\(populernewitem.name!).png")//document.documentID
+                    let storeRef = Storage.storage().reference(withPath: "allmovies/\(newitem.name!).png")//document.documentID
                     
-                    print("populerlist/\(populernewitem.name!).png")
+                    print("allmovies/\(newitem.name!).png")
                     
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
@@ -131,18 +179,17 @@ extension ThirdTapViewController{
                         }
                         if let data = data {
                             print("Main data\(data)")
-                            populernewitem.image  = UIImage(data: data)!
+                            newitem.image  = UIImage(data: data)!
                             self.characterProfileCollectionView.reloadData()
                         }
                     })
                     //self.nows.append(nownewitem.image!)
-                    self.listOfDataPopuler.append(populernewitem)
+                    self.listOfDataPopuler.append(newitem)
                     DispatchQueue.main.async {
                         self.characterProfileCollectionView.reloadData()
                         
                     }
                     self.characterProfileCollectionView.reloadData()
-                    print("Data Print:- \(document.documentID) => \(document.data())")
                     
                 }
             }

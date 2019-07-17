@@ -613,6 +613,9 @@
                                     <constraint firstAttribute="height" constant="74" id="NvV-aY-MHw"/>
                                 </constraints>
                                 <state key="normal" image="like-11"/>
+                                <connections>
+                                    <action selector="likeButtonAction:" destination="uvm-b9-drb" eventType="touchUpInside" id="kQ4-Sh-NWY"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdg-Lq-Jlj">
                                 <rect key="frame" x="284.5" y="563" width="74" height="74"/>
@@ -634,6 +637,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                 <state key="normal" image="like-22"/>
+                                <connections>
+                                    <action selector="starAction:" destination="uvm-b9-drb" eventType="touchUpInside" id="BnH-i1-gJo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSP-1k-8wx">
                                 <rect key="frame" x="305" y="169" width="54" height="54"/>
@@ -738,13 +744,15 @@
                     <navigationItem key="navigationItem" id="rjR-pS-agj"/>
                     <connections>
                         <outlet property="characterCollectionView" destination="M4H-XE-qMQ" id="QGH-jV-8nF"/>
+                        <outlet property="commentButtonLabel" destination="fXh-HD-54j" id="vdf-z3-R7E"/>
                         <outlet property="descriptionLabel" destination="gDY-Eg-8cL" id="yYN-hO-R9M"/>
-                        <outlet property="likeButtonLabel" destination="fXh-HD-54j" id="OUU-2u-zH9"/>
+                        <outlet property="likeButtonLabel" destination="ZUh-Wb-gsn" id="lFm-tY-j0o"/>
                         <outlet property="likeButton_1" destination="Yzy-vg-jMm" id="7PH-cF-sqg"/>
                         <outlet property="likeButton_2" destination="bG8-cs-CRU" id="njb-Z2-bhh"/>
                         <outlet property="likeButton_3" destination="hdg-Lq-Jlj" id="ZPk-fg-3qd"/>
                         <outlet property="movieNameLabel" destination="8By-jt-IsK" id="QeN-gi-vG2"/>
                         <outlet property="movieimage" destination="PAZ-QY-X8d" id="6yZ-kR-83o"/>
+                        <outlet property="starButtonLabel" destination="Vua-qL-WfE" id="K4a-cz-Kwa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zpY-AF-5Vp" userLabel="First Responder" sceneMemberID="firstResponder"/>

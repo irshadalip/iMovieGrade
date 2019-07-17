@@ -18,7 +18,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
     var ProfileImage : UIImage?
     
     var comment = ["arrival"]
-    var allURL = ["justice league"]
+    var allphotourl = [UIImage]()
     
     var commentShort: String?
     
@@ -27,6 +27,8 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
     let db = Firestore.firestore()
     var postId = ""
     var movieID: String?
+    
+    var url : URL?
 
     @IBOutlet weak var reviewText: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -42,13 +44,11 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
         
         self.tableView.estimatedRowHeight = 60
         
-//        self.tableView.estimatedRowHeight = 150
-//        self.tableView.rowHeight = UITableView.UITableViewAutomaticDimension
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         readComments()
         
-        let url = Auth.auth().currentUser?.photoURL
+        url = Auth.auth().currentUser!.photoURL
         print(url as Any)
         
         if let data = try? Data(contentsOf: url!){
@@ -67,7 +67,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
         print(comment.count)
         
         
-        
+        allphotourl = []
         
     }
  
@@ -91,7 +91,9 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
 //        cell.ImageOfCell.image = listOfData[indexPath.row].img
         
         cell.reviews.text = listOfData[indexPath.row].discription
-        cell.profileImage.image = ProfileImage
+        //cell.profileImage.image = ProfileImage
+        cell.profileImage.image = allphotourl[indexPath.row]
+        
         
         return cell
     }
@@ -103,69 +105,100 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
         var ref: DocumentReference? = nil
         
         // Add a new document with a generated ID
-        ref = db.collection("comment").addDocument(data: [ "description": "\(reviewText.text ?? "")", "url": "\(movieID!)"]) { err in
+        ref = db.collection("comment").addDocument(data: [ "review": "\(reviewText.text ?? "")", "url": "\(movieID!)", "photourl": "\(url!)"]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
                 
             } else {
+                
                 print("Document added with ID: \(ref!.documentID)")
                 
                 //self.readComments()
                 let commentitem = ReviewModel()
                 commentitem.discription = self.reviewText.text
+                //////////
+                let url = self.url
+                if let data = try? Data(contentsOf: url!){
+                    if let image = UIImage(data: data){
+                        self.allphotourl.append(image)
+                        
+                        
+                        self.tableView.reloadData()
+                        
+                    }
+                }
                 self.listOfData.append(commentitem)
-                self.tableView.reloadData()
+                
+                
                 
                 self.reviewText.text = ""
-                    
+                
                 
             }
-//            self.tableView.reloadData()
+            self.tableView.reloadData()
         }
         
-        postId = ref!.documentID
-        
     }
+//    func uploadReview() {
+//        var ref: DocumentReference? = nil
+//
+//        // Add a new document with a generated ID
+//        ref = db.collection("comment").addDocument(data: [ "description": "\(reviewText.text ?? "")", "url": "\(movieID!)"]) { err in
+//            if let err = err {
+//                print("Error adding document: \(err)")
+//
+//            } else {
+//                print("Document added with ID: \(ref!.documentID)")
+//
+//                //self.readComments()
+//                let commentitem = ReviewModel()
+//                commentitem.discription = self.reviewText.text
+//                self.listOfData.append(commentitem)
+//                self.tableView.reloadData()
+//
+//                self.reviewText.text = ""
+//
+//
+//            }
+//        }
+//    }
     func readComments() {
         self.comment.removeAll()
-        self.allURL.removeAll()
+        //self.allphotourl.removeAll()
         
         db.collection("comment").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
                 
             } else {
+                var count = 0
                 for document in querySnapshot!.documents {
                     // most Important
                     let commentitem = ReviewModel()
                     
                     
                     commentitem.movieURL = (document.data()["url"] as! String)
-                    commentitem.discription = (document.data()["description"] as! String)
+                    commentitem.discription = (document.data()["review"] as! String)
+                    commentitem.userimage = (document.data()["photourl"] as! String)
                     
-                    
+                    let url = URL(string: commentitem.userimage!)
                     if self.movieID == document.data()["url"] as! String{
+                        if let data = try? Data(contentsOf: url!){
+                            if let image = UIImage(data: data){
+                                self.allphotourl.append(image)
+                                
+                                
+                                self.tableView.reloadData()
+                                
+                            }
+                        }
                          self.listOfData.append(commentitem)
+                        //self.allphotourl.append(commentitem.userimage!)
                         self.tableView.reloadData()
                     }
                     
-//                    for i in 0..<comment.count{
-//                        if listOfData[i].movieURL == movieID {
-//                            commentShort?.append(comment[i])
-//
-//                            print(listOfData[i].movieURL)
-//                            print(movieID)
-//                            print(commentShort)
-//
-//                        }
-//                    }
                     self.tableView.reloadData()
-                   
-                    
-                    
-                    
-                    
-                    
+    
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                         
@@ -173,6 +206,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
                     self.tableView.reloadData()
                     print("Data Print:- \(document.documentID) => \(document.data())")
                     
+                    count = count + 1
                 }
             }
         }

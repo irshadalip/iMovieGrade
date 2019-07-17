@@ -28,6 +28,8 @@ class PopulerModel {
     var description : String?
     var movieURL : String?
     var index: Int?
+    
+    var category: String?
 }
 
 class MovieModel {
@@ -50,7 +52,7 @@ class ReviewModel {
     var discription : String?
     //var image : UIImage?
     var movieURL : String?
-    //var index: Int?
+    var userimage : String?
 }
 class commentModel {
     var likes : String?
@@ -62,3 +64,15 @@ class watchModel {
     var url : String?
 }
 
+
+
+class CharMovieModel {
+    var name : String?
+    var moviearray : Array<String>?
+    
+    var image : UIImage?
+    var description : String?
+    var movieURL : String?
+    var index: Int?
+
+}
