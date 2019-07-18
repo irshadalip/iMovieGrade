@@ -19,6 +19,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
     
     var comment = ["arrival"]
     var allphotourl = [UIImage]()
+    var allphotoname = [String]()
     
     var commentShort: String?
     
@@ -27,6 +28,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
     let db = Firestore.firestore()
     var postId = ""
     var movieID: String?
+    var profileName : String?
     
     var url : URL?
 
@@ -49,7 +51,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
         readComments()
         
         url = Auth.auth().currentUser!.photoURL
-        print(url as Any)
+        //print(url as Any)
         
         if let data = try? Data(contentsOf: url!){
             if let image = UIImage(data: data){
@@ -57,6 +59,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
                 
             }
         }
+        profileName = Auth.auth().currentUser?.displayName
         //profileName.text = Auth.auth().currentUser?.displayName
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +71,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
         
         
         allphotourl = []
+        allphotoname = []
         
     }
  
@@ -91,7 +95,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
 //        cell.ImageOfCell.image = listOfData[indexPath.row].img
         
         cell.reviews.text = listOfData[indexPath.row].discription
-        //cell.profileImage.image = ProfileImage
+        cell.profileName.text = listOfData[indexPath.row].profilename
         cell.profileImage.image = allphotourl[indexPath.row]
         
         
@@ -104,8 +108,10 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
     func uploadReview() {
         var ref: DocumentReference? = nil
         
+        print(url)
+        
         // Add a new document with a generated ID
-        ref = db.collection("comment").addDocument(data: [ "review": "\(reviewText.text ?? "")", "url": "\(movieID!)", "photourl": "\(url!)"]) { err in
+        ref = db.collection("comment").addDocument(data: [ "review": "\(reviewText.text ?? "")", "url": "\(movieID!)", "photourl": "\(url!)", "username": "\(profileName!)"]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
                 
@@ -115,7 +121,11 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
                 
                 //self.readComments()
                 let commentitem = ReviewModel()
+                
+                
                 commentitem.discription = self.reviewText.text
+                commentitem.profilename = self.profileName
+
                 //////////
                 let url = self.url
                 if let data = try? Data(contentsOf: url!){
@@ -180,6 +190,8 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
                     commentitem.movieURL = (document.data()["url"] as! String)
                     commentitem.discription = (document.data()["review"] as! String)
                     commentitem.userimage = (document.data()["photourl"] as! String)
+                    commentitem.profilename = (document.data()["username"] as? String)
+                    
                     
                     let url = URL(string: commentitem.userimage!)
                     if self.movieID == document.data()["url"] as! String{

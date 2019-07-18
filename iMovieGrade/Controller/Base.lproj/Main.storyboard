@@ -864,7 +864,7 @@
                                             <action selector="sendAction:" destination="A2M-od-1Jg" eventType="touchUpInside" id="YdD-gy-8uw"/>
                                         </connections>
                                     </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0l8-qY-yVG">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0l8-qY-yVG">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
@@ -1625,9 +1625,9 @@ The key to finding happiness is realizing you are going to bust more then you ar
         <image name="ic_onboarding_4" width="551.5" height="711.5"/>
         <image name="ic_onboarding_5" width="906" height="714"/>
         <image name="launch_bg_first" width="375" height="812"/>
-        <image name="like-11" width="74" height="74"/>
-        <image name="like-22" width="74" height="74"/>
-        <image name="like-33" width="74" height="74"/>
+        <image name="like-11" width="74" height="84"/>
+        <image name="like-22" width="74" height="84"/>
+        <image name="like-33" width="74" height="84"/>
         <image name="movie-1" width="343" height="195"/>
         <image name="play" width="54" height="54"/>
         <image name="populer-1" width="171" height="234"/>

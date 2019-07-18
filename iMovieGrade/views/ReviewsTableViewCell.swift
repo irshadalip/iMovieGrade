@@ -22,7 +22,7 @@ class ReviewsTableViewCell: UITableViewCell {
         // Initialization code
         
          profileName.text = Auth.auth().currentUser?.displayName
-                
+        
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
         profileImage.clipsToBounds = true
         

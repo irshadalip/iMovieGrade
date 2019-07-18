@@ -18,6 +18,8 @@ class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UIColle
     var watchCount : String?
     var likeCount : String?
     
+    var imageStore = [String]()
+    
 
     let dbPopuler = Firestore.firestore()
 //    var listOfDataPopuler = [PopulerModel]()
@@ -51,8 +53,8 @@ class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UIColle
         
         layout.itemSize = CGSize(width: itemSize, height: itemSize + 50)
         
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 5
         
         characterProfileCollectionView.collectionViewLayout = layout
         
@@ -60,6 +62,7 @@ class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UIColle
         profileImage.clipsToBounds = true
         
         readDataPopuler()
+//        getImage()
 
         // Do any additional setup after loading the view.
     }
@@ -163,39 +166,46 @@ extension ThirdTapViewController{
                 for document in querySnapshot!.documents {
                     // most Important
                     let newitem = CharMovieModel()
-                    //newitem.movieURL = (document.data()["url"] as! String)
+
                     newitem.name = (document.data()["name"] as! String)
-                    newitem.moviearray = (document.data()["moviearray"] as! Array<String>)
-                    // feching data
-                    let storeRef = Storage.storage().reference(withPath: "allmovies/\(newitem.name!).png")//document.documentID
+                    print(newitem.name)
                     
-                    print("allmovies/\(newitem.name!).png")
-                    
-                    storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
-                        if let error = error {
-                            print("error-------- \(error.localizedDescription)")
-                            
-                            return
-                        }
-                        if let data = data {
-                            print("Main data\(data)")
-                            newitem.image  = UIImage(data: data)!
-                            self.characterProfileCollectionView.reloadData()
-                        }
-                    })
-                    //self.nows.append(nownewitem.image!)
-                    self.listOfDataPopuler.append(newitem)
-                    DispatchQueue.main.async {
-                        self.characterProfileCollectionView.reloadData()
+                    if newitem.name == self.nameOfProfile.text{
                         
+                        //newitem.moviearray = (document.data()["moviearray"] as! Array<String>)
+                        self.imageStore = (document.data()["moviearray"] as! Array<String>)
+                        
+                        self.getImage()
+
                     }
-                    self.characterProfileCollectionView.reloadData()
-                    
+           
                 }
             }
         }
     }
-    
-    
-
+    func getImage() {
+        for movie in imageStore{
+            
+            let newitem = CharMovieModel()
+            
+            
+            let storeRef = Storage.storage().reference(withPath: "allmovies/\(movie).png")//document.documentID
+        
+            storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
+                if let error = error {
+                    print("error-------- \(error.localizedDescription)")
+                    
+                    return
+                }
+                if let data = data {
+                    print("Main data\(data)")
+                    newitem.image  = UIImage(data: data)!
+                    self.characterProfileCollectionView.reloadData()
+                }
+            })
+            //self.nows.append(nownewitem.image!)
+            self.listOfDataPopuler.append(newitem)
+            self.characterProfileCollectionView.reloadData()
+        }
+    }
 }
