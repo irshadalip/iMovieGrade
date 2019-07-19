@@ -12,6 +12,7 @@ import Firebase
 
 class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
     
+    var movieURL : String?
     var profile : UIImage?
     var profileName : String?
     var commentCount : Int?
@@ -77,6 +78,7 @@ class ThirdTapViewController: UIViewController,UICollectionViewDelegate, UIColle
     @IBAction func SettingButton(_ sender: UIButton) {
         
         let viewController: SettingViewController = self.storyboard?.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
+        viewController.movieURL = movieURL
         navigationController?.pushViewController(viewController, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

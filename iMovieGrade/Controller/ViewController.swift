@@ -163,14 +163,15 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             slides[2].imageView.transform = CGAffineTransform(scaleX: (0.75-percentOffset.x)/0.25, y: (0.75-percentOffset.x)/0.25)
             slides[3].imageView.transform = CGAffineTransform(scaleX: percentOffset.x/0.75, y: percentOffset.x/0.75)
             nextButton.isHidden = true
+//            nextButton.setImage(UIImage(named: "slider_next"), for: .normal)
            
             
         } else if(percentOffset.x > 0.75 && percentOffset.x <= 1) {
             slides[3].imageView.transform = CGAffineTransform(scaleX: (1-percentOffset.x)/0.25, y: (1-percentOffset.x)/0.25)
             slides[4].imageView.transform = CGAffineTransform(scaleX: percentOffset.x, y: percentOffset.x)
 
-
             nextButton.isHidden = false
+//            nextButton.setImage(UIImage(named: "Next_icon"), for: .normal)
         }
     }
     @IBAction func getStart(_ sender: UIButton) {

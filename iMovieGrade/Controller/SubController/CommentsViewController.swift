@@ -31,6 +31,8 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
     var profileName : String?
     
     var url : URL?
+    
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
     @IBOutlet weak var reviewText: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -60,6 +62,8 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
             }
         }
         profileName = Auth.auth().currentUser?.displayName
+        
+        
         //profileName.text = Auth.auth().currentUser?.displayName
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +82,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBAction func sendAction(_ sender: UIButton) {
   
         if reviewText.text?.count != 0{
+            activityIndicator.startAnimating()
             uploadReview()
         }
     }
@@ -91,12 +96,10 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewsTableViewCell", for: indexPath) as! ReviewsTableViewCell
         
-//        cell.postLabelOut.text = listOfData[indexPath.row].post
-//        cell.ImageOfCell.image = listOfData[indexPath.row].img
-        
         cell.reviews.text = listOfData[indexPath.row].discription
         cell.profileName.text = listOfData[indexPath.row].profilename
         cell.profileImage.image = allphotourl[indexPath.row]
+        
         
         
         return cell
@@ -131,48 +134,28 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
                 if let data = try? Data(contentsOf: url!){
                     if let image = UIImage(data: data){
                         self.allphotourl.append(image)
-                        
-                        
+
                         self.tableView.reloadData()
-                        
                     }
                 }
                 self.listOfData.append(commentitem)
-                
-                
-                
                 self.reviewText.text = ""
-                
-                
+
             }
+            self.activityIndicator.stopAnimating()
             self.tableView.reloadData()
         }
         
     }
-//    func uploadReview() {
-//        var ref: DocumentReference? = nil
-//
-//        // Add a new document with a generated ID
-//        ref = db.collection("comment").addDocument(data: [ "description": "\(reviewText.text ?? "")", "url": "\(movieID!)"]) { err in
-//            if let err = err {
-//                print("Error adding document: \(err)")
-//
-//            } else {
-//                print("Document added with ID: \(ref!.documentID)")
-//
-//                //self.readComments()
-//                let commentitem = ReviewModel()
-//                commentitem.discription = self.reviewText.text
-//                self.listOfData.append(commentitem)
-//                self.tableView.reloadData()
-//
-//                self.reviewText.text = ""
-//
-//
-//            }
-//        }
-//    }
+
     func readComments() {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+
+        
         self.comment.removeAll()
         //self.allphotourl.removeAll()
         
@@ -198,10 +181,10 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
                         if let data = try? Data(contentsOf: url!){
                             if let image = UIImage(data: data){
                                 self.allphotourl.append(image)
-                                
-                                
-                                self.tableView.reloadData()
-                                
+
+
+                                //self.tableView.reloadData()
+
                             }
                         }
                          self.listOfData.append(commentitem)
@@ -209,8 +192,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
                         self.tableView.reloadData()
                     }
                     
-                    self.tableView.reloadData()
-    
+                    //self.tableView.reloadData()
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                         
@@ -221,6 +203,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
                     count = count + 1
                 }
             }
+            self.activityIndicator.stopAnimating()
         }
     }
 

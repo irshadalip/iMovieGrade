@@ -8,9 +8,14 @@
 
 import UIKit
 import BottomDrawer
+import FBSDKCoreKit
+import FBSDKLoginKit
+import Firebase
+import FirebaseAuth
 
 class SettingViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
     
+    var movieURL : String?
     
     @IBOutlet weak var shareTheApp: UITableViewCell!
     @IBOutlet weak var signOut: UIButton!
@@ -21,6 +26,26 @@ class SettingViewController: UIViewController, UITableViewDataSource,UITableView
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func singnOutAction(_ sender: UIButton) {
+        do{
+            let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current?.tokenString ?? "")
+            Auth.auth().currentUser?.link(with:credential,completion:nil)
+            try! Auth.auth().signOut()
+            Auth.auth().signInAnonymously()
+            LoginManager().logOut()
+            print("Logged Out Successfully")
+        }catch{
+            print("LogIn Error :-------------- \(error)")
+        }
+        
+        UserDefaults.standard.set(false, forKey:"login")
+        
+        self.navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = vc
+    }
     @IBAction func backButton(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
@@ -48,7 +73,7 @@ class SettingViewController: UIViewController, UITableViewDataSource,UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
             
-            let text = "App store URL put here to share"
+            let text = "https://www.youtube.com/watch?v=\(movieURL!)"
             let textToShare = [text]
             let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.view

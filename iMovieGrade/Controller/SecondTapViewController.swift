@@ -62,11 +62,11 @@ class SecondTapViewController: UIViewController,UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
        
-        let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
-        viewControler.movieID = listOfDataMovie[indexPath.row].movieURL
-        viewControler.moviename = listOfDataMovie[indexPath.row].name
-        viewControler.movieImage = listOfDataMovie[indexPath.row].image
-        self.navigationController?.pushViewController(viewControler, animated: true)
+//        let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
+//        viewControler.movieID = listOfDataMovie[indexPath.row].movieURL
+//        viewControler.moviename = listOfDataMovie[indexPath.row].name
+//        viewControler.movieImage = listOfDataMovie[indexPath.row].image
+//        self.navigationController?.pushViewController(viewControler, animated: true)
 
 
     }

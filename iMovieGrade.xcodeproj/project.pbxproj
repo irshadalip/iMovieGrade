@@ -22,6 +22,7 @@
 		085B0ECC2080804D00AF5F8A /* montserrat_light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 085B0EC82080804D00AF5F8A /* montserrat_light.otf */; };
 		6DF2DC2E3923C0EBE4C273B6 /* Pods_iMovieGradeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABA90DC48A78B5124944660 /* Pods_iMovieGradeUITests.framework */; };
 		9B566F5023C7A0C2C06CB95F /* Pods_iMovieGrade.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CEDF6289F668CC34F6BE0CA /* Pods_iMovieGrade.framework */; };
+		9F1700B122E1EA2D00ADBC80 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1700B022E1EA2D00ADBC80 /* SearchCollectionViewCell.swift */; };
 		9F48216922D44C88008CAD6F /* NowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F48216822D44C88008CAD6F /* NowCollectionViewCell.swift */; };
 		9F48216B22D45A71008CAD6F /* PopulerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F48216A22D45A71008CAD6F /* PopulerCollectionViewCell.swift */; };
 		9F48216D22D46E74008CAD6F /* NowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F48216C22D46E74008CAD6F /* NowListViewController.swift */; };
@@ -100,6 +101,7 @@
 		4F1B1711134319B4CA34F869 /* Pods-OnboardingExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnboardingExampleUITests.release.xcconfig"; path = "Target Support Files/Pods-OnboardingExampleUITests/Pods-OnboardingExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		51658453007A097006DF9EA9 /* Pods-OnboardingExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnboardingExampleTests.release.xcconfig"; path = "Target Support Files/Pods-OnboardingExampleTests/Pods-OnboardingExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		5CEDF6289F668CC34F6BE0CA /* Pods_iMovieGrade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMovieGrade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F1700B022E1EA2D00ADBC80 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		9F48216822D44C88008CAD6F /* NowCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowCollectionViewCell.swift; sourceTree = "<group>"; };
 		9F48216A22D45A71008CAD6F /* PopulerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulerCollectionViewCell.swift; sourceTree = "<group>"; };
 		9F48216C22D46E74008CAD6F /* NowListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowListViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				9F48217222D48A9A008CAD6F /* PopulerSubListViewController.swift */,
 				9FA6CDDF22D5AAF000DDAB5F /* NowCharacterViewCell.swift */,
 				9FDFFF2A22D5E9D900ABF0BD /* ProfileCharacterCell.swift */,
+				9F1700B022E1EA2D00ADBC80 /* SearchCollectionViewCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				9FDFFF3022D619BE00ABF0BD /* AboutViewController.swift in Sources */,
 				9FA34DF722DCAB1C00A9E7AF /* EmailSignInViewController.swift in Sources */,
 				085B0E92208073E500AF5F8A /* AppDelegate.swift in Sources */,
+				9F1700B122E1EA2D00ADBC80 /* SearchCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

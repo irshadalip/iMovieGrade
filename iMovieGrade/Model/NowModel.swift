@@ -95,6 +95,8 @@ class watchModel {
     var like : String?
     var url : String?
     var state : String?
+    var watch : String?
+    
 }
 
 
