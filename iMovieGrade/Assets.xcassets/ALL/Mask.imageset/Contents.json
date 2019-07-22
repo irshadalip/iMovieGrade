@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Movie Background.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Mask.png",
       "scale" : "2x"
     },
     {
