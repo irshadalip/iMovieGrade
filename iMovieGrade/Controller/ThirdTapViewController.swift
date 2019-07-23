@@ -170,7 +170,7 @@ extension ThirdTapViewController{
                     let newitem = CharMovieModel()
 
                     newitem.name = (document.data()["name"] as! String)
-                    print(newitem.name)
+                    //print(newitem.name)
                     
                     if newitem.name == self.nameOfProfile.text{
                         

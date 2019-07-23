@@ -84,7 +84,7 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
             let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
             
             Auth.auth().signIn(with: credential) { (authResult, error) in
-                if let error = error {
+                if error != nil {
                     print("ERROR------------")
                     
                     return

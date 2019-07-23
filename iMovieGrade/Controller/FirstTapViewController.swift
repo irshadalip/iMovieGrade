@@ -10,29 +10,34 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class FirstTapViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
+class FirstTapViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UITextFieldDelegate {
     
     let dbMovie = Firestore.firestore()
-    var listOfDataMovie = [MovieModel]()
-    
     let dbNow = Firestore.firestore()
-    var listOfDataNow = [NowModel]()
+    let dbPopuler = Firestore.firestore()
+    let db = Firestore.firestore()
+    
     var listOfCURRENT = [NowModel]()
     
-    let dbPopuler = Firestore.firestore()
-    var listOfDataPopuler = [PopulerModel]()
+    var listOfDataNow = [NowModel]()
+    var listOfDataPopuler = [NowModel]()
+    var listOfDataMovie = [NowModel]()
+    var listOfAll = [NowModel]()
+    
+    let profileName = Auth.auth().currentUser?.displayName
+    
+    
     
     var IsHide = false
-    
-    
+
     var movies = ["movie-1"]
     var nows = ["justice league",]
     var nowText = ["justice league"]
-
-    
+    var search = ["justice league","justice league"]
     var populers = ["populer-1"]
     var populerText = ["populer-1"]
     
+    @IBOutlet weak var searchText: UITextField!
     @IBOutlet weak var populerLabel: UIButton!
     @IBOutlet weak var nowlabel: UIButton!
     @IBOutlet weak var movieLabel: UILabel!
@@ -40,40 +45,18 @@ class FirstTapViewController: UIViewController,UICollectionViewDelegate, UIColle
     @IBOutlet weak var moviesCollection: UICollectionView!
     @IBOutlet weak var nowsCollection: UICollectionView!
     @IBOutlet weak var populerCollection: UICollectionView!
+    @IBOutlet weak var searchCollection: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //searchBar.delegate = self
-
-        moviesCollection.delegate = self
-        moviesCollection.dataSource = self
-        
-        nowsCollection.delegate = self
-        nowsCollection.dataSource = self
-        
-        populerCollection.delegate = self
-        populerCollection.dataSource = self
-        // Do any additional setup after loading the view.
-        
-        readDataMovie()
-        readDataNow()
-        readDataPopuler()
-
+    
+        viewDidLoadData()
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         //self.navigationItem.leftBarButtonItem = nil
         //self.navigationItem.hidesBackButton = true
-    }
-    func setUpSearchBar() {
-        
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
-        
-    }
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int){
-        
+    
     }
     
     @IBAction func nowButton(_ sender: UIButton) {
@@ -87,7 +70,67 @@ class FirstTapViewController: UIViewController,UICollectionViewDelegate, UIColle
     }
 }
 
-//MARK:- COLLECTIONVIEW ELEGATES
+
+//MARK:- Functions
+extension FirstTapViewController{
+    func viewDidLoadData() {
+        moviesCollection.delegate = self
+        moviesCollection.dataSource = self
+        nowsCollection.delegate = self
+        nowsCollection.dataSource = self
+        populerCollection.delegate = self
+        populerCollection.dataSource = self
+        searchCollection.delegate = self
+        searchCollection.dataSource = self
+        searchText.delegate = self
+        
+        readDataMovie()
+        readDataNow()
+        readDataPopuler()
+        AllUsers()
+        
+        
+        let itemSize = UIScreen.main.bounds.width / 3 - 10
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        layout.itemSize = CGSize(width: itemSize, height: itemSize + 50)
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
+        searchCollection.collectionViewLayout = layout
+        
+        
+        searchBar.setImage(UIImage(named: "search_icon"), for: .search, state: .normal)
+        searchBar.layoutIfNeeded()
+        self.view.addSubview(searchBar)
+        
+        let searchTextField:UITextField = searchBar.subviews[0].subviews.last as! UITextField
+        searchTextField.layer.cornerRadius = 15
+        searchTextField.textAlignment = NSTextAlignment.left
+        let image:UIImage = UIImage(named: "search_icon")!
+        let imageView:UIImageView = UIImageView.init(image: image)
+        searchTextField.leftView = nil
+        searchTextField.placeholder = "search"
+        searchTextField.rightView = imageView
+        searchTextField.rightViewMode = UITextFieldViewMode.always
+        
+        
+        let searchImage = UIImage(named: "search_icon")
+        //addLeftImage(txtField: searchText, andImage: searchImage!)
+        
+        for subView in searchBar.subviews {
+            for subViewInSubView in subView.subviews {
+                subViewInSubView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+            }
+        }
+    }
+    func addLeftImage(txtField: UITextField, andImage img: UIImage) {
+        let  leftImageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: img.size.width, height: img.size.height))
+        leftImageView.image = img
+        txtField.leftView = leftImageView
+        txtField.leftViewMode = .always
+    }
+}
+//MARK:- COLLECTIONVIEW DELEGATES
 extension FirstTapViewController{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -95,6 +138,7 @@ extension FirstTapViewController{
             self.moviesCollection.isHidden = true
             self.nowsCollection.isHidden = true
             self.populerCollection.isHidden = true
+            self.searchCollection.isHidden = false
             
             populerLabel.setTitle("", for: .normal)
             nowlabel.setTitle("", for: .normal)
@@ -104,30 +148,37 @@ extension FirstTapViewController{
             self.moviesCollection.isHidden = false
             self.nowsCollection.isHidden = false
             self.populerCollection.isHidden = false
+            self.searchCollection.isHidden = true
             
             populerLabel.setTitle("Populer", for: .normal)
             nowlabel.setTitle("Now", for: .normal)
             movieLabel.text = "MOVIES"
         }
         
-        if collectionView == self.moviesCollection {
-            return listOfDataMovie.count
-        }
-        else if collectionView == self.nowsCollection {
-            return listOfDataNow.count
+        if IsHide == false {
+            if collectionView == self.moviesCollection {
+                return listOfDataMovie.count
+            }
+            else if collectionView == self.nowsCollection {
+                return listOfDataNow.count
+                
+            }
+            else if collectionView == self.populerCollection {
+                return listOfDataPopuler.count
+                
+            }
+            else{
+                return listOfDataPopuler.count
+            }
         }
         else{
-            return listOfDataPopuler.count
-        }
-        if IsHide == true {
-            return listOfDataNow.count
+            return listOfCURRENT.count
         }
     }
    
-    
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
+         if IsHide == false {
             if collectionView == self.moviesCollection {
                 
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MoviesCollectionViewCell
@@ -138,29 +189,29 @@ extension FirstTapViewController{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowCell", for: indexPath) as! NowCollectionViewCell
                 cell.nowimageView.image = listOfDataNow[indexPath.row].image
                 cell.nowLabel.text = listOfDataNow[indexPath.row].name
-                
+
                 return cell
                 
             }
             else {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopulerCell", for: indexPath) as! PopulerCollectionViewCell
+                let cell = populerCollection.dequeueReusableCell(withReuseIdentifier: "PopulerCell", for: indexPath) as! PopulerCollectionViewCell
                 cell.imagePopuler.image = listOfDataPopuler[indexPath.row].image
                 cell.populerLabel.text = listOfDataPopuler[indexPath.row].name
                 
                 return cell
             }
-        if IsHide == true {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as! SearchCollectionViewCell
-//            cell.searchIname = listOfCURRENT[indexPath.row].image
-//            cell.searchLabel = listOfCURRENT[indexPath.row].name
-            
+        }
+        else {
+            let cell = searchCollection.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as! SearchCollectionViewCell
+            cell.searchImage.image = listOfCURRENT[indexPath.row].image
+            cell.searchLabel.text = listOfCURRENT[indexPath.row].name
             return cell
         }
-    
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        if IsHide == false {
             if collectionView == self.moviesCollection {
                 //            let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
                 //
@@ -187,19 +238,22 @@ extension FirstTapViewController{
                 self.navigationController?.pushViewController(viewControler, animated: true)
                 
             }
-        if IsHide == true {
+        }
+        else {
             let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
-            
-            viewControler.movieID = listOfDataPopuler[indexPath.row].movieURL
-            viewControler.moviename = listOfDataPopuler[indexPath.row].name
-            viewControler.movieImage = listOfDataPopuler[indexPath.row].image
+            viewControler.movieID = listOfCURRENT[indexPath.row].movieURL
+            viewControler.moviename = listOfCURRENT[indexPath.row].name
+            viewControler.movieImage = listOfCURRENT[indexPath.row].image
             self.navigationController?.pushViewController(viewControler, animated: true)
+            
+            
         }
 
         
     }
 }
 
+//MARK:- FireBase Functions
 extension FirstTapViewController{
     
     func readDataNow() {
@@ -235,13 +289,11 @@ extension FirstTapViewController{
                     })
                     //self.nows.append(nownewitem.image!)
                     self.listOfDataNow.append(nownewitem)
-                    self.listOfCURRENT = self.listOfDataNow
+                    self.listOfCURRENT.append(nownewitem)
+                    self.listOfAll = self.listOfCURRENT
                     
-                    DispatchQueue.main.async {
-                        self.nowsCollection.reloadData()
-                        
-                    }
                     self.nowsCollection.reloadData()
+                    self.searchCollection.reloadData()
                     print("Data Print:- \(document.documentID) => \(document.data())")
                     
                 }
@@ -259,7 +311,7 @@ extension FirstTapViewController{
             } else {
                 for document in querySnapshot!.documents {
                     // most Important
-                    let populernewitem = PopulerModel()
+                    let populernewitem = NowModel()
                     populernewitem.movieURL = (document.data()["url"] as! String)
                     populernewitem.name = (document.data()["name"] as! String)
                     // feching data
@@ -277,15 +329,16 @@ extension FirstTapViewController{
                             print("Main data\(data)")
                             populernewitem.image  = UIImage(data: data)!
                             self.populerCollection.reloadData()
+                            self.searchCollection.reloadData()
                         }
                     })
                     //self.nows.append(nownewitem.image!)
                     self.listOfDataPopuler.append(populernewitem)
-                    DispatchQueue.main.async {
-                        self.populerCollection.reloadData()
-                        
-                    }
+                    self.listOfCURRENT.append(populernewitem)
+                    self.listOfAll = self.listOfCURRENT
+                  
                     self.populerCollection.reloadData()
+                    self.searchCollection.reloadData()
                     print("Data Print:- \(document.documentID) => \(document.data())")
                     
                 }
@@ -303,7 +356,7 @@ extension FirstTapViewController{
             } else {
                 for document in querySnapshot!.documents {
                     // most Important
-                    let movienewitem = MovieModel()
+                    let movienewitem = NowModel()
                     movienewitem.movieURL = (document.data()["url"] as! String)
                     movienewitem.name = (document.data()["name"] as! String)
                     // feching data
@@ -325,14 +378,160 @@ extension FirstTapViewController{
                     })
                     //self.nows.append(nownewitem.image!)
                     self.listOfDataMovie.append(movienewitem)
+                    
                     DispatchQueue.main.async {
                         self.populerCollection.reloadData()
+                        
                         
                     }
                     self.populerCollection.reloadData()
                     print("Data Print:- \(document.documentID) => \(document.data())")
                     
                 }
+            }
+        }
+    }
+    func creatUser() {
+        var ref: DocumentReference? = nil
+        
+        
+        // Add a new document with a generated ID
+        ref = db.collection("allUsers").addDocument(data: [ "username": "\(profileName!)"])
+        { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+        
+        
+    }
+    func AllUsers(){
+        
+        db.collection("allUsers").getDocuments(){ (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var haveUser = 0
+                
+                for document in querySnapshot!.documents {
+                    
+                    let doc = document.data()
+                    // most Important
+                    let newitem = AllUsersModel()
+                    newitem.username = (doc["username"] as! String)
+            
+                    if self.profileName == newitem.username{
+  
+                        haveUser = 1
+                    }
+                    //newitem.dic = (doc["state"] as! Dictionary)
+                    //print(newitem.movieArray?.count)
+                }
+                if haveUser == 0{
+                    self.creatUser()
+  
+                }
+            }
+        }
+    }
+}
+
+
+//MARK:- TaxtField-Delegate
+extension FirstTapViewController{
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool{
+        searchText.resignFirstResponder()
+        searchText.text = ""
+        self.listOfCURRENT.removeAll()
+        for str in listOfAll{
+            listOfCURRENT.append(str)
+            searchCollection.reloadData()
+        }
+        return true
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        
+        if searchText.text?.count == 0{
+            IsHide = false
+            searchCollection.reloadData()
+            nowsCollection.reloadData()
+            populerCollection.reloadData()
+        }
+        else{
+            IsHide = true
+            searchCollection.reloadData()
+            nowsCollection.reloadData()
+            populerCollection.reloadData()
+        }
+        if searchText.text?.count != 0 {self.listOfCURRENT.removeAll()
+            for str in listOfAll{
+                let range = str.name?.range(of: textField.text!, options: .caseInsensitive, range: nil, locale: nil)
+                if range != nil{
+                    self.listOfCURRENT.append(str)
+                    searchCollection.reloadData()
+                }
+            }
+            
+        }
+        else{
+        }
+        searchCollection.reloadData()
+        
+        return true
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool{
+        return true
+    }
+}
+//MARK:- Searchbar-Delegate
+extension FirstTapViewController{
+
+    func setUpSearchBar() {
+        searchBar.delegate = self
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        
+        if searchText.isEmpty == true{
+            IsHide = false
+            searchCollection.reloadData()
+            nowsCollection.reloadData()
+            populerCollection.reloadData()
+            
+            for subView in searchBar.subviews {
+                for subViewInSubView in subView.subviews {
+                    subViewInSubView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+                }
+            }
+        }
+        else{
+            IsHide = true
+            searchCollection.reloadData()
+            nowsCollection.reloadData()
+            populerCollection.reloadData()
+            
+            for subView in searchBar.subviews {
+                for subViewInSubView in subView.subviews {
+                    subViewInSubView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+                }
+            }
+        }
+        //============
+        guard !searchText.isEmpty else {listOfCURRENT = listOfAll
+            //IsHide = false
+            searchCollection.reloadData()
+            return}
+        listOfCURRENT = listOfAll.filter({nowText -> Bool in
+            nowText.name!.uppercased().contains(searchText.uppercased())
+        })
+        searchCollection.reloadData()
+    }
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int){
+        for subView in searchBar.subviews {
+            for subViewInSubView in subView.subviews {
+                subViewInSubView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
             }
         }
     }

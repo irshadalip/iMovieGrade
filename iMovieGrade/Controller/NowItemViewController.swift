@@ -40,6 +40,8 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var listOfComments = [commentModel]()
     
+    let profileName = Auth.auth().currentUser?.displayName
+    
     @IBOutlet weak var starButtonLabel: UILabel!
     @IBOutlet weak var likeButtonLabel: UILabel!
     @IBOutlet weak var commentButtonLabel: UILabel!
@@ -56,6 +58,7 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //print(profileName)
         
         self.navigationController?.isNavigationBarHidden = true
         self.navigationItem.leftBarButtonItem = nil
@@ -76,6 +79,7 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.navigationItem.hidesBackButton = true
         
         InitWatchCount()
+        readCommentCount()
     }
     
     @IBAction func likeButtonAction(_ sender: UIButton) {
@@ -515,10 +519,10 @@ extension NowItemViewController{
                                 self.likecount = String(likeCont)
                                 self.db.collection("total").document(self.moviename!).updateData(["state": "1"])
                                 self.likeButton_1.setImage(UIImage(named: "like_fill"), for: .normal)
-                                 print(self.moviename!)
+                                print(self.moviename!)
                                 
                             }
-                
+                            
                             self.db.collection("total").document(self.moviename!).updateData(["like": "\(likeCont)"])
                             
                         } else {
@@ -526,6 +530,19 @@ extension NowItemViewController{
                         }
                     }
                 }
+            }
+        }
+    }
+    func creatUser() {
+        var ref: DocumentReference? = nil
+        
+        // Add a new document with a generated ID
+        ref = db.collection("users").addDocument(data: [ "username": "\(profileName!)", "favoritemovie": []])
+        { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
             }
         }
     }
@@ -541,37 +558,49 @@ extension NowItemViewController{
                     // most Important
                     let newitem = FavoriteModel()
                     newitem.movieArray = (doc["favoritemovie"] as! Array<String>)
+                    newitem.name = (doc["username"] as! String)
 
                     var starCont = 0
                     var starStr = "0"
                     
-                    for key in newitem.movieArray! {
+                    if newitem.name == self.profileName{
                         
-                        if key == self.moviename{
-                            self.db.collection("users").document("user_1").updateData(["favoritemovie": FieldValue.arrayRemove([key])])
-                            starStr = "2"
+//                        print(self.profileName)
+//                        print(newitem.name)
+                        
+                        for key in newitem.movieArray! {
                             
-                            starCont = (newitem.movieArray?.count)! - 1
+                            if key == self.moviename{
+                                self.db.collection("users").document("\(document.documentID)").updateData(["favoritemovie": FieldValue.arrayRemove([key])])
+                                starStr = "2"
+                                print(document.documentID)
+                                
+                                starCont = (newitem.movieArray?.count)! - 1
+                                self.starButtonLabel.text = String(starCont)
+                                self.watchcount = String(starCont)
+                                self.likeButton_2.setImage(UIImage(named: "like-22"), for: .normal)
+                                print(self.moviename!)
+                            }
+                        }
+                        if starStr == "2"{
+                            
+                        }
+                        else{
+                            
+                            self.db.collection("users").document("\(document.documentID)").updateData(["favoritemovie": FieldValue.arrayUnion(["\(self.moviename!)"])])
+                            
+                            print(document.documentID)
+                            
+                            starCont = (newitem.movieArray?.count)! + 1
                             self.starButtonLabel.text = String(starCont)
                             self.watchcount = String(starCont)
-                            self.likeButton_2.setImage(UIImage(named: "like-22"), for: .normal)
+                            self.likeButton_2.setImage(UIImage(named: "like_fill_22"), for: .normal)
                             print(self.moviename!)
+                            
                         }
                     }
-                    if starStr == "2"{
-                        
-                    }
-                    else{
-                        
-                        self.db.collection("users").document("user_1").updateData(["favoritemovie": FieldValue.arrayUnion(["\(self.moviename!)"])])
-                        
-                        starCont = (newitem.movieArray?.count)! + 1
-                        self.starButtonLabel.text = String(starCont)
-                        self.watchcount = String(starCont)
-                        self.likeButton_2.setImage(UIImage(named: "like_fill_22"), for: .normal)
-                        print(self.moviename!)
-                        
-                    }
+                    
+                    
                 }
             }
         }
@@ -582,33 +611,48 @@ extension NowItemViewController{
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
+                var userAreThere = 0
                 
                 for document in querySnapshot!.documents {
-                    let doc = document.data()
-                    // most Important
-                    let newitem = FavoriteModel()
-                    newitem.movieArray = (doc["favoritemovie"] as! Array<String>)
-                    //newitem.dic = (doc["state"] as! Dictionary)
-                    print(newitem.movieArray?.count)
                     
-                    var starCont = 0
-                    var starStr = "0"
-     
-                    for key in newitem.movieArray! {
-                        
-                        if key == self.moviename{
-                            
-                            starCont = (newitem.movieArray?.count)!
-                            self.starButtonLabel.text = String(starCont)
-                            self.watchcount = String(starCont)
-                            self.likeButton_2.setImage(UIImage(named: "like_fill_22"), for: .normal)
-                            print(self.moviename!)
-                            
-                        }
+                        let doc = document.data()
+                        // most Important
+                        let newitem = FavoriteModel()
+                        newitem.movieArray = (doc["favoritemovie"] as! Array<String>)
+                        newitem.name = (doc["username"] as! String)
+                    
+                    if self.profileName == newitem.name{
+                        userAreThere = 1
                     }
-                    starCont = (newitem.movieArray!.count)
-                    self.starButtonLabel.text = String(starCont)
-                   print(starCont)
+                        //newitem.dic = (doc["state"] as! Dictionary)
+                        //print(newitem.movieArray?.count)
+                    
+                        if newitem.name == self.profileName{
+                        
+                        var starCont = 0
+                        var starStr = "0"
+         
+                        for key in newitem.movieArray! {
+                            
+                            if key == self.moviename{
+                                
+                                starCont = (newitem.movieArray?.count)!
+                                self.starButtonLabel.text = String(starCont)
+                                self.watchcount = String(starCont)
+                                self.likeButton_2.setImage(UIImage(named: "like_fill_22"), for: .normal)
+                                print(self.moviename!)
+                                
+                            }
+                        }
+                        starCont = (newitem.movieArray!.count)
+                        self.starButtonLabel.text = String(starCont)
+                       print(starCont)
+                    
+                    }
+                }
+                if userAreThere == 0{
+                    self.creatUser()
+                    self.starButtonLabel.text = "0"
                     
                 }
             }

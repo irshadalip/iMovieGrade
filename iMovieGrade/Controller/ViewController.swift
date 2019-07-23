@@ -21,9 +21,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         if UserDefaults.standard.bool(forKey: "login") == true{
             let viewController:TapViewController = self.storyboard?.instantiateViewController(withIdentifier: "TapViewController") as! TapViewController
             self.navigationController?.pushViewController(viewController, animated: true)
-            
-            
-            
         }
         
         slides = createSlides()
@@ -38,9 +35,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         //nextButton.layer.cornerRadius = nextButton.frame.size.height/2
         
         nextButton.isHidden = true
-        
-        
-        
+        self.pageControl.currentPageIndicatorTintColor = UIColor.init(patternImage: UIImage(named: "Mask")!)
+        self.pageControl.pageIndicatorTintColor = UIColor.init(patternImage: UIImage(named: "Mask_NotSelected")!)
+        self.pageControl.transform = CGAffineTransform(scaleX: 3, y: 3)
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,18 +49,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             scrollView.delegate = self
         }
     }
-//    func createGradientLayer() {
-//
-//        let topColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-//        let bottomColor = UIColor(red: 255, green: 37, blue: 219, alpha: 1)
-//        gradientLayer = CAGradientLayer()
-//        gradientLayer.frame = self.view.bounds
-//        gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
-//        backView.layer.addSublayer(gradientLayer)
-//
-//        //let topColor = UIColor(red: 1, green: 0.92, blue: 0.56, alpha: 1)
-//        //let bottomColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1)
-//    }
+
     
     func createSlides() -> [Slide] {
 
@@ -97,7 +83,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         
         
-        return [slide1, slide2, slide3, slide4, slide5]
+        return [slide1, slide2, slide3]
     }
     
     
@@ -122,53 +108,34 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
         pageControl.currentPage = Int(pageIndex)
-        
+
         let maximumHorizontalOffset: CGFloat = scrollView.contentSize.width - scrollView.frame.width
         let currentHorizontalOffset: CGFloat = scrollView.contentOffset.x
-        
+
         // vertical
         let maximumVerticalOffset: CGFloat = scrollView.contentSize.height - scrollView.frame.height
         let currentVerticalOffset: CGFloat = scrollView.contentOffset.y
-        
+
         let percentageHorizontalOffset: CGFloat = currentHorizontalOffset / maximumHorizontalOffset
         let percentageVerticalOffset: CGFloat = currentVerticalOffset / maximumVerticalOffset
-        
-        
+
+
         /*
          * below code changes the background color of view on paging the scrollview
          */
 //        self.scrollView(scrollView, didScrollToPercentageOffset: percentageHorizontalOffset)
-        
-    
+
+
         /*
          * below code scales the imageview on paging the scrollview
          */
         let percentOffset: CGPoint = CGPoint(x: percentageHorizontalOffset, y: percentageVerticalOffset)
-        
-        if(percentOffset.x > 0 && percentOffset.x <= 0.25) {
-            
-            slides[0].imageView.transform = CGAffineTransform(scaleX: (0.25-percentOffset.x)/0.25, y: (0.25-percentOffset.x)/0.25)
-            slides[1].imageView.transform = CGAffineTransform(scaleX: percentOffset.x/0.25, y: percentOffset.x/0.25)
+
+        if(percentOffset.x > 0 && percentOffset.x <= 0.75) {
             nextButton.isHidden = true
-//            titleLabelBold.text = "Get the first"
-//            titleLabelThin.text = "Movie & Tv  Information"
-            
-        } else if(percentOffset.x > 0.25 && percentOffset.x <= 0.50) {
-            slides[1].imageView.transform = CGAffineTransform(scaleX: (0.50-percentOffset.x)/0.25, y: (0.50-percentOffset.x)/0.25)
-            slides[2].imageView.transform = CGAffineTransform(scaleX: percentOffset.x/0.50, y: percentOffset.x/0.50)
-            nextButton.isHidden = true
-  
-            
-        } else if(percentOffset.x > 0.50 && percentOffset.x <= 0.75) {
-            slides[2].imageView.transform = CGAffineTransform(scaleX: (0.75-percentOffset.x)/0.25, y: (0.75-percentOffset.x)/0.25)
-            slides[3].imageView.transform = CGAffineTransform(scaleX: percentOffset.x/0.75, y: percentOffset.x/0.75)
-            nextButton.isHidden = true
-//            nextButton.setImage(UIImage(named: "slider_next"), for: .normal)
-           
-            
-        } else if(percentOffset.x > 0.75 && percentOffset.x <= 1) {
-            slides[3].imageView.transform = CGAffineTransform(scaleX: (1-percentOffset.x)/0.25, y: (1-percentOffset.x)/0.25)
-            slides[4].imageView.transform = CGAffineTransform(scaleX: percentOffset.x, y: percentOffset.x)
+        }
+        else if(percentOffset.x > 0.75 && percentOffset.x <= 1) {
+      
 
             nextButton.isHidden = false
 //            nextButton.setImage(UIImage(named: "Next_icon"), for: .normal)
@@ -219,3 +186,84 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+//    func createGradientLayer() {
+//
+//        let topColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+//        let bottomColor = UIColor(red: 255, green: 37, blue: 219, alpha: 1)
+//        gradientLayer = CAGradientLayer()
+//        gradientLayer.frame = self.view.bounds
+//        gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
+//        backView.layer.addSublayer(gradientLayer)
+//
+//        //let topColor = UIColor(red: 1, green: 0.92, blue: 0.56, alpha: 1)
+//        //let bottomColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1)
+//    }
+
+
+
+
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
+//        pageControl.currentPage = Int(pageIndex)
+//
+//        let maximumHorizontalOffset: CGFloat = scrollView.contentSize.width - scrollView.frame.width
+//        let currentHorizontalOffset: CGFloat = scrollView.contentOffset.x
+//
+//        // vertical
+//        let maximumVerticalOffset: CGFloat = scrollView.contentSize.height - scrollView.frame.height
+//        let currentVerticalOffset: CGFloat = scrollView.contentOffset.y
+//
+//        let percentageHorizontalOffset: CGFloat = currentHorizontalOffset / maximumHorizontalOffset
+//        let percentageVerticalOffset: CGFloat = currentVerticalOffset / maximumVerticalOffset
+//
+//
+//        /*
+//         * below code changes the background color of view on paging the scrollview
+//         */
+////        self.scrollView(scrollView, didScrollToPercentageOffset: percentageHorizontalOffset)
+//
+//
+//        /*
+//         * below code scales the imageview on paging the scrollview
+//         */
+//        let percentOffset: CGPoint = CGPoint(x: percentageHorizontalOffset, y: percentageVerticalOffset)
+//
+//        if(percentOffset.x > 0 && percentOffset.x <= 0.25) {
+//
+//            slides[0].imageView.transform = CGAffineTransform(scaleX: (0.25-percentOffset.x)/0.25, y: (0.25-percentOffset.x)/0.25)
+//            slides[1].imageView.transform = CGAffineTransform(scaleX: percentOffset.x/0.25, y: percentOffset.x/0.25)
+//            nextButton.isHidden = true
+////            titleLabelBold.text = "Get the first"
+////            titleLabelThin.text = "Movie & Tv  Information"
+//
+//        } else if(percentOffset.x > 0.25 && percentOffset.x <= 0.50) {
+//            slides[1].imageView.transform = CGAffineTransform(scaleX: (0.50-percentOffset.x)/0.25, y: (0.50-percentOffset.x)/0.25)
+//            slides[2].imageView.transform = CGAffineTransform(scaleX: percentOffset.x/0.50, y: percentOffset.x/0.50)
+//            nextButton.isHidden = true
+//
+//
+//        } else if(percentOffset.x > 0.50 && percentOffset.x <= 0.75) {
+//            slides[2].imageView.transform = CGAffineTransform(scaleX: (0.75-percentOffset.x)/0.25, y: (0.75-percentOffset.x)/0.25)
+//            slides[3].imageView.transform = CGAffineTransform(scaleX: percentOffset.x/0.75, y: percentOffset.x/0.75)
+//            nextButton.isHidden = true
+////            nextButton.setImage(UIImage(named: "slider_next"), for: .normal)
+//
+//
+//        } else if(percentOffset.x > 0.75 && percentOffset.x <= 1) {
+//            slides[3].imageView.transform = CGAffineTransform(scaleX: (1-percentOffset.x)/0.25, y: (1-percentOffset.x)/0.25)
+//            slides[4].imageView.transform = CGAffineTransform(scaleX: percentOffset.x, y: percentOffset.x)
+//
+//            nextButton.isHidden = false
+////            nextButton.setImage(UIImage(named: "Next_icon"), for: .normal)
+//        }
+//    }

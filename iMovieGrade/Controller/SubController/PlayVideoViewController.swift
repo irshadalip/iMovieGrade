@@ -21,7 +21,7 @@ class PlayVideoViewController: UIViewController {
         
         //r9-DM9uBtVI
         //url = movieURL[]
-        print(movieID)
+        //print(movieID)
         
         playView.loadVideoID("\(movieID!)")    //r9-DM9uBtVI
     }

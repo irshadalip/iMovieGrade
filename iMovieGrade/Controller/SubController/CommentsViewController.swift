@@ -111,7 +111,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
     func uploadReview() {
         var ref: DocumentReference? = nil
         
-        print(url)
+        //print(url)
         
         // Add a new document with a generated ID
         ref = db.collection("comment").addDocument(data: [ "review": "\(reviewText.text ?? "")", "url": "\(movieID!)", "photourl": "\(url!)", "username": "\(profileName!)"]) { err in
@@ -177,7 +177,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
                     
                     
                     let url = URL(string: commentitem.userimage!)
-                    if self.movieID == document.data()["url"] as! String{
+                    if self.movieID == (document.data()["url"] as! String){
                         if let data = try? Data(contentsOf: url!){
                             if let image = UIImage(data: data){
                                 self.allphotourl.append(image)

@@ -95,6 +95,7 @@ class watchModel {
     var like : String?
     var url : String?
     var state : String?
+    //var state : Dictionary<String, String>?
     var watch : String?
     
 }
@@ -119,4 +120,8 @@ class FavoriteModel {
     var url : String?
     var state : String?
     var dic : Dictionary<String, String>?
+}
+
+class AllUsersModel {
+    var username : String?
 }
