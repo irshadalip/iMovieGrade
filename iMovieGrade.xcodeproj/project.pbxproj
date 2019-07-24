@@ -37,6 +37,8 @@
 		9FA34DF722DCAB1C00A9E7AF /* EmailSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA34DF622DCAB1C00A9E7AF /* EmailSignInViewController.swift */; };
 		9FA6CDDE22D59F7900DDAB5F /* NowItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6CDDD22D59F7900DDAB5F /* NowItemViewController.swift */; };
 		9FA6CDE022D5AAF000DDAB5F /* NowCharacterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6CDDF22D5AAF000DDAB5F /* NowCharacterViewCell.swift */; };
+		9FAC233322E80F1500BCEF39 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAC233222E80F1500BCEF39 /* IntroViewController.swift */; };
+		9FAC233522E815C900BCEF39 /* IntroCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAC233422E815C900BCEF39 /* IntroCollectionViewCell.swift */; };
 		9FBC877522D84079007573CA /* PlayVideo__2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC877422D84079007573CA /* PlayVideo__2.swift */; };
 		9FBC877B22D85E6F007573CA /* SecondTapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC877A22D85E6F007573CA /* SecondTapViewController.swift */; };
 		9FBC877D22D86000007573CA /* MovieSubCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC877C22D86000007573CA /* MovieSubCollectionViewCell.swift */; };
@@ -116,6 +118,8 @@
 		9FA34DF622DCAB1C00A9E7AF /* EmailSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInViewController.swift; sourceTree = "<group>"; };
 		9FA6CDDD22D59F7900DDAB5F /* NowItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowItemViewController.swift; sourceTree = "<group>"; };
 		9FA6CDDF22D5AAF000DDAB5F /* NowCharacterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowCharacterViewCell.swift; sourceTree = "<group>"; };
+		9FAC233222E80F1500BCEF39 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		9FAC233422E815C900BCEF39 /* IntroCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCollectionViewCell.swift; sourceTree = "<group>"; };
 		9FBC877422D84079007573CA /* PlayVideo__2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVideo__2.swift; sourceTree = "<group>"; };
 		9FBC877A22D85E6F007573CA /* SecondTapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTapViewController.swift; sourceTree = "<group>"; };
 		9FBC877C22D86000007573CA /* MovieSubCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSubCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -239,6 +243,7 @@
 				9FA6CDDF22D5AAF000DDAB5F /* NowCharacterViewCell.swift */,
 				9FDFFF2A22D5E9D900ABF0BD /* ProfileCharacterCell.swift */,
 				9F9829F922E59C0200B45EDA /* SearchCollectionViewCell.swift */,
+				9FAC233422E815C900BCEF39 /* IntroCollectionViewCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 		9F78E71D22D359ED00DC9B75 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9FAC233222E80F1500BCEF39 /* IntroViewController.swift */,
 				085B0E93208073E500AF5F8A /* ViewController.swift */,
 				9F78E71E22D35D0A00DC9B75 /* SignInViewController.swift */,
 				9F78E72022D36BEF00DC9B75 /* TapViewController.swift */,
@@ -553,6 +559,7 @@
 			files = (
 				9F48216D22D46E74008CAD6F /* NowListViewController.swift in Sources */,
 				9F78E71F22D35D0A00DC9B75 /* SignInViewController.swift in Sources */,
+				9FAC233522E815C900BCEF39 /* IntroCollectionViewCell.swift in Sources */,
 				9FA6CDDE22D59F7900DDAB5F /* NowItemViewController.swift in Sources */,
 				9FBC877D22D86000007573CA /* MovieSubCollectionViewCell.swift in Sources */,
 				9FDFFF2B22D5E9D900ABF0BD /* ProfileCharacterCell.swift in Sources */,
@@ -566,6 +573,7 @@
 				085B0EC320807C9600AF5F8A /* Slide.swift in Sources */,
 				9F48216F22D4746E008CAD6F /* PopulerListViewController.swift in Sources */,
 				9FDFFF2622D5E13300ABF0BD /* GenralCollectionViewCell.swift in Sources */,
+				9FAC233322E80F1500BCEF39 /* IntroViewController.swift in Sources */,
 				9F78E72122D36BEF00DC9B75 /* TapViewController.swift in Sources */,
 				9FBC877F22D8BD52007573CA /* CommentsViewController.swift in Sources */,
 				9F48217322D48A9A008CAD6F /* PopulerSubListViewController.swift in Sources */,

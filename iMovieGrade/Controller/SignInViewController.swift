@@ -43,6 +43,8 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
         gmailOutlet.backgroundColor = .clear
         gmailOutlet.layer.borderColor = UIColor.white.cgColor
         gmailOutlet.layer.cornerRadius = 5
+        
+        gmailOutlet.isHidden = true
     }
     
     @IBAction func gmailButton(_ sender: UIButton) {

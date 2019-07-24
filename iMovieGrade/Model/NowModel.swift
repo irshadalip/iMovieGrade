@@ -95,7 +95,8 @@ class watchModel {
     var like : String?
     var url : String?
     var state : String?
-    //var state : Dictionary<String, String>?
+    //var statedic : Dictionary<String, String>?
+    var statedic : [String:Any]?
     var watch : String?
     
 }

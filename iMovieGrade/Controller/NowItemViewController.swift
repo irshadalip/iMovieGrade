@@ -125,11 +125,16 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     
+    
+    
+}
+//MARK:- CollectionView Delegate
+extension NowItemViewController{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageStore.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowCharacterViewCell", for: indexPath) as! NowCharacterViewCell
         cell.imageCharacter.image = listOfCharecter[indexPath.row].image
         cell.nowCharacterText.text = imageStore[indexPath.row]
@@ -140,7 +145,7 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let viewControler : ThirdTapViewController = self.storyboard?.instantiateViewController(withIdentifier: "ThirdTapViewController") as! ThirdTapViewController
-
+        
         viewControler.movieURL = movieID
         viewControler.commentCount = listOfComments.count
         viewControler.watchCount = totalWatch
@@ -158,34 +163,10 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         
     }
-    
 }
-
+//MARK:- Firebase Functions
 extension NowItemViewController{
     
-    func readCharacter() {
-        self.charArray.removeAll()
-        self.characters.removeAll()
-        db.collection("moviewithchar").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-                
-            } else {
-                
-                for document in querySnapshot!.documents {
-                    
-                    if document.documentID == self.moviename{
-                        // most Important
-                        let charNewitem = CharacterModel()
-                        
-                        charNewitem.nameArray = (document.data()["name"] as! Array<String>)
-                        self.imageStore = (document.data()["name"] as! Array<String>)
-                        self.getImage()
-                    }
-                }
-            }
-        }
-    }
     func getImage() {
         for char in imageStore{
             
@@ -212,6 +193,175 @@ extension NowItemViewController{
         }
     }
 
+    
+    func readMovieDescription() {
+        self.descrip.removeAll()
+        
+        dbdescrip.collection("movies").getDocuments() { (querySnapshot, err) in
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let nownewitem = NowModel()
+                    nownewitem.name = (document.data()["name"] as? String)
+                    nownewitem.description = (document.data()["description"] as? String)
+                    
+                    // feching data
+                    
+                    //self.nows.append(nownewitem.image!)
+                    if nownewitem.name == self.moviename{
+                        self.descrip = nownewitem.description!
+                        self.descriptionLabel.text = nownewitem.description!
+                    }
+                    
+                }
+            }
+        }
+        dbdescrip.collection("popular").getDocuments() { (querySnapshot, err) in
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let nownewitem = NowModel()
+                    nownewitem.name = (document.data()["name"] as? String)
+                    nownewitem.description = (document.data()["description"] as? String)
+                    
+                    // feching data
+                    
+                    //self.nows.append(nownewitem.image!)
+                    if nownewitem.name == self.moviename{
+                        self.descrip = nownewitem.description!
+                        self.descriptionLabel.text = nownewitem.description!
+                    }
+                    
+                }
+            }
+        }
+        dbdescrip.collection("moviesbig").getDocuments() { (querySnapshot, err) in
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let nownewitem = NowModel()
+                    nownewitem.name = (document.data()["name"] as? String)
+                    nownewitem.description = (document.data()["description"] as? String)
+                    
+                    // feching data
+                    
+                    //self.nows.append(nownewitem.image!)
+                    if nownewitem.name == self.moviename{
+                        self.descrip = nownewitem.description!
+                        self.descriptionLabel.text = nownewitem.description!
+                    }
+                    
+                }
+            }
+        }
+    }
+    //==========================================
+    func readCommentCount() {
+        self.commentcount.removeAll()
+        db.collection("comment").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let newitem = commentModel()
+                    newitem.name = (document.data()["url"] as! String)
+                    
+                    
+                    
+                    if self.movieID == newitem.name{
+                        self.listOfComments.append(newitem)
+                    }
+                    //self.listOfComments.append(newitem)
+                    DispatchQueue.main.async {
+                        
+                    }
+                    print(self.listOfComments.count)
+                    self.commentButtonLabel.text = String(self.listOfComments.count)
+
+                    self.likeButtonLabel.text = self.likecount
+                    
+                }
+            }
+        }
+    }
+   
+}
+extension NowItemViewController{
+    func creatUser() {
+        var ref: DocumentReference? = nil
+        
+        // Add a new document with a generated ID
+        ref = db.collection("users").addDocument(data: [ "username": "\(profileName!)", "favoritemovie": []])
+        { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+    }
+}
+//MARK:- Init Call For Firebase
+extension NowItemViewController{
+    
+    func InitWatchCount(){
+        
+        dbLikeInDatabase.collection("total").getDocuments(){ (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                for document in querySnapshot!.documents {
+                    
+                    let newitem = watchModel()
+                    newitem.url = (document.data()["url"] as! String)
+                    newitem.watch = (document.data()["watch"] as! String)
+                    
+                    if self.movieID == newitem.url{
+                        
+                        self.totalWatch = newitem.watch!
+                    }
+                    
+                }
+            }
+        }
+    }
+    func readCharacter() {
+        self.charArray.removeAll()
+        self.characters.removeAll()
+        db.collection("moviewithchar").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+            } else {
+                
+                for document in querySnapshot!.documents {
+                    
+                    if document.documentID == self.moviename{
+                        // most Important
+                        let charNewitem = CharacterModel()
+                        
+                        charNewitem.nameArray = (document.data()["name"] as! Array<String>)
+                        self.imageStore = (document.data()["name"] as! Array<String>)
+                        self.getImage()
+                    }
+                }
+            }
+        }
+    }
     func readBigImage() {
         //self.movieImage.removeAll()
         db.collection("movies").getDocuments() { (querySnapshot, err) in
@@ -317,235 +467,7 @@ extension NowItemViewController{
             }
         }
     }
-    func readMovieDescription() {
-        self.descrip.removeAll()
-        
-        dbdescrip.collection("movies").getDocuments() { (querySnapshot, err) in
-            
-            if let err = err {
-                print("Error getting documents: \(err)")
-                
-            } else {
-                for document in querySnapshot!.documents {
-                    // most Important
-                    let nownewitem = NowModel()
-                    nownewitem.name = (document.data()["name"] as? String)
-                    nownewitem.description = (document.data()["description"] as? String)
-                    
-                    // feching data
-                    
-                    //self.nows.append(nownewitem.image!)
-                    if nownewitem.name == self.moviename{
-                        self.descrip = nownewitem.description!
-                        self.descriptionLabel.text = nownewitem.description!
-                    }
-                    
-                }
-            }
-        }
-        dbdescrip.collection("popular").getDocuments() { (querySnapshot, err) in
-            
-            if let err = err {
-                print("Error getting documents: \(err)")
-                
-            } else {
-                for document in querySnapshot!.documents {
-                    // most Important
-                    let nownewitem = NowModel()
-                    nownewitem.name = (document.data()["name"] as? String)
-                    nownewitem.description = (document.data()["description"] as? String)
-                    
-                    // feching data
-                    
-                    //self.nows.append(nownewitem.image!)
-                    if nownewitem.name == self.moviename{
-                        self.descrip = nownewitem.description!
-                        self.descriptionLabel.text = nownewitem.description!
-                    }
-                    
-                }
-            }
-        }
-        dbdescrip.collection("moviesbig").getDocuments() { (querySnapshot, err) in
-            
-            if let err = err {
-                print("Error getting documents: \(err)")
-                
-            } else {
-                for document in querySnapshot!.documents {
-                    // most Important
-                    let nownewitem = NowModel()
-                    nownewitem.name = (document.data()["name"] as? String)
-                    nownewitem.description = (document.data()["description"] as? String)
-                    
-                    // feching data
-                    
-                    //self.nows.append(nownewitem.image!)
-                    if nownewitem.name == self.moviename{
-                        self.descrip = nownewitem.description!
-                        self.descriptionLabel.text = nownewitem.description!
-                    }
-                    
-                }
-            }
-        }
-    }
-    //==========================================
-    func readCommentCount() {
-        self.commentcount.removeAll()
-        db.collection("comment").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    // most Important
-                    let newitem = commentModel()
-                    newitem.name = (document.data()["url"] as! String)
-                    
-                    
-                    
-                    if self.movieID == newitem.name{
-                        self.listOfComments.append(newitem)
-                    }
-                    //self.listOfComments.append(newitem)
-                    DispatchQueue.main.async {
-                        
-                    }
-                    print(self.listOfComments.count)
-                    self.commentButtonLabel.text = String(self.listOfComments.count)
-
-                    self.likeButtonLabel.text = self.likecount
-                    
-                }
-            }
-        }
-    }
-    func updateLike(){
-        
-        self.likecount.removeAll()
-        db.collection("total").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    // most Important
-                    let newitem = watchModel()
-                    newitem.like = (document.data()["like"] as? String)
-                    newitem.url = (document.data()["url"] as? String)
-                    newitem.state = (document.data()["state"] as? String)
-                    
-                    
-                    
-                    if self.movieID == newitem.url{
-                        
-                        if newitem.state == "0"{
-                            self.likeButton_1.setImage(UIImage(named: "like-11"), for: .normal)
-                            self.likeButtonLabel.text = newitem.like
-                        }
-                        else{
-                            self.likeButton_1.setImage(UIImage(named: "like_fill"), for: .normal)
-                            self.likeButtonLabel.text = newitem.like
-                        }
-                        
-                        self.likecount = newitem.like ?? "00"
-                    }
-                }
-            }
-        }
-    }
-}
-extension NowItemViewController{
-    
-    func InitWatchCount(){
-        
-        dbLikeInDatabase.collection("total").getDocuments(){ (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                
-                for document in querySnapshot!.documents {
-                
-                    let newitem = watchModel()
-                    newitem.url = (document.data()["url"] as! String)
-                    newitem.watch = (document.data()["watch"] as! String)
-           
-                    if self.movieID == newitem.url{
-                        
-                        self.totalWatch = newitem.watch!
-                    }
-                    
-                }
-            }
-        }
-    }
-    
-    func updateLikeInDatabase(){
-        
-        dbLikeInDatabase.collection("total").getDocuments(){ (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                
-                for document in querySnapshot!.documents {
-                    // most Important
-                    let newitem = watchModel()
-                    newitem.like = (document.data()["like"] as? String)
-                    newitem.url = (document.data()["url"] as! String)
-                    newitem.state = (document.data()["state"] as! String)
-                    newitem.watch = (document.data()["watch"] as! String)
-                    
-                    
-                    if self.movieID == newitem.url{//{"r9-DM9uBtVI"
-                        
-                        self.totalWatch = newitem.watch!
-                        self.likecount = newitem.like ?? "00"
-                        
-                        if document.exists {
-                            let property = document.get("like")
-                            var likeCont = 0
-                            if newitem.state == "1"{
-                                likeCont = Int(newitem.like!)! - 1
-                                self.likeButtonLabel.text = String(likeCont)
-                                self.likecount = String(likeCont)
-                                self.db.collection("total").document(self.moviename!).updateData(["state": "0"])
-                                self.likeButton_1.setImage(UIImage(named: "like-11"), for: .normal)
-                                print(self.moviename!)
-                                
-                            }
-                            else{
-                                likeCont = Int(newitem.like!)! + 1
-                                
-                                self.likeButtonLabel.text = String(likeCont)
-                                self.likecount = String(likeCont)
-                                self.db.collection("total").document(self.moviename!).updateData(["state": "1"])
-                                self.likeButton_1.setImage(UIImage(named: "like_fill"), for: .normal)
-                                print(self.moviename!)
-                                
-                            }
-                            
-                            self.db.collection("total").document(self.moviename!).updateData(["like": "\(likeCont)"])
-                            
-                        } else {
-                            print("Document does not exist")
-                        }
-                    }
-                }
-            }
-        }
-    }
-    func creatUser() {
-        var ref: DocumentReference? = nil
-        
-        // Add a new document with a generated ID
-        ref = db.collection("users").addDocument(data: [ "username": "\(profileName!)", "favoritemovie": []])
-        { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
-    }
+   
     func updateStarInDatabase(){
         
         dbLikeInDatabase.collection("users").getDocuments(){ (querySnapshot, err) in
@@ -559,14 +481,14 @@ extension NowItemViewController{
                     let newitem = FavoriteModel()
                     newitem.movieArray = (doc["favoritemovie"] as! Array<String>)
                     newitem.name = (doc["username"] as! String)
-
+                    
                     var starCont = 0
                     var starStr = "0"
                     
                     if newitem.name == self.profileName{
                         
-//                        print(self.profileName)
-//                        print(newitem.name)
+                        //                        print(self.profileName)
+                        //                        print(newitem.name)
                         
                         for key in newitem.movieArray! {
                             
@@ -615,23 +537,23 @@ extension NowItemViewController{
                 
                 for document in querySnapshot!.documents {
                     
-                        let doc = document.data()
-                        // most Important
-                        let newitem = FavoriteModel()
-                        newitem.movieArray = (doc["favoritemovie"] as! Array<String>)
-                        newitem.name = (doc["username"] as! String)
+                    let doc = document.data()
+                    // most Important
+                    let newitem = FavoriteModel()
+                    newitem.movieArray = (doc["favoritemovie"] as! Array<String>)
+                    newitem.name = (doc["username"] as! String)
                     
                     if self.profileName == newitem.name{
                         userAreThere = 1
                     }
-                        //newitem.dic = (doc["state"] as! Dictionary)
-                        //print(newitem.movieArray?.count)
+                    //newitem.dic = (doc["state"] as! Dictionary)
+                    //print(newitem.movieArray?.count)
                     
-                        if newitem.name == self.profileName{
+                    if newitem.name == self.profileName{
                         
                         var starCont = 0
                         var starStr = "0"
-         
+                        
                         for key in newitem.movieArray! {
                             
                             if key == self.moviename{
@@ -646,8 +568,8 @@ extension NowItemViewController{
                         }
                         starCont = (newitem.movieArray!.count)
                         self.starButtonLabel.text = String(starCont)
-                       print(starCont)
-                    
+                        print(starCont)
+                        
                     }
                 }
                 if userAreThere == 0{
@@ -658,6 +580,127 @@ extension NowItemViewController{
             }
         }
     }
+    func updateLike(){
+        
+        self.likecount.removeAll()
+        db.collection("total").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    // most Important
+                    let newitem = watchModel()
+                    newitem.like = (document.data()["like"] as? String)
+                    newitem.url = (document.data()["url"] as? String)
+                    newitem.state = (document.data()["state"] as? String)
+                    newitem.statedic = (document.data()["statedic"] as! Dictionary<String , String>)
+                    
+                    
+                    
+                    if self.movieID == newitem.url{
+                        
+                        var countUser = 0
+                        
+                        for (key, value) in newitem.statedic!{
 
+                            if key == self.profileName{
+                                
+                                countUser = 1
+                                
+                                var val = value as! String
+                                
+                                print(key)
+                                print(val)
+                                
+
+                                if val == "0"{
+                                    self.likeButton_1.setImage(UIImage(named: "like-11"), for: .normal)
+                                    self.likeButtonLabel.text = newitem.like
+                                }
+                                else{
+                                    self.likeButton_1.setImage(UIImage(named: "like_fill"), for: .normal)
+                                    self.likeButtonLabel.text = newitem.like
+                                }
+
+                            }
+                        }
+
+                        if countUser == 0{
+                            self.db.collection("total").document(self.moviename!).updateData(["statedic.\(self.profileName!)": "0"])
+                        }
+                        
+                        self.likecount = newitem.like ?? "00"
+                    }
+                }
+            }
+        }
+    }
+    func updateLikeInDatabase(){
+        
+        dbLikeInDatabase.collection("total").getDocuments(){ (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                for document in querySnapshot!.documents {
+                    
+                    // most Important
+                    let newitem = watchModel()
+                    newitem.like = (document.data()["like"] as? String)
+                    newitem.url = (document.data()["url"] as! String)
+                    newitem.state = (document.data()["state"] as! String)
+                    newitem.watch = (document.data()["watch"] as! String)
+                    newitem.statedic = (document.data()["statedic"] as! Dictionary<String , String>)
+        
+                
+                    if self.movieID == newitem.url{
+                        
+                        for (key, value) in newitem.statedic!{
+                            print(key)
+                            if key == self.profileName{
+                                
+                                if document.exists {
+                                    let property = document.get("like")
+                                    var likeCont = 0
+                                    if value as! String == "1"{
+                                        likeCont = Int(newitem.like!)! - 1
+                                        self.likeButtonLabel.text = String(likeCont)
+                                        self.likecount = String(likeCont)
+                                        //self.db.collection("total").document(self.moviename!).updateData(["state": "0"])
+                                        self.likeButton_1.setImage(UIImage(named: "like-11"), for: .normal)
+                                        print(self.moviename!)
+                                        
+                                        self.db.collection("total").document(self.moviename!).updateData(["statedic.\(self.profileName!)": "0"])
+     
+                                    }
+                                    else{
+                                        likeCont = Int(newitem.like!)! + 1
+                                        
+                                        self.likeButtonLabel.text = String(likeCont)
+                                        self.likecount = String(likeCont)
+                                        //self.db.collection("total").document(self.moviename!).updateData(["state": "1"])
+                                        self.likeButton_1.setImage(UIImage(named: "like_fill"), for: .normal)
+                                        print(self.moviename!)
+                                        
+                                        self.db.collection("total").document(self.moviename!).updateData(["statedic.\(self.profileName!)": "1"])
+                                        
+                                    }
+                                    
+                                    self.db.collection("total").document(self.moviename!).updateData(["like": "\(likeCont)"])
+                                    
+                                } else {
+                                    print("Document does not exist")
+                                }
+                            }
+                        }
+                        
+                        self.totalWatch = newitem.watch!
+                        self.likecount = newitem.like ?? "00"
+    
+                    }
+                }
+            }
+        }
+    }
     
 }

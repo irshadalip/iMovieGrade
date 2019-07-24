@@ -37,6 +37,7 @@ class FirstTapViewController: UIViewController,UICollectionViewDelegate, UIColle
     var populers = ["populer-1"]
     var populerText = ["populer-1"]
     
+    @IBOutlet weak var ScrollView: UIScrollView!
     @IBOutlet weak var searchText: UITextField!
     @IBOutlet weak var populerLabel: UIButton!
     @IBOutlet weak var nowlabel: UIButton!
@@ -93,7 +94,7 @@ extension FirstTapViewController{
         let itemSize = UIScreen.main.bounds.width / 3 - 10
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-        layout.itemSize = CGSize(width: itemSize, height: itemSize + 50)
+        layout.itemSize = CGSize(width: itemSize, height: itemSize + 100)
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         searchCollection.collectionViewLayout = layout
@@ -163,10 +164,6 @@ extension FirstTapViewController{
                 return listOfDataNow.count
                 
             }
-            else if collectionView == self.populerCollection {
-                return listOfDataPopuler.count
-                
-            }
             else{
                 return listOfDataPopuler.count
             }
@@ -186,7 +183,7 @@ extension FirstTapViewController{
                 return cell
             }
             else if collectionView == self.nowsCollection {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowCell", for: indexPath) as! NowCollectionViewCell
+                let cell = nowsCollection.dequeueReusableCell(withReuseIdentifier: "NowCell", for: indexPath) as! NowCollectionViewCell
                 cell.nowimageView.image = listOfDataNow[indexPath.row].image
                 cell.nowLabel.text = listOfDataNow[indexPath.row].name
 
@@ -525,6 +522,7 @@ extension FirstTapViewController{
             return}
         listOfCURRENT = listOfAll.filter({nowText -> Bool in
             nowText.name!.uppercased().contains(searchText.uppercased())
+            
         })
         searchCollection.reloadData()
     }
