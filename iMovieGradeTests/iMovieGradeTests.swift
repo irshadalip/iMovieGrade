@@ -4,10 +4,10 @@
 //
 //  Created by Anitaa Murthy on 13/04/18.
 //  Copyright © 2018 Anitaa. All rights reserved.
-//
+//OnboardingExample
 
 import XCTest
-@testable import OnboardingExample
+@testable import iMovieGradeTests
 
 class OnboardingExampleTests: XCTestCase {
     

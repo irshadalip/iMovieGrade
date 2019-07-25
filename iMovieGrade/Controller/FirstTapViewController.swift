@@ -53,6 +53,7 @@ class FirstTapViewController: UIViewController, UITextFieldDelegate {
         readDataNow()
         readDataPopuler()
         AllUsers()
+    
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
@@ -82,6 +83,8 @@ extension FirstTapViewController{
         searchCollection.delegate = self
         searchCollection.dataSource = self
         searchText.delegate = self
+        
+        self.searchBar.returnKeyType = .done
   
         let itemSize = UIScreen.main.bounds.width / 3 - 10
         let layout = UICollectionViewFlowLayout()
@@ -106,7 +109,7 @@ extension FirstTapViewController{
         searchTextField.rightViewMode = UITextFieldViewMode.always
         
         
-        let searchImage = UIImage(named: "search_icon")
+        //let searchImage = UIImage(named: "search_icon")
         //addLeftImage(txtField: searchText, andImage: searchImage!)
         
         for subView in searchBar.subviews {
@@ -121,11 +124,7 @@ extension FirstTapViewController{
         txtField.leftView = leftImageView
         txtField.leftViewMode = .always
     }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true)
-    }
-    
+ 
 }
 
 //MARK:- CollectionView Delegates
@@ -419,7 +418,9 @@ extension FirstTapViewController{
                     }
                 }
                 if haveUser == false{
-                    self.creatUser()
+                    if self.profileName != nil{
+                        self.creatUser()
+                    }
                 }
             }
         }
@@ -502,28 +503,31 @@ extension FirstTapViewController: UISearchBarDelegate{
             nowsCollection.reloadData()
             populerCollection.reloadData()
             
-            for subView in searchBar.subviews {
-                for subViewInSubView in subView.subviews {
-                    subViewInSubView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
-                }
-            }
+//            for subView in searchBar.subviews {
+//                for subViewInSubView in subView.subviews {
+//                    subViewInSubView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+//                }
+//            }
         }
-        //============
+
         guard !searchText.isEmpty else {listOfCURRENT = listOfAll
             //IsHide = false
             searchCollection.reloadData()
             return}
         listOfCURRENT = listOfAll.filter({nowText -> Bool in
             nowText.name!.uppercased().contains(searchText.uppercased())
-            
+    
         })
         searchCollection.reloadData()
     }
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int){
-        for subView in searchBar.subviews {
-            for subViewInSubView in subView.subviews {
-                subViewInSubView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-            }
-        }
+//    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int){
+//        for subView in searchBar.subviews {
+//            for subViewInSubView in subView.subviews {
+//                subViewInSubView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+//            }
+//        }
+//    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
     }
 }

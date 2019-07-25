@@ -11,7 +11,7 @@
 		085B0E97208073E500AF5F8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 085B0E95208073E500AF5F8A /* Main.storyboard */; };
 		085B0E99208073EC00AF5F8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 085B0E98208073EC00AF5F8A /* Assets.xcassets */; };
 		085B0E9C208073EC00AF5F8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 085B0E9A208073EC00AF5F8A /* LaunchScreen.storyboard */; };
-		085B0EA7208073EC00AF5F8A /* OnboardingExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085B0EA6208073EC00AF5F8A /* OnboardingExampleTests.swift */; };
+		085B0EA7208073EC00AF5F8A /* iMovieGradeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085B0EA6208073EC00AF5F8A /* iMovieGradeTests.swift */; };
 		085B0EB2208073EC00AF5F8A /* OnboardingExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085B0EB1208073EC00AF5F8A /* OnboardingExampleUITests.swift */; };
 		085B0EC92080804D00AF5F8A /* montserrat_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 085B0EC52080804D00AF5F8A /* montserrat_bold.otf */; };
 		085B0ECA2080804D00AF5F8A /* montserrat_medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 085B0EC62080804D00AF5F8A /* montserrat_medium.otf */; };
@@ -79,7 +79,7 @@
 		085B0E9B208073EC00AF5F8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		085B0E9D208073EC00AF5F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		085B0EA2208073EC00AF5F8A /* iMovieGradeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMovieGradeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		085B0EA6208073EC00AF5F8A /* OnboardingExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingExampleTests.swift; sourceTree = "<group>"; };
+		085B0EA6208073EC00AF5F8A /* iMovieGradeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMovieGradeTests.swift; sourceTree = "<group>"; };
 		085B0EA8208073EC00AF5F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		085B0EAD208073EC00AF5F8A /* iMovieGradeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMovieGradeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		085B0EB1208073EC00AF5F8A /* OnboardingExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingExampleUITests.swift; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 		085B0EA5208073EC00AF5F8A /* iMovieGradeTests */ = {
 			isa = PBXGroup;
 			children = (
-				085B0EA6208073EC00AF5F8A /* OnboardingExampleTests.swift */,
+				085B0EA6208073EC00AF5F8A /* iMovieGradeTests.swift */,
 				085B0EA8208073EC00AF5F8A /* Info.plist */,
 			);
 			path = iMovieGradeTests;
@@ -579,7 +579,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				085B0EA7208073EC00AF5F8A /* OnboardingExampleTests.swift in Sources */,
+				085B0EA7208073EC00AF5F8A /* iMovieGradeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

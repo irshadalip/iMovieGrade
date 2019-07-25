@@ -119,9 +119,7 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
         viewControler.moviename = moviename
         self.navigationController?.pushViewController(viewControler, animated: true)
     }
-    
-    
-    
+
     
 }
 
@@ -178,7 +176,7 @@ extension NowItemViewController{
             
             storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                 if let error = error {
-                    print("error-------- \(error.localizedDescription)")
+                    print("error Whene Get Image \(error.localizedDescription)")
                     
                     return
                 }
@@ -386,7 +384,7 @@ extension NowItemViewController{
                     
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
-                            print("error========= \(error.localizedDescription)")
+                            print("error Whene get image \(error.localizedDescription)")
                             
                             return
                         }
@@ -420,7 +418,7 @@ extension NowItemViewController{
                     
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
-                            print("error==++++++++==== \(error.localizedDescription)")
+                            print("error Whene get image \(error.localizedDescription)")
                             
                             return
                         }
@@ -454,7 +452,7 @@ extension NowItemViewController{
                     
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
-                            print("error==++++++++==== \(error.localizedDescription)")
+                            print("error Whene get image \(error.localizedDescription)")
                             
                             return
                         }
@@ -491,9 +489,6 @@ extension NowItemViewController{
                     var starStr = "0"
                     
                     if newitem.name == self.profileName{
-                        
-                        //                        print(self.profileName)
-                        //                        print(newitem.name)
                         
                         for key in newitem.movieArray! {
                             
@@ -542,11 +537,10 @@ extension NowItemViewController{
                 
                 for document in querySnapshot!.documents {
                     
-                    let doc = document.data()
                     // most Important
                     let newitem = FavoriteModel()
-                    newitem.movieArray = (doc["favoritemovie"] as! Array<String>)
-                    newitem.name = (doc["username"] as! String)
+                    newitem.movieArray = (document.data()["favoritemovie"] as! Array<String>)
+                    newitem.name = (document.data()["username"] as! String)
                     
                     if self.profileName == newitem.name{
                         userAreThere = 1
@@ -557,7 +551,6 @@ extension NowItemViewController{
                     if newitem.name == self.profileName{
                         
                         var starCont = 0
-                        var starStr = "0"
                         
                         for key in newitem.movieArray! {
                             
@@ -612,10 +605,7 @@ extension NowItemViewController{
                                 
                                 countUser = 1
                                 
-                                var val = value as! String
-                                
-                                print(key)
-                                print(val)
+                                let val = value as! String
                                 
 
                                 if val == "0"{
@@ -665,7 +655,6 @@ extension NowItemViewController{
                             if key == self.profileName{
                                 
                                 if document.exists {
-                                    let property = document.get("like")
                                     var likeCont = 0
                                     if value as! String == "1"{
                                         likeCont = Int(newitem.like!)! - 1

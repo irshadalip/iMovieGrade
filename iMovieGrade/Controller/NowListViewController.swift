@@ -95,7 +95,7 @@ extension NowListViewController{
 
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
-                            print("error-------- \(error.localizedDescription)")
+                            print("error whene get Image \(error.localizedDescription)")
 
                             return
                         }

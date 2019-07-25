@@ -90,7 +90,7 @@ extension PopulerListViewController{
                     
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
-                            print("error-------- \(error.localizedDescription)")
+                            print("error Whene get Image \(error.localizedDescription)")
                             
                             return
                         }
