@@ -8,14 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		085B0E92208073E500AF5F8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085B0E91208073E500AF5F8A /* AppDelegate.swift */; };
-		085B0E94208073E500AF5F8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085B0E93208073E500AF5F8A /* ViewController.swift */; };
 		085B0E97208073E500AF5F8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 085B0E95208073E500AF5F8A /* Main.storyboard */; };
 		085B0E99208073EC00AF5F8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 085B0E98208073EC00AF5F8A /* Assets.xcassets */; };
 		085B0E9C208073EC00AF5F8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 085B0E9A208073EC00AF5F8A /* LaunchScreen.storyboard */; };
 		085B0EA7208073EC00AF5F8A /* OnboardingExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085B0EA6208073EC00AF5F8A /* OnboardingExampleTests.swift */; };
 		085B0EB2208073EC00AF5F8A /* OnboardingExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085B0EB1208073EC00AF5F8A /* OnboardingExampleUITests.swift */; };
-		085B0EC120807C6F00AF5F8A /* Slide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 085B0EC020807C6F00AF5F8A /* Slide.xib */; };
-		085B0EC320807C9600AF5F8A /* Slide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085B0EC220807C9600AF5F8A /* Slide.swift */; };
 		085B0EC92080804D00AF5F8A /* montserrat_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 085B0EC52080804D00AF5F8A /* montserrat_bold.otf */; };
 		085B0ECA2080804D00AF5F8A /* montserrat_medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 085B0EC62080804D00AF5F8A /* montserrat_medium.otf */; };
 		085B0ECB2080804D00AF5F8A /* montserrat_regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 085B0EC72080804D00AF5F8A /* montserrat_regular.otf */; };
@@ -34,7 +31,6 @@
 		9F9829FA22E59C0200B45EDA /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9829F922E59C0200B45EDA /* SearchCollectionViewCell.swift */; };
 		9FA34DF222DC642900A9E7AF /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA34DF022DC642900A9E7AF /* ReviewsTableViewCell.swift */; };
 		9FA34DF322DC642900A9E7AF /* ReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FA34DF122DC642900A9E7AF /* ReviewsTableViewCell.xib */; };
-		9FA34DF722DCAB1C00A9E7AF /* EmailSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA34DF622DCAB1C00A9E7AF /* EmailSignInViewController.swift */; };
 		9FA6CDDE22D59F7900DDAB5F /* NowItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6CDDD22D59F7900DDAB5F /* NowItemViewController.swift */; };
 		9FA6CDE022D5AAF000DDAB5F /* NowCharacterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6CDDF22D5AAF000DDAB5F /* NowCharacterViewCell.swift */; };
 		9FAC233322E80F1500BCEF39 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAC233222E80F1500BCEF39 /* IntroViewController.swift */; };
@@ -78,7 +74,6 @@
 		06AC8B514F749854542EC9B4 /* Pods-OnboardingExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnboardingExampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-OnboardingExampleUITests/Pods-OnboardingExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		085B0E8E208073E500AF5F8A /* iMovieGrade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMovieGrade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		085B0E91208073E500AF5F8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		085B0E93208073E500AF5F8A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		085B0E96208073E500AF5F8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		085B0E98208073EC00AF5F8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		085B0E9B208073EC00AF5F8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,8 +84,6 @@
 		085B0EAD208073EC00AF5F8A /* iMovieGradeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMovieGradeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		085B0EB1208073EC00AF5F8A /* OnboardingExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingExampleUITests.swift; sourceTree = "<group>"; };
 		085B0EB3208073EC00AF5F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		085B0EC020807C6F00AF5F8A /* Slide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Slide.xib; sourceTree = "<group>"; };
-		085B0EC220807C9600AF5F8A /* Slide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slide.swift; sourceTree = "<group>"; };
 		085B0EC52080804D00AF5F8A /* montserrat_bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = montserrat_bold.otf; sourceTree = "<group>"; };
 		085B0EC62080804D00AF5F8A /* montserrat_medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = montserrat_medium.otf; sourceTree = "<group>"; };
 		085B0EC72080804D00AF5F8A /* montserrat_regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = montserrat_regular.otf; sourceTree = "<group>"; };
@@ -115,7 +108,6 @@
 		9F9829F922E59C0200B45EDA /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		9FA34DF022DC642900A9E7AF /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		9FA34DF122DC642900A9E7AF /* ReviewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsTableViewCell.xib; sourceTree = "<group>"; };
-		9FA34DF622DCAB1C00A9E7AF /* EmailSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInViewController.swift; sourceTree = "<group>"; };
 		9FA6CDDD22D59F7900DDAB5F /* NowItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowItemViewController.swift; sourceTree = "<group>"; };
 		9FA6CDDF22D5AAF000DDAB5F /* NowCharacterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowCharacterViewCell.swift; sourceTree = "<group>"; };
 		9FAC233222E80F1500BCEF39 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -202,7 +194,6 @@
 				085B0EBF20807C0C00AF5F8A /* views */,
 				9F78E71D22D359ED00DC9B75 /* Controller */,
 				085B0E98208073EC00AF5F8A /* Assets.xcassets */,
-				085B0E9A208073EC00AF5F8A /* LaunchScreen.storyboard */,
 				085B0E9D208073EC00AF5F8A /* Info.plist */,
 				9F6E8A5E22DF2BAC00880498 /* GoogleService-Info.plist */,
 			);
@@ -230,10 +221,10 @@
 		085B0EBF20807C0C00AF5F8A /* views */ = {
 			isa = PBXGroup;
 			children = (
-				9FA34DF022DC642900A9E7AF /* ReviewsTableViewCell.swift */,
+				085B0E9A208073EC00AF5F8A /* LaunchScreen.storyboard */,
+				085B0E95208073E500AF5F8A /* Main.storyboard */,
 				9FA34DF122DC642900A9E7AF /* ReviewsTableViewCell.xib */,
-				085B0EC220807C9600AF5F8A /* Slide.swift */,
-				085B0EC020807C6F00AF5F8A /* Slide.xib */,
+				9FA34DF022DC642900A9E7AF /* ReviewsTableViewCell.swift */,
 				9FF83C1522D43E98008A0606 /* MoviesCollectionViewCell.swift */,
 				9F48216822D44C88008CAD6F /* NowCollectionViewCell.swift */,
 				9F48216A22D45A71008CAD6F /* PopulerCollectionViewCell.swift */,
@@ -263,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				9FAC233222E80F1500BCEF39 /* IntroViewController.swift */,
-				085B0E93208073E500AF5F8A /* ViewController.swift */,
 				9F78E71E22D35D0A00DC9B75 /* SignInViewController.swift */,
 				9F78E72022D36BEF00DC9B75 /* TapViewController.swift */,
 				9FF83C1922D44137008A0606 /* FirstTapViewController.swift */,
@@ -273,8 +263,6 @@
 				9F48216E22D4746E008CAD6F /* PopulerListViewController.swift */,
 				9FA6CDDD22D59F7900DDAB5F /* NowItemViewController.swift */,
 				9FDFFF2E22D5F6A900ABF0BD /* SubController */,
-				9FA34DF622DCAB1C00A9E7AF /* EmailSignInViewController.swift */,
-				085B0E95208073E500AF5F8A /* Main.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -443,7 +431,6 @@
 				085B0EC92080804D00AF5F8A /* montserrat_bold.otf in Resources */,
 				085B0E99208073EC00AF5F8A /* Assets.xcassets in Resources */,
 				085B0E97208073E500AF5F8A /* Main.storyboard in Resources */,
-				085B0EC120807C6F00AF5F8A /* Slide.xib in Resources */,
 				9F6E8A5F22DF2BAC00880498 /* GoogleService-Info.plist in Resources */,
 				085B0ECA2080804D00AF5F8A /* montserrat_medium.otf in Resources */,
 				085B0ECB2080804D00AF5F8A /* montserrat_regular.otf in Resources */,
@@ -570,7 +557,6 @@
 				9F48216B22D45A71008CAD6F /* PopulerCollectionViewCell.swift in Sources */,
 				9F48216922D44C88008CAD6F /* NowCollectionViewCell.swift in Sources */,
 				9FA6CDE022D5AAF000DDAB5F /* NowCharacterViewCell.swift in Sources */,
-				085B0EC320807C9600AF5F8A /* Slide.swift in Sources */,
 				9F48216F22D4746E008CAD6F /* PopulerListViewController.swift in Sources */,
 				9FDFFF2622D5E13300ABF0BD /* GenralCollectionViewCell.swift in Sources */,
 				9FAC233322E80F1500BCEF39 /* IntroViewController.swift in Sources */,
@@ -582,10 +568,8 @@
 				9FF83C1A22D44138008A0606 /* FirstTapViewController.swift in Sources */,
 				9FBC877522D84079007573CA /* PlayVideo__2.swift in Sources */,
 				9FDFFF2D22D5F69600ABF0BD /* SettingViewController.swift in Sources */,
-				085B0E94208073E500AF5F8A /* ViewController.swift in Sources */,
 				9FD76EC722D7225A00B6E6A4 /* NowModel.swift in Sources */,
 				9FDFFF3022D619BE00ABF0BD /* AboutViewController.swift in Sources */,
-				9FA34DF722DCAB1C00A9E7AF /* EmailSignInViewController.swift in Sources */,
 				085B0E92208073E500AF5F8A /* AppDelegate.swift in Sources */,
 				9F9829FA22E59C0200B45EDA /* SearchCollectionViewCell.swift in Sources */,
 			);

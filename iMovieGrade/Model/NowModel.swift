@@ -5,31 +5,6 @@
 //  Created by Irshadali Palsaniya on 11/07/19.
 //  Copyright © 2019 Anitaa. All rights reserved.
 //
-//Now Movie Url
-//    var movieURL = ["r9-DM9uBtVI", "coOKvrsmQiI","vJz5l5ru7ws","rF5viX42K3s","39udgGPyYMg","ue80QwXMRHg","n6ihJIjVGLo","Ku52zNnft8k"]
-//populer====>
-//1.  arrival=
-//        ZLO4X6UI8OY===
-//2.  the dark knight=
-//        EXeTwQWrcwY
-//3.  the expanse
-//        kQuTAPWJxNo
-//4.      high castle
-//        zzayf9GpXCI
-//5.      mother
-//        XpICoc65uh0
-//6.      a ghost story
-//        c_3NMtxeyfk
-//7.      tomb raider
-//        8ndhidEmUbI
-//8.      10 cloverfield lane
-//        M9cTqkXTl7s
-//9.      iron man
-//        Ke1Y3P9D0Bc
-//10.     salvation
-//        A34OV9uYZWg
-//11.     the hunger games
-//        EAzGXqJSDJ8]
 
 import UIKit
 
@@ -41,7 +16,6 @@ class NowModel {
     var description : String?
     var movieURL : String?
     var index: Int?
-    
 }
 
 
@@ -95,7 +69,6 @@ class watchModel {
     var like : String?
     var url : String?
     var state : String?
-    //var statedic : Dictionary<String, String>?
     var statedic : [String:Any]?
     var watch : String?
     
@@ -112,6 +85,7 @@ class CharMovieModel {
     var index: Int?
 }
 
+
 class FavoriteModel {
     var name : String?
     var movieArray : Array<String>?
@@ -122,6 +96,7 @@ class FavoriteModel {
     var state : String?
     var dic : Dictionary<String, String>?
 }
+
 
 class AllUsersModel {
     var username : String?

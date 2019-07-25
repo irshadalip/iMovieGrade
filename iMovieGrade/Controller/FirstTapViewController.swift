@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class FirstTapViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UITextFieldDelegate {
+class FirstTapViewController: UIViewController, UITextFieldDelegate {
     
     let dbMovie = Firestore.firestore()
     let dbNow = Firestore.firestore()
@@ -18,18 +18,14 @@ class FirstTapViewController: UIViewController,UICollectionViewDelegate, UIColle
     let db = Firestore.firestore()
     
     var listOfCURRENT = [NowModel]()
-    
     var listOfDataNow = [NowModel]()
     var listOfDataPopuler = [NowModel]()
     var listOfDataMovie = [NowModel]()
     var listOfAll = [NowModel]()
     
     let profileName = Auth.auth().currentUser?.displayName
-    
-    
-    
-    var IsHide = false
 
+    var IsHide = false
     var movies = ["movie-1"]
     var nows = ["justice league",]
     var nowText = ["justice league"]
@@ -51,13 +47,15 @@ class FirstTapViewController: UIViewController,UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        viewDidLoadData()
+        viewDidLoadTask()
+        
+        readDataMovie()
+        readDataNow()
+        readDataPopuler()
+        AllUsers()
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
-        //self.navigationItem.leftBarButtonItem = nil
-        //self.navigationItem.hidesBackButton = true
-    
     }
     
     @IBAction func nowButton(_ sender: UIButton) {
@@ -74,7 +72,7 @@ class FirstTapViewController: UIViewController,UICollectionViewDelegate, UIColle
 
 //MARK:- Functions
 extension FirstTapViewController{
-    func viewDidLoadData() {
+    func viewDidLoadTask() {
         moviesCollection.delegate = self
         moviesCollection.dataSource = self
         nowsCollection.delegate = self
@@ -84,13 +82,7 @@ extension FirstTapViewController{
         searchCollection.delegate = self
         searchCollection.dataSource = self
         searchText.delegate = self
-        
-        readDataMovie()
-        readDataNow()
-        readDataPopuler()
-        AllUsers()
-        
-        
+  
         let itemSize = UIScreen.main.bounds.width / 3 - 10
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
@@ -98,8 +90,7 @@ extension FirstTapViewController{
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         searchCollection.collectionViewLayout = layout
-        
-        
+ 
         searchBar.setImage(UIImage(named: "search_icon"), for: .search, state: .normal)
         searchBar.layoutIfNeeded()
         self.view.addSubview(searchBar)
@@ -131,8 +122,9 @@ extension FirstTapViewController{
         txtField.leftViewMode = .always
     }
 }
-//MARK:- COLLECTIONVIEW DELEGATES
-extension FirstTapViewController{
+
+//MARK:- CollectionView Delegates
+extension FirstTapViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if IsHide == true{
@@ -143,7 +135,6 @@ extension FirstTapViewController{
             
             populerLabel.setTitle("", for: .normal)
             nowlabel.setTitle("", for: .normal)
-            movieLabel.text = ""
         }
         else{
             self.moviesCollection.isHidden = false
@@ -153,7 +144,7 @@ extension FirstTapViewController{
             
             populerLabel.setTitle("Populer", for: .normal)
             nowlabel.setTitle("Now", for: .normal)
-            movieLabel.text = "MOVIES"
+            //movieLabel.text = "MOVIES"
         }
         
         if IsHide == false {
@@ -245,12 +236,10 @@ extension FirstTapViewController{
             
             
         }
-
-        
     }
 }
 
-//MARK:- FireBase Functions
+//MARK:- FireBase Fuctions
 extension FirstTapViewController{
     
     func readDataNow() {
@@ -436,7 +425,7 @@ extension FirstTapViewController{
 }
 
 
-//MARK:- TaxtField-Delegate
+//MARK:- TaxtField-Delegate   // # Not Currently In Use This Extention
 extension FirstTapViewController{
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool{
@@ -483,8 +472,10 @@ extension FirstTapViewController{
         return true
     }
 }
-//MARK:- Searchbar-Delegate
-extension FirstTapViewController{
+
+
+//MARK:- SearchBar Delegate
+extension FirstTapViewController: UISearchBarDelegate{
 
     func setUpSearchBar() {
         searchBar.delegate = self

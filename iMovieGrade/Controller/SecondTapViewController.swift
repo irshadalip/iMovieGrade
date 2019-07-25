@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class SecondTapViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
+class SecondTapViewController: UIViewController {
     
     var movies = ["populer"]
 
@@ -20,59 +20,50 @@ class SecondTapViewController: UIViewController,UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+  
+        viewDidLoadTask()
+        readDataMovie()
+
+    }
+    
+    func viewDidLoadTask(){
         let itemSize = UIScreen.main.bounds.width / 3 - 10
-        
         let layout = UICollectionViewFlowLayout()
-        
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
         layout.itemSize = CGSize(width: itemSize, height: itemSize + 80)
-        
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 2
         
         movieSubCollectionView.collectionViewLayout = layout
-        
-        
-        readDataMovie()
-
-        // Do any additional setup after loading the view.
-    }
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return listOfDataMovie.count
-
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieSubListCell", for: indexPath) as! MovieSubCollectionViewCell
-        cell.imageSubMovie.image = listOfDataMovie[indexPath.row].image
-        
-        return cell
-        
-   
-    
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-       
-//        let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
-//        viewControler.movieID = listOfDataMovie[indexPath.row].movieURL
-//        viewControler.moviename = listOfDataMovie[indexPath.row].name
-//        viewControler.movieImage = listOfDataMovie[indexPath.row].image
-//        self.navigationController?.pushViewController(viewControler, animated: true)
-
-
     }
     
 }
 
+//MARK:- Collection Delegates
+extension SecondTapViewController : UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return listOfDataMovie.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieSubListCell", for: indexPath) as! MovieSubCollectionViewCell
+        cell.imageSubMovie.image = listOfDataMovie[indexPath.row].image
+        
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // Not Given this Scree For makeing
+        /*        let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
+                viewControler.movieID = listOfDataMovie[indexPath.row].movieURL
+                viewControler.moviename = listOfDataMovie[indexPath.row].name
+                viewControler.movieImage = listOfDataMovie[indexPath.row].image
+                self.navigationController?.pushViewController(viewControler, animated: true)*/
+ 
+    }
+}
+
+//MARK:- FireBase Fuctions
 extension SecondTapViewController{
     func readDataMovie() {
         

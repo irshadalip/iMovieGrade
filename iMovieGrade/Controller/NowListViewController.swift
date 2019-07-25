@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class NowListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
+class NowListViewController: UIViewController  {
 
     
 
@@ -21,7 +21,6 @@ class NowListViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var nows = ["justice league"]
     var nowText = ["justice league"]
-    
     var nows2 = ["justice league"]
     
     let db = Firestore.firestore()
@@ -29,19 +28,7 @@ class NowListViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let itemSize = UIScreen.main.bounds.width / 3 - 10
-
-        let layout = UICollectionViewFlowLayout()
-
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-
-        layout.itemSize = CGSize(width: itemSize, height: itemSize + 50)
-
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 10
-
-        nowListCollectionView.collectionViewLayout = layout
-        
+        viewDidLoadTask()
         readData()
 
     }
@@ -50,23 +37,31 @@ class NowListViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.hidesBackButton = false
     }
+    func viewDidLoadTask() {
+        let itemSize = UIScreen.main.bounds.width / 3 - 10
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        layout.itemSize = CGSize(width: itemSize, height: itemSize + 50)
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
+        
+        nowListCollectionView.collectionViewLayout = layout
+    }
     
+    
+
+}
+
+
+//MARK:- CollectionView Delegates
+extension NowListViewController : UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listOfData.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-    
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowSubListCell", for: indexPath) as! NowSubListViewController
-//
-//        cell.imageSubNow.image = UIImage(named: nows[indexPath.row])
-//
-//        return cell
-
-
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NowSubListCell", for: indexPath) as! NowSubListViewController
         cell.imageSubNow.image = listOfData[indexPath.row].image
-
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -74,13 +69,11 @@ class NowListViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         viewControler.movieID = listOfData[indexPath.row].movieURL
         self.navigationController?.pushViewController(viewControler, animated: true)
-        
-        
-        
     }
-
 }
 
+
+//MARK:- FireBase Fuctions
 extension NowListViewController{
 
     func readData() {
@@ -112,7 +105,7 @@ extension NowListViewController{
                             self.nowListCollectionView.reloadData()
                         }
                     })
-                    //self.nows.append(nownewitem.image!)
+                    
                     self.listOfData.append(nownewitem)
                     DispatchQueue.main.async {
                         self.nowListCollectionView.reloadData()

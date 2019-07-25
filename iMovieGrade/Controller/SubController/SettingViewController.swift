@@ -23,7 +23,6 @@ class SettingViewController: UIViewController, UITableViewDataSource,UITableView
         super.viewDidLoad()
 
         signOut.layer.cornerRadius = signOut.frame.size.height / 2
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func singnOutAction(_ sender: UIButton) {
@@ -35,7 +34,7 @@ class SettingViewController: UIViewController, UITableViewDataSource,UITableView
             LoginManager().logOut()
             print("Logged Out Successfully")
         }catch{
-            print("LogIn Error :-------------- \(error)")
+            print("LogIn Error : \(error)")
         }
         
         UserDefaults.standard.set(false, forKey:"login")
@@ -72,8 +71,10 @@ class SettingViewController: UIViewController, UITableViewDataSource,UITableView
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
-            
-            let text = "https://www.youtube.com/watch?v=\(movieURL!)"
+            var text = ""
+            if movieURL != nil{
+                text = "https://www.youtube.com/watch?v=\(movieURL!)"
+            }
             let textToShare = [text]
             let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.view
@@ -86,20 +87,14 @@ class SettingViewController: UIViewController, UITableViewDataSource,UITableView
         else{
             
             let request = self.storyboard?.instantiateViewController(withIdentifier: "AboutViewController") as? AboutViewController
-            let v = BottomController()
+            let drawer = BottomController()
             request?.view.backgroundColor = .white
-            v.destinationController = request
-            v.sourceController = self
-            v.startingHeight = 200
-            v.cornerRadius = 10
-            v.modalPresentationStyle = .overCurrentContext
-            self.present(v, animated: true, completion: nil)
-//
-//
-//            let viewControler : AboutViewController = self.storyboard?.instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
-//
-//            self.navigationController?.pushViewController(viewControler, animated: true)
-          
+            drawer.destinationController = request
+            drawer.sourceController = self
+            drawer.startingHeight = 300
+            drawer.cornerRadius = 10
+            drawer.modalPresentationStyle = .overCurrentContext
+            self.present(drawer, animated: true, completion: nil)
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

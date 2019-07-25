@@ -14,7 +14,6 @@ class AboutViewController: BottomController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func crossButton(_ sender: UIButton) {

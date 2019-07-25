@@ -23,10 +23,6 @@ class PlayVideo__2: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //r9-DM9uBtVI
-        //url = movieURL[]
-        print(movieID)
-        
         videoView.loadVideoID("\(movieID!)")
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -62,5 +58,4 @@ class PlayVideo__2: UIViewController {
             }
         }
     }
-
 }

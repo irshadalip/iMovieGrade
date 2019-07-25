@@ -8,13 +8,14 @@
 
 import UIKit
 
-class IntroViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+class IntroViewController : UIViewController{
     
-
-    @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var introCollectionView: UICollectionView!
     @IBOutlet weak var IntroCollection: UICollectionView!
     
+    @IBOutlet weak var pageButton_1: UIButton!
+    @IBOutlet weak var pageButton_2: UIButton!
+    @IBOutlet weak var pageButton_3: UIButton!
     var count = 0
     
     var images = [UIImage(named: "ic_onboarding_1"),UIImage(named: "ic_onboarding_2"),UIImage(named: "ic_onboarding_3")]
@@ -23,6 +24,9 @@ class IntroViewController: UIViewController,UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewDidLoadTask()
+    }
+    func viewDidLoadTask(){
         self.navigationController?.isNavigationBarHidden = true
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.hidesBackButton = true
@@ -31,16 +35,45 @@ class IntroViewController: UIViewController,UICollectionViewDelegate, UICollecti
             let viewController:TapViewController = self.storyboard?.instantiateViewController(withIdentifier: "TapViewController") as! TapViewController
             self.navigationController?.pushViewController(viewController, animated: true)
         }
-
-        self.pageController.currentPageIndicatorTintColor = UIColor.init(patternImage: UIImage(named: "Mask")!)
-        self.pageController.pageIndicatorTintColor = UIColor.init(patternImage: UIImage(named: "Mask_NotSelected")!)
-        self.pageController.transform = CGAffineTransform(scaleX: 3, y: 3)
         
-        pageController.currentPage = 0
+        pageButton_1.setImage(UIImage(named: "Mask"), for: .normal)
+        pageButton_2.setImage(UIImage(named: "Mask_NotSelected"), for: .normal)
+        pageButton_3.setImage(UIImage(named: "Mask_NotSelected"), for: .normal)
+    }
+ 
+    @objc func buttonClick(sender: UIButton)  {
+        if count == 0{
+            count += 1
+            
+            let index = IndexPath.init(item: count, section: 0)
+            self.IntroCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            
+            pageButton_1.setImage(UIImage(named: "Mask_NotSelected"), for: .normal)
+            pageButton_2.setImage(UIImage(named: "Mask"), for: .normal)
+            pageButton_3.setImage(UIImage(named: "Mask_NotSelected"), for: .normal)
+            
+        }else if count == 1{
+            count += 1
+
+            
+            let index = IndexPath.init(item: count, section: 0)
+            self.IntroCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            
+            pageButton_1.setImage(UIImage(named: "Mask_NotSelected"), for: .normal)
+            pageButton_2.setImage(UIImage(named: "Mask_NotSelected"), for: .normal)
+            pageButton_3.setImage(UIImage(named: "Mask"), for: .normal)
+        }
+        else if count == 2{
+            let viewController = storyboard?.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
-    
-    
+}
+
+
+//MARK:- CollectionView Delegates
+extension IntroViewController : UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
@@ -57,7 +90,7 @@ class IntroViewController: UIViewController,UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
@@ -71,32 +104,4 @@ class IntroViewController: UIViewController,UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
-    
-    @objc func buttonClick(sender: UIButton)  {
-        if count == 0{
-            count += 1
-            pageController.currentPage = count
-            
-            let index = IndexPath.init(item: count, section: 0)
-            self.IntroCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-            
-            
-            
-        }else if count == 1{
-            count += 1
-            pageController.currentPage = count
-            
-            
-            let index = IndexPath.init(item: count, section: 0)
-            self.IntroCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-            
-            
-        }
-        else if count == 2{
-            let viewController = storyboard?.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
-    }
-    
 }
-

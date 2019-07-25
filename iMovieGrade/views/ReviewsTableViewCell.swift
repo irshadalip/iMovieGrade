@@ -19,9 +19,8 @@ class ReviewsTableViewCell: UITableViewCell {
     @IBOutlet weak var reviews: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
-         profileName.text = Auth.auth().currentUser?.displayName
+        profileName.text = Auth.auth().currentUser?.displayName
         
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
         profileImage.clipsToBounds = true
@@ -30,8 +29,6 @@ class ReviewsTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
         
     }
     

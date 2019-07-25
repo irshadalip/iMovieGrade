@@ -23,6 +23,21 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewDidLoadTask()
+    }
+    
+    
+    @IBAction func gmailButton(_ sender: UIButton) {
+        let actionCodeSettings = ActionCodeSettings()
+        actionCodeSettings.url = URL(string: "https://solutionanalysts.page.link")
+        // The sign-in operation has to always be completed in the app.
+        actionCodeSettings.handleCodeInApp = true
+        actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
+        actionCodeSettings.setAndroidPackageName("com.example.ios",
+                                                 installIfNotAvailable: false, minimumVersion: "12")
+
+    }
+    func viewDidLoadTask(){
         let loginButton = FBLoginButton()
         loginButton.center = view.center
         view.addSubview(loginButton)
@@ -47,39 +62,10 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
         gmailOutlet.isHidden = true
     }
     
-    @IBAction func gmailButton(_ sender: UIButton) {
-        let actionCodeSettings = ActionCodeSettings()
-        actionCodeSettings.url = URL(string: "https://solutionanalysts.page.link")
-        // The sign-in operation has to always be completed in the app.
-        actionCodeSettings.handleCodeInApp = true
-        actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
-        actionCodeSettings.setAndroidPackageName("com.example.android",
-                                                 installIfNotAvailable: false, minimumVersion: "12")
-        
-//        Auth.auth().sendSignInLink(toEmail:email,
-//                                   actionCodeSettings: actionCodeSettings) { error in
-//                                    // ...
-//                                    if let error = error {
-//                                        self.showMessagePrompt(error.localizedDescription)
-//                                        return
-//                                    }
-//                                    // The link was successfully sent. Inform the user.
-//                                    // Save the email locally so you don't need to ask the user for it again
-//                                    // if they open the link on the same device.
-//                                    UserDefaults.standard.set(email, forKey: "Email")
-//                                    self.showMessagePrompt("Check your email for link")
-//                                    // ...
-//        }
-
-    }
-    
-    
-    
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         
         if let error = error {
             print(error.localizedDescription)
-            
             return
         }
         else{
@@ -87,7 +73,7 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
             
             Auth.auth().signIn(with: credential) { (authResult, error) in
                 if error != nil {
-                    print("ERROR------------")
+                    print("ERROR While AccessToken")
                     
                     return
                 }
@@ -107,15 +93,10 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
     }
 
     func createGradientLayer() {
-
         let topColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let bottomColor = UIColor(red: 255, green: 37, blue: 219, alpha: 1)
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
         gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
-        //backView.layer.addSublayer(gradientLayer)
-
-        //let topColor = UIColor(red: 1, green: 0.92, blue: 0.56, alpha: 1)
-        //let bottomColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1)
     }
 }

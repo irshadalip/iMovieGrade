@@ -79,7 +79,6 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.navigationItem.hidesBackButton = true
         
         InitWatchCount()
-        readCommentCount()
     }
     
     @IBAction func likeButtonAction(_ sender: UIButton) {
@@ -114,10 +113,7 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     
     @IBAction func playMovieButton(_ sender: UIButton) {
-        
-        //let viewControler : PlayVideoViewController = self.storyboard?.instantiateViewController(withIdentifier: "PlayVideoViewController") as! PlayVideoViewController
         let viewControler : PlayVideo__2 = self.storyboard?.instantiateViewController(withIdentifier: "PlayVideo__2") as! PlayVideo__2
-        
         
         viewControler.movieID = movieID
         viewControler.moviename = moviename
@@ -128,6 +124,8 @@ class NowItemViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     
 }
+
+
 //MARK:- CollectionView Delegate
 extension NowItemViewController{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -164,6 +162,8 @@ extension NowItemViewController{
         
     }
 }
+
+
 //MARK:- Firebase Functions
 extension NowItemViewController{
     
@@ -187,7 +187,6 @@ extension NowItemViewController{
                     self.characterCollectionView.reloadData()
                 }
             })
-            //self.nows.append(nownewitem.image!)
             self.listOfCharecter.append(charNewitem)
             self.characterCollectionView.reloadData()
         }
@@ -267,7 +266,7 @@ extension NowItemViewController{
             }
         }
     }
-    //==========================================
+
     func readCommentCount() {
         self.commentcount.removeAll()
         db.collection("comment").getDocuments() { (querySnapshot, err) in
@@ -299,6 +298,9 @@ extension NowItemViewController{
     }
    
 }
+
+
+//MARK:- Creat New User In FireBase
 extension NowItemViewController{
     func creatUser() {
         var ref: DocumentReference? = nil
@@ -314,6 +316,8 @@ extension NowItemViewController{
         }
     }
 }
+
+
 //MARK:- Init Call For Firebase
 extension NowItemViewController{
     
@@ -675,8 +679,7 @@ extension NowItemViewController{
                                     }
                                     else{
                                         likeCont = Int(newitem.like!)! + 1
-                                        
-                                        self.likeButtonLabel.text = String(likeCont)
+                                        self.likecount = String(likeCont)
                                         self.likecount = String(likeCont)
                                         //self.db.collection("total").document(self.moviename!).updateData(["state": "1"])
                                         self.likeButton_1.setImage(UIImage(named: "like_fill"), for: .normal)

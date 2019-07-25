@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class PopulerListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+class PopulerListViewController: UIViewController{
 
     @IBOutlet weak var populerCollectionView: UICollectionView!
     
@@ -45,16 +45,17 @@ class PopulerListViewController: UIViewController, UICollectionViewDelegate, UIC
         self.navigationItem.hidesBackButton = false
     }
 
+    
+
+}
+
+
+//MARK:- CollectionView Delegates
+extension PopulerListViewController : UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listOfData.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopulerSubListCell", for: indexPath) as! PopulerSubListViewController
-//
-//        cell.iamgeSubPopuler.image = UIImage(named: populers[indexPath.row])
-//
-//        return cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopulerSubListCell", for: indexPath) as! PopulerSubListViewController
         cell.iamgeSubPopuler.image = listOfData[indexPath.row].image
         
@@ -65,9 +66,9 @@ class PopulerListViewController: UIViewController, UICollectionViewDelegate, UIC
         viewControler.movieID = listOfData[indexPath.row].movieURL
         self.navigationController?.pushViewController(viewControler, animated: true)
     }
-
 }
 
+//MARK:- FireBase Fuctions
 extension PopulerListViewController{
     
     func readData() {
