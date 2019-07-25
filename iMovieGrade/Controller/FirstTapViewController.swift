@@ -121,6 +121,11 @@ extension FirstTapViewController{
         txtField.leftView = leftImageView
         txtField.leftViewMode = .always
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
 }
 
 //MARK:- CollectionView Delegates
@@ -399,7 +404,7 @@ extension FirstTapViewController{
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                var haveUser = 0
+                var haveUser = false
                 
                 for document in querySnapshot!.documents {
                     
@@ -407,17 +412,14 @@ extension FirstTapViewController{
                     // most Important
                     let newitem = AllUsersModel()
                     newitem.username = (doc["username"] as! String)
-            
+
                     if self.profileName == newitem.username{
   
-                        haveUser = 1
+                        haveUser = true
                     }
-                    //newitem.dic = (doc["state"] as! Dictionary)
-                    //print(newitem.movieArray?.count)
                 }
-                if haveUser == 0{
+                if haveUser == false{
                     self.creatUser()
-  
                 }
             }
         }

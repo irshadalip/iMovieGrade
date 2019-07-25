@@ -148,6 +148,7 @@ extension NowItemViewController{
         viewControler.commentCount = listOfComments.count
         viewControler.watchCount = totalWatch
         viewControler.likeCount = likecount
+        
         viewControler.profile = listOfCharecter[indexPath.row].image
         viewControler.profileName = imageStore[indexPath.row]
         
@@ -586,7 +587,7 @@ extension NowItemViewController{
     }
     func updateLike(){
         
-        self.likecount.removeAll()
+        //self.likecount.removeAll()
         db.collection("total").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -668,9 +669,10 @@ extension NowItemViewController{
                                     var likeCont = 0
                                     if value as! String == "1"{
                                         likeCont = Int(newitem.like!)! - 1
-                                        self.likeButtonLabel.text = String(likeCont)
+                                        
                                         self.likecount = String(likeCont)
-                                        //self.db.collection("total").document(self.moviename!).updateData(["state": "0"])
+                                        self.likeButtonLabel.text = String(likeCont)
+                                       
                                         self.likeButton_1.setImage(UIImage(named: "like-11"), for: .normal)
                                         print(self.moviename!)
                                         
@@ -680,8 +682,7 @@ extension NowItemViewController{
                                     else{
                                         likeCont = Int(newitem.like!)! + 1
                                         self.likecount = String(likeCont)
-                                        self.likecount = String(likeCont)
-                                        //self.db.collection("total").document(self.moviename!).updateData(["state": "1"])
+                                        self.likeButtonLabel.text = String(likeCont)
                                         self.likeButton_1.setImage(UIImage(named: "like_fill"), for: .normal)
                                         print(self.moviename!)
                                         
@@ -691,15 +692,13 @@ extension NowItemViewController{
                                     
                                     self.db.collection("total").document(self.moviename!).updateData(["like": "\(likeCont)"])
                                     
+                                    self.likecount = String(likeCont)
                                 } else {
                                     print("Document does not exist")
                                 }
                             }
                         }
-                        
                         self.totalWatch = newitem.watch!
-                        self.likecount = newitem.like ?? "00"
-    
                     }
                 }
             }
