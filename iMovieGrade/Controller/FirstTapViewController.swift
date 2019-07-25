@@ -504,7 +504,7 @@ extension FirstTapViewController: UISearchBarDelegate{
             
             for subView in searchBar.subviews {
                 for subViewInSubView in subView.subviews {
-                    subViewInSubView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+                    subViewInSubView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
                 }
             }
         }
