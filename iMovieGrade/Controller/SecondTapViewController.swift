@@ -35,6 +35,7 @@ class SecondTapViewController: UIViewController {
         layout.minimumLineSpacing = 2
         
         movieSubCollectionView.collectionViewLayout = layout
+    
     }
     
 }
@@ -75,6 +76,7 @@ extension SecondTapViewController{
                 print("Error getting documents: \(err)")
                 
             } else {
+                ReusebaleMethods.sharedInstance.showLoader()
                 for document in querySnapshot!.documents {
                     // most Important
                     let movienewitem = MovieModel()
@@ -89,6 +91,7 @@ extension SecondTapViewController{
                         if let error = error {
                             print("error-------- \(error.localizedDescription)")
                             
+                            ReusebaleMethods.sharedInstance.hideLoader()
                             return
                         }
                         if let data = data {
@@ -96,6 +99,7 @@ extension SecondTapViewController{
                             movienewitem.image  = UIImage(data: data)!
                             self.movieSubCollectionView.reloadData()
                         }
+                        ReusebaleMethods.sharedInstance.hideLoader()
                     })
                     //self.nows.append(nownewitem.image!)
                     self.listOfDataMovie.append(movienewitem)

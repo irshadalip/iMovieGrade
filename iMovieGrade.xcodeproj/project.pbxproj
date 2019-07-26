@@ -41,6 +41,10 @@
 		9FBC877F22D8BD52007573CA /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBC877E22D8BD52007573CA /* CommentsViewController.swift */; };
 		9FD76EC522D6F78000B6E6A4 /* PlayVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD76EC422D6F78000B6E6A4 /* PlayVideoViewController.swift */; };
 		9FD76EC722D7225A00B6E6A4 /* NowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD76EC622D7225A00B6E6A4 /* NowModel.swift */; };
+		9FDE39E222EADB8A0013FEB2 /* ReusebaleMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDE39E122EADB8A0013FEB2 /* ReusebaleMethods.swift */; };
+		9FDE39E422EAF9F60013FEB2 /* qq.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9FDE39E322EAF9F60013FEB2 /* qq.gif */; };
+		9FDE39E622EB00F50013FEB2 /* Gif+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDE39E522EB00F50013FEB2 /* Gif+Image.swift */; };
+		9FDE39E822EB02290013FEB2 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9FDE39E722EB02290013FEB2 /* demo.gif */; };
 		9FDFFF2622D5E13300ABF0BD /* GenralCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDFFF2422D5E13300ABF0BD /* GenralCollectionViewCell.swift */; };
 		9FDFFF2722D5E13300ABF0BD /* GenralCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDFFF2522D5E13300ABF0BD /* GenralCollectionViewCell.xib */; };
 		9FDFFF2922D5E24100ABF0BD /* ThirdTapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDFFF2822D5E24100ABF0BD /* ThirdTapViewController.swift */; };
@@ -118,6 +122,10 @@
 		9FBC877E22D8BD52007573CA /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		9FD76EC422D6F78000B6E6A4 /* PlayVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVideoViewController.swift; sourceTree = "<group>"; };
 		9FD76EC622D7225A00B6E6A4 /* NowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowModel.swift; sourceTree = "<group>"; };
+		9FDE39E122EADB8A0013FEB2 /* ReusebaleMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusebaleMethods.swift; sourceTree = "<group>"; };
+		9FDE39E322EAF9F60013FEB2 /* qq.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = qq.gif; sourceTree = "<group>"; };
+		9FDE39E522EB00F50013FEB2 /* Gif+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Gif+Image.swift"; sourceTree = "<group>"; };
+		9FDE39E722EB02290013FEB2 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		9FDFFF2422D5E13300ABF0BD /* GenralCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenralCollectionViewCell.swift; sourceTree = "<group>"; };
 		9FDFFF2522D5E13300ABF0BD /* GenralCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenralCollectionViewCell.xib; sourceTree = "<group>"; };
 		9FDFFF2822D5E24100ABF0BD /* ThirdTapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTapViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +203,8 @@
 				9F78E71D22D359ED00DC9B75 /* Controller */,
 				085B0E98208073EC00AF5F8A /* Assets.xcassets */,
 				085B0E9D208073EC00AF5F8A /* Info.plist */,
+				9FDE39E322EAF9F60013FEB2 /* qq.gif */,
+				9FDE39E722EB02290013FEB2 /* demo.gif */,
 				9F6E8A5E22DF2BAC00880498 /* GoogleService-Info.plist */,
 			);
 			path = iMovieGrade;
@@ -271,6 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				9FD76EC622D7225A00B6E6A4 /* NowModel.swift */,
+				9FDE39E522EB00F50013FEB2 /* Gif+Image.swift */,
+				9FDE39E122EADB8A0013FEB2 /* ReusebaleMethods.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -425,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				085B0E9C208073EC00AF5F8A /* LaunchScreen.storyboard in Resources */,
+				9FDE39E822EB02290013FEB2 /* demo.gif in Resources */,
 				9FDFFF2722D5E13300ABF0BD /* GenralCollectionViewCell.xib in Resources */,
 				9FA34DF322DC642900A9E7AF /* ReviewsTableViewCell.xib in Resources */,
 				085B0ECC2080804D00AF5F8A /* montserrat_light.otf in Resources */,
@@ -432,6 +445,7 @@
 				085B0E99208073EC00AF5F8A /* Assets.xcassets in Resources */,
 				085B0E97208073E500AF5F8A /* Main.storyboard in Resources */,
 				9F6E8A5F22DF2BAC00880498 /* GoogleService-Info.plist in Resources */,
+				9FDE39E422EAF9F60013FEB2 /* qq.gif in Resources */,
 				085B0ECA2080804D00AF5F8A /* montserrat_medium.otf in Resources */,
 				085B0ECB2080804D00AF5F8A /* montserrat_regular.otf in Resources */,
 			);
@@ -549,6 +563,7 @@
 				9FAC233522E815C900BCEF39 /* IntroCollectionViewCell.swift in Sources */,
 				9FA6CDDE22D59F7900DDAB5F /* NowItemViewController.swift in Sources */,
 				9FBC877D22D86000007573CA /* MovieSubCollectionViewCell.swift in Sources */,
+				9FDE39E222EADB8A0013FEB2 /* ReusebaleMethods.swift in Sources */,
 				9FDFFF2B22D5E9D900ABF0BD /* ProfileCharacterCell.swift in Sources */,
 				9FA34DF222DC642900A9E7AF /* ReviewsTableViewCell.swift in Sources */,
 				9F48217122D48003008CAD6F /* NowSubListViewController.swift in Sources */,
@@ -561,6 +576,7 @@
 				9FDFFF2622D5E13300ABF0BD /* GenralCollectionViewCell.swift in Sources */,
 				9FAC233322E80F1500BCEF39 /* IntroViewController.swift in Sources */,
 				9F78E72122D36BEF00DC9B75 /* TapViewController.swift in Sources */,
+				9FDE39E622EB00F50013FEB2 /* Gif+Image.swift in Sources */,
 				9FBC877F22D8BD52007573CA /* CommentsViewController.swift in Sources */,
 				9F48217322D48A9A008CAD6F /* PopulerSubListViewController.swift in Sources */,
 				9FF83C1722D43E98008A0606 /* MoviesCollectionViewCell.swift in Sources */,

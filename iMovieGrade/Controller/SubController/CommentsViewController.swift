@@ -26,7 +26,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
     var postId = ""
     var movieID: String?
     var profileName : String?
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
 
     @IBOutlet weak var reviewText: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -48,7 +48,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBAction func sendAction(_ sender: UIButton) {
   
         if reviewText.text?.count != 0{
-            activityIndicator.startAnimating()
+            ReusebaleMethods.sharedInstance.showLoader()
             uploadReview()
         }
     }
@@ -99,8 +99,6 @@ extension CommentsViewController{
     func uploadReview() {
         var ref: DocumentReference? = nil
         
-        //print(url)
-        
         // Add a new document with a generated ID
         ref = db.collection("comment").addDocument(data: [ "review": "\(reviewText.text ?? "")", "url": "\(movieID!)", "photourl": "\(url!)", "username": "\(profileName!)"]) { err in
             if let err = err {
@@ -130,18 +128,14 @@ extension CommentsViewController{
                 self.reviewText.text = ""
                 
             }
-            self.activityIndicator.stopAnimating()
+            ReusebaleMethods.sharedInstance.hideLoader()
             self.tableView.reloadData()
         }
         
     }
     
     func readComments() {
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
+        ReusebaleMethods.sharedInstance.showLoader()
         
         
         self.comment.removeAll()
@@ -191,7 +185,8 @@ extension CommentsViewController{
                     count = count + 1
                 }
             }
-            self.activityIndicator.stopAnimating()
+            
+            ReusebaleMethods.sharedInstance.hideLoader()
         }
     }
 }

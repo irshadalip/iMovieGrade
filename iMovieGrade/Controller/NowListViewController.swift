@@ -68,6 +68,8 @@ extension NowListViewController : UICollectionViewDelegate, UICollectionViewData
         let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
         
         viewControler.movieID = listOfData[indexPath.row].movieURL
+        viewControler.moviename = listOfData[indexPath.row].name
+        viewControler.movieImage = listOfData[indexPath.row].image
         self.navigationController?.pushViewController(viewControler, animated: true)
     }
 }
@@ -83,6 +85,7 @@ extension NowListViewController{
                 print("Error getting documents: \(err)")
 
             } else {
+                ReusebaleMethods.sharedInstance.showLoader()
                 for document in querySnapshot!.documents {
                     // most Important
                     let nownewitem = NowModel()
@@ -97,6 +100,7 @@ extension NowListViewController{
                         if let error = error {
                             print("error whene get Image \(error.localizedDescription)")
 
+                            ReusebaleMethods.sharedInstance.hideLoader()
                             return
                         }
                         if let data = data {
@@ -104,6 +108,7 @@ extension NowListViewController{
                             nownewitem.image  = UIImage(data: data)!
                             self.nowListCollectionView.reloadData()
                         }
+                        ReusebaleMethods.sharedInstance.hideLoader()
                     })
                     
                     self.listOfData.append(nownewitem)
@@ -115,6 +120,7 @@ extension NowListViewController{
                     print("Data Print:- \(document.documentID) => \(document.data())")
 
                 }
+                
             }
         }
     }

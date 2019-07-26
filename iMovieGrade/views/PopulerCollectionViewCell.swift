@@ -16,6 +16,6 @@ class PopulerCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // Initialization code
+        ReusebaleMethods.sharedInstance.Shadow(Component : imagePopuler)
     }
 }

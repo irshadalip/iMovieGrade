@@ -112,6 +112,8 @@ extension FirstTapViewController{
         //let searchImage = UIImage(named: "search_icon")
         //addLeftImage(txtField: searchText, andImage: searchImage!)
         
+        ReusebaleMethods.sharedInstance.showLoader()
+        
         for subView in searchBar.subviews {
             for subViewInSubView in subView.subviews {
                 subViewInSubView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
@@ -128,7 +130,7 @@ extension FirstTapViewController{
 }
 
 //MARK:- CollectionView Delegates
-extension FirstTapViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension FirstTapViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if IsHide == true{
@@ -241,6 +243,19 @@ extension FirstTapViewController: UICollectionViewDelegate, UICollectionViewData
             
         }
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        //let size = nowsCollection.frame.size
+//        //return CGSize(width: size.width, height: size.height)
+//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
 }
 
 //MARK:- FireBase Fuctions
@@ -256,7 +271,7 @@ extension FirstTapViewController{
                 
             } else {
                 for document in querySnapshot!.documents {
-                    // most Important
+                    
                     let nownewitem = NowModel()
                     nownewitem.movieURL = (document.data()["url"] as! String)
                     nownewitem.name = (document.data()["name"] as! String)
@@ -268,7 +283,7 @@ extension FirstTapViewController{
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
                             print("error-------- \(error.localizedDescription)")
-                            
+                            ReusebaleMethods.sharedInstance.hideLoader()
                             return
                         }
                         if let data = data {
@@ -276,6 +291,7 @@ extension FirstTapViewController{
                             nownewitem.image  = UIImage(data: data)!
                             self.nowsCollection.reloadData()
                         }
+                        ReusebaleMethods.sharedInstance.hideLoader()
                     })
                     //self.nows.append(nownewitem.image!)
                     self.listOfDataNow.append(nownewitem)

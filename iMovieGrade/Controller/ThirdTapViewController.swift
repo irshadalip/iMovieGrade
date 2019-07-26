@@ -93,6 +93,7 @@ extension ThirdTapViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
+        
         viewControler.movieID = listOfDataPopuler[indexPath.row].movieURL
         viewControler.moviename = listOfDataPopuler[indexPath.row].name
         viewControler.movieImage = listOfDataPopuler[indexPath.row].image
@@ -131,7 +132,8 @@ extension ThirdTapViewController{
         for movie in imageStore{
             
             let newitem = CharMovieModel()
-            
+        
+            newitem.movieURL = movieURL
             
             let storeRef = Storage.storage().reference(withPath: "allmovies/\(movie).png")//document.documentID
         

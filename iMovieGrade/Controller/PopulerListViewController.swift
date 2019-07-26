@@ -64,6 +64,8 @@ extension PopulerListViewController : UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let viewControler : NowItemViewController = self.storyboard?.instantiateViewController(withIdentifier: "NowItemViewController") as! NowItemViewController
         viewControler.movieID = listOfData[indexPath.row].movieURL
+        viewControler.moviename = listOfData[indexPath.row].name
+        viewControler.movieImage = listOfData[indexPath.row].image
         self.navigationController?.pushViewController(viewControler, animated: true)
     }
 }
@@ -78,6 +80,8 @@ extension PopulerListViewController{
                 print("Error getting documents: \(err)")
                 
             } else {
+                ReusebaleMethods.sharedInstance.showLoader()
+                
                 for document in querySnapshot!.documents {
                     // most Important
                     let nownewitem = NowModel()
@@ -91,14 +95,16 @@ extension PopulerListViewController{
                     storeRef.getData(maxSize: 4 * 1024 * 1024, completion: {(data, error) in
                         if let error = error {
                             print("error Whene get Image \(error.localizedDescription)")
-                            
+                            ReusebaleMethods.sharedInstance.hideLoader()
                             return
                         }
                         if let data = data {
                             print("Main data\(data)")
                             nownewitem.image  = UIImage(data: data)!
                             self.populerCollectionView.reloadData()
+                            
                         }
+                        ReusebaleMethods.sharedInstance.hideLoader()
                     })
                     //self.nows.append(nownewitem.image!)
                     self.listOfData.append(nownewitem)
@@ -110,6 +116,8 @@ extension PopulerListViewController{
                     print("Data Print:- \(document.documentID) => \(document.data())")
                     
                 }
+                
+                
             }
         }
     }

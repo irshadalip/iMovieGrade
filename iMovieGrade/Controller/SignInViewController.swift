@@ -69,15 +69,22 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
             return
         }
         else{
-            let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-            
-            Auth.auth().signIn(with: credential) { (authResult, error) in
-                if error != nil {
-                    print("ERROR While AccessToken")
-                    
-                    return
+            do{
+                guard let credential = try? FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)else {return}
+                
+                
+                Auth.auth().signIn(with: credential) { (authResult, error) in
+                    if error != nil {
+                        print("ERROR While AccessToken")
+                        
+                        return
+                    }
                 }
+            }catch{
+                
             }
+
+            
         }
         
         UserDefaults.standard.set(true, forKey: "login")
